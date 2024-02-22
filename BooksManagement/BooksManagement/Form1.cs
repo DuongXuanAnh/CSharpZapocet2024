@@ -6,5 +6,35 @@ namespace BooksManagement
         {
             InitializeComponent();
         }
+
+        private void btn_menu_knihy_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_menu_addAuthor_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_menu_addBook_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_menu_addCustomer_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_menu_order_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_menu_returnBook_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

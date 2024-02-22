@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\david\\source\\repos\\ZapocetCShapr\\BooksManagement\\BooksManagement\\BooksManagement.csproj",
+      "projectUniqueName": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\BooksManagement.csproj",
       "projectName": "BooksManagement",
-      "projectPath": "C:\\Users\\david\\source\\repos\\ZapocetCShapr\\BooksManagement\\BooksManagement\\BooksManagement.csproj",
+      "projectPath": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\BooksManagement.csproj",
       "packagesPath": "C:\\Users\\david\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\david\\source\\repos\\ZapocetCShapr\\BooksManagement\\BooksManagement\\obj\\",
+      "outputPath": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\david\\AppData\\Roaming\\NuGet\\NuGet.Config",

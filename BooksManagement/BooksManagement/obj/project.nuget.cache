@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "h7tBlazJ6DKbOAk6c9gac97gKX1VHMskb21Drxajz4TnHgbreIwlNhZogjlvm+HI68iqkqdLqrAgmSZPpbZWhw==",
+  "dgSpecHash": "Dm7BmfrxTuEYpsM7QURYuREgRuu8t5SZMRqoTl2NomRwm/oYGIl2u2fz9iWb9csiQ2CM7ESghaPbaDyOSK8C8w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\david\\source\\repos\\ZapocetCShapr\\BooksManagement\\BooksManagement\\BooksManagement.csproj",
+  "projectFilePath": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\BooksManagement.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
