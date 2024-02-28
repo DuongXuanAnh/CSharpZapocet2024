@@ -36,6 +36,12 @@
             btn_menu_returnBook = new Button();
             label1 = new Label();
             panel_knihy = new Panel();
+            cb_knihy_zanr = new ComboBox();
+            label15 = new Label();
+            cb_knihy_authors = new ComboBox();
+            label14 = new Label();
+            txt_knihy_nazevKnihy = new TextBox();
+            label13 = new Label();
             label2 = new Label();
             panel_addAuthor = new Panel();
             btn_addAuthor = new Button();
@@ -45,21 +51,39 @@
             label4 = new Label();
             label3 = new Label();
             panel_addBook = new Panel();
+            btn_addBook = new Button();
+            rtxt_addBook_popis = new RichTextBox();
+            comboBox2 = new ComboBox();
+            numUpDown_addBook_quantity = new NumericUpDown();
+            label22 = new Label();
+            txt_addBook_year = new TextBox();
+            txt_addBook_price = new TextBox();
+            cb_addBook_zarn = new ComboBox();
+            label21 = new Label();
+            label20 = new Label();
+            label19 = new Label();
+            label18 = new Label();
+            label17 = new Label();
+            txt_addBook_name = new TextBox();
+            label16 = new Label();
             label7 = new Label();
             panel_addCustomer = new Panel();
-            panel_Order = new Panel();
-            label8 = new Label();
-            panel_returnBook = new Panel();
-            label9 = new Label();
+            txt_phoneNumber = new TextBox();
+            txt_email = new TextBox();
+            label6 = new Label();
             btn_addCustomer = new Button();
             txt_customerName = new TextBox();
             label10 = new Label();
             label11 = new Label();
             label12 = new Label();
-            dateTimePicker_customer = new DateTimePicker();
+            panel_Order = new Panel();
+            label8 = new Label();
+            panel_returnBook = new Panel();
+            label9 = new Label();
             panel_knihy.SuspendLayout();
             panel_addAuthor.SuspendLayout();
             panel_addBook.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numUpDown_addBook_quantity).BeginInit();
             panel_addCustomer.SuspendLayout();
             panel_Order.SuspendLayout();
             panel_returnBook.SuspendLayout();
@@ -138,18 +162,81 @@
             // panel_knihy
             // 
             panel_knihy.BackColor = SystemColors.ButtonHighlight;
+            panel_knihy.Controls.Add(cb_knihy_zanr);
+            panel_knihy.Controls.Add(label15);
+            panel_knihy.Controls.Add(cb_knihy_authors);
+            panel_knihy.Controls.Add(label14);
+            panel_knihy.Controls.Add(txt_knihy_nazevKnihy);
+            panel_knihy.Controls.Add(label13);
             panel_knihy.Controls.Add(label2);
             panel_knihy.Location = new Point(253, 12);
             panel_knihy.Name = "panel_knihy";
             panel_knihy.Size = new Size(955, 653);
             panel_knihy.TabIndex = 7;
             // 
+            // cb_knihy_zanr
+            // 
+            cb_knihy_zanr.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            cb_knihy_zanr.FormattingEnabled = true;
+            cb_knihy_zanr.Location = new Point(631, 134);
+            cb_knihy_zanr.Name = "cb_knihy_zanr";
+            cb_knihy_zanr.Size = new Size(263, 36);
+            cb_knihy_zanr.TabIndex = 6;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label15.Location = new Point(559, 137);
+            label15.Name = "label15";
+            label15.Size = new Size(55, 28);
+            label15.TabIndex = 5;
+            label15.Text = "Žánr:";
+            // 
+            // cb_knihy_authors
+            // 
+            cb_knihy_authors.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            cb_knihy_authors.FormattingEnabled = true;
+            cb_knihy_authors.Location = new Point(631, 69);
+            cb_knihy_authors.Name = "cb_knihy_authors";
+            cb_knihy_authors.Size = new Size(263, 36);
+            cb_knihy_authors.TabIndex = 4;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label14.Location = new Point(559, 72);
+            label14.Name = "label14";
+            label14.Size = new Size(66, 28);
+            label14.TabIndex = 3;
+            label14.Text = "Autor:";
+            // 
+            // txt_knihy_nazevKnihy
+            // 
+            txt_knihy_nazevKnihy.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            txt_knihy_nazevKnihy.Location = new Point(163, 110);
+            txt_knihy_nazevKnihy.Name = "txt_knihy_nazevKnihy";
+            txt_knihy_nazevKnihy.Size = new Size(305, 34);
+            txt_knihy_nazevKnihy.TabIndex = 2;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label13.Location = new Point(35, 110);
+            label13.Name = "label13";
+            label13.Size = new Size(122, 28);
+            label13.TabIndex = 1;
+            label13.Text = "Název knihy:";
+            // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(27, 15);
+            label2.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label2.Location = new Point(27, 24);
             label2.Name = "label2";
-            label2.Size = new Size(45, 20);
+            label2.Size = new Size(130, 54);
             label2.TabIndex = 0;
             label2.Text = "Knihy";
             // 
@@ -169,18 +256,19 @@
             // 
             // btn_addAuthor
             // 
-            btn_addAuthor.Location = new Point(259, 265);
+            btn_addAuthor.Location = new Point(259, 328);
             btn_addAuthor.Name = "btn_addAuthor";
             btn_addAuthor.Size = new Size(454, 57);
             btn_addAuthor.TabIndex = 5;
             btn_addAuthor.Text = "Přidat autora";
             btn_addAuthor.UseVisualStyleBackColor = true;
+            btn_addAuthor.Click += btn_addAuthor_Click;
             // 
             // cbox_Nationality
             // 
             cbox_Nationality.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
             cbox_Nationality.FormattingEnabled = true;
-            cbox_Nationality.Location = new Point(259, 186);
+            cbox_Nationality.Location = new Point(259, 249);
             cbox_Nationality.Name = "cbox_Nationality";
             cbox_Nationality.Size = new Size(554, 39);
             cbox_Nationality.TabIndex = 4;
@@ -188,7 +276,7 @@
             // txt_AuthorName
             // 
             txt_AuthorName.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            txt_AuthorName.Location = new Point(259, 126);
+            txt_AuthorName.Location = new Point(259, 189);
             txt_AuthorName.Name = "txt_AuthorName";
             txt_AuthorName.Size = new Size(554, 38);
             txt_AuthorName.TabIndex = 3;
@@ -197,7 +285,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label5.Location = new Point(104, 190);
+            label5.Location = new Point(104, 253);
             label5.Name = "label5";
             label5.Size = new Size(127, 31);
             label5.TabIndex = 2;
@@ -207,7 +295,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label4.Location = new Point(83, 129);
+            label4.Location = new Point(83, 192);
             label4.Name = "label4";
             label4.Size = new Size(157, 31);
             label4.TabIndex = 1;
@@ -226,25 +314,180 @@
             // panel_addBook
             // 
             panel_addBook.BackColor = SystemColors.ControlLightLight;
+            panel_addBook.Controls.Add(btn_addBook);
+            panel_addBook.Controls.Add(rtxt_addBook_popis);
+            panel_addBook.Controls.Add(comboBox2);
+            panel_addBook.Controls.Add(numUpDown_addBook_quantity);
+            panel_addBook.Controls.Add(label22);
+            panel_addBook.Controls.Add(txt_addBook_year);
+            panel_addBook.Controls.Add(txt_addBook_price);
+            panel_addBook.Controls.Add(cb_addBook_zarn);
+            panel_addBook.Controls.Add(label21);
+            panel_addBook.Controls.Add(label20);
+            panel_addBook.Controls.Add(label19);
+            panel_addBook.Controls.Add(label18);
+            panel_addBook.Controls.Add(label17);
+            panel_addBook.Controls.Add(txt_addBook_name);
+            panel_addBook.Controls.Add(label16);
             panel_addBook.Controls.Add(label7);
             panel_addBook.Location = new Point(251, 12);
             panel_addBook.Name = "panel_addBook";
             panel_addBook.Size = new Size(957, 653);
             panel_addBook.TabIndex = 6;
             // 
+            // btn_addBook
+            // 
+            btn_addBook.Location = new Point(348, 560);
+            btn_addBook.Name = "btn_addBook";
+            btn_addBook.Size = new Size(268, 48);
+            btn_addBook.TabIndex = 23;
+            btn_addBook.Text = "Přidat knihu";
+            btn_addBook.UseVisualStyleBackColor = true;
+            // 
+            // rtxt_addBook_popis
+            // 
+            rtxt_addBook_popis.Location = new Point(131, 339);
+            rtxt_addBook_popis.Name = "rtxt_addBook_popis";
+            rtxt_addBook_popis.Size = new Size(782, 190);
+            rtxt_addBook_popis.TabIndex = 22;
+            rtxt_addBook_popis.Text = "";
+            // 
+            // comboBox2
+            // 
+            comboBox2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(539, 121);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(390, 36);
+            comboBox2.TabIndex = 21;
+            // 
+            // numUpDown_addBook_quantity
+            // 
+            numUpDown_addBook_quantity.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            numUpDown_addBook_quantity.Location = new Point(131, 274);
+            numUpDown_addBook_quantity.Name = "numUpDown_addBook_quantity";
+            numUpDown_addBook_quantity.Size = new Size(374, 38);
+            numUpDown_addBook_quantity.TabIndex = 20;
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label22.Location = new Point(52, 339);
+            label22.Name = "label22";
+            label22.Size = new Size(63, 28);
+            label22.TabIndex = 19;
+            label22.Text = "Popis:";
+            // 
+            // txt_addBook_year
+            // 
+            txt_addBook_year.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            txt_addBook_year.Location = new Point(131, 226);
+            txt_addBook_year.Name = "txt_addBook_year";
+            txt_addBook_year.Size = new Size(374, 34);
+            txt_addBook_year.TabIndex = 18;
+            // 
+            // txt_addBook_price
+            // 
+            txt_addBook_price.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            txt_addBook_price.Location = new Point(132, 175);
+            txt_addBook_price.Name = "txt_addBook_price";
+            txt_addBook_price.Size = new Size(374, 34);
+            txt_addBook_price.TabIndex = 17;
+            // 
+            // cb_addBook_zarn
+            // 
+            cb_addBook_zarn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            cb_addBook_zarn.FormattingEnabled = true;
+            cb_addBook_zarn.Location = new Point(131, 129);
+            cb_addBook_zarn.Name = "cb_addBook_zarn";
+            cb_addBook_zarn.Size = new Size(374, 36);
+            cb_addBook_zarn.TabIndex = 16;
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label21.Location = new Point(13, 278);
+            label21.Name = "label21";
+            label21.Size = new Size(109, 28);
+            label21.TabIndex = 15;
+            label21.Text = "Počet kusů:";
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label20.Location = new Point(10, 226);
+            label20.Name = "label20";
+            label20.Size = new Size(112, 28);
+            label20.TabIndex = 14;
+            label20.Text = "Rok vydání:";
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label19.Location = new Point(29, 178);
+            label19.Name = "label19";
+            label19.Size = new Size(97, 28);
+            label19.TabIndex = 13;
+            label19.Text = "Cena (Kč):";
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label18.Location = new Point(67, 129);
+            label18.Name = "label18";
+            label18.Size = new Size(55, 28);
+            label18.TabIndex = 12;
+            label18.Text = "Žárn:";
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label17.Location = new Point(539, 81);
+            label17.Name = "label17";
+            label17.Size = new Size(66, 28);
+            label17.TabIndex = 11;
+            label17.Text = "Autor:";
+            // 
+            // txt_addBook_name
+            // 
+            txt_addBook_name.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            txt_addBook_name.Location = new Point(131, 81);
+            txt_addBook_name.Name = "txt_addBook_name";
+            txt_addBook_name.Size = new Size(374, 34);
+            txt_addBook_name.TabIndex = 10;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label16.Location = new Point(52, 81);
+            label16.Name = "label16";
+            label16.Size = new Size(70, 28);
+            label16.TabIndex = 9;
+            label16.Text = "Název:";
+            // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(163, 110);
+            label7.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label7.Location = new Point(16, 11);
             label7.Name = "label7";
-            label7.Size = new Size(73, 20);
+            label7.Size = new Size(383, 54);
             label7.TabIndex = 8;
-            label7.Text = "add book";
+            label7.Text = "Přidat novou knihu";
             // 
             // panel_addCustomer
             // 
             panel_addCustomer.BackColor = SystemColors.ControlLightLight;
-            panel_addCustomer.Controls.Add(dateTimePicker_customer);
+            panel_addCustomer.Controls.Add(txt_phoneNumber);
+            panel_addCustomer.Controls.Add(txt_email);
+            panel_addCustomer.Controls.Add(label6);
             panel_addCustomer.Controls.Add(btn_addCustomer);
             panel_addCustomer.Controls.Add(txt_customerName);
             panel_addCustomer.Controls.Add(label10);
@@ -255,50 +498,41 @@
             panel_addCustomer.Size = new Size(957, 653);
             panel_addCustomer.TabIndex = 7;
             // 
-            // panel_Order
+            // txt_phoneNumber
             // 
-            panel_Order.BackColor = SystemColors.ControlLightLight;
-            panel_Order.Controls.Add(label8);
-            panel_Order.Location = new Point(251, 12);
-            panel_Order.Name = "panel_Order";
-            panel_Order.Size = new Size(957, 653);
-            panel_Order.TabIndex = 8;
+            txt_phoneNumber.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            txt_phoneNumber.Location = new Point(272, 312);
+            txt_phoneNumber.Name = "txt_phoneNumber";
+            txt_phoneNumber.Size = new Size(554, 38);
+            txt_phoneNumber.TabIndex = 15;
             // 
-            // label8
+            // txt_email
             // 
-            label8.AutoSize = true;
-            label8.Location = new Point(306, 150);
-            label8.Name = "label8";
-            label8.Size = new Size(130, 20);
-            label8.TabIndex = 0;
-            label8.Text = "pridat objdenavku";
+            txt_email.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            txt_email.Location = new Point(272, 256);
+            txt_email.Name = "txt_email";
+            txt_email.Size = new Size(554, 38);
+            txt_email.TabIndex = 14;
             // 
-            // panel_returnBook
+            // label6
             // 
-            panel_returnBook.BackColor = SystemColors.ControlLightLight;
-            panel_returnBook.Controls.Add(label9);
-            panel_returnBook.Location = new Point(250, 12);
-            panel_returnBook.Name = "panel_returnBook";
-            panel_returnBook.Size = new Size(957, 653);
-            panel_returnBook.TabIndex = 9;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(306, 150);
-            label9.Name = "label9";
-            label9.Size = new Size(82, 20);
-            label9.TabIndex = 0;
-            label9.Text = "vratit knihu";
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label6.Location = new Point(180, 259);
+            label6.Name = "label6";
+            label6.Size = new Size(75, 31);
+            label6.TabIndex = 13;
+            label6.Text = "Email:";
             // 
             // btn_addCustomer
             // 
-            btn_addCustomer.Location = new Point(272, 342);
+            btn_addCustomer.Location = new Point(272, 394);
             btn_addCustomer.Name = "btn_addCustomer";
             btn_addCustomer.Size = new Size(454, 57);
             btn_addCustomer.TabIndex = 11;
             btn_addCustomer.Text = "Přidat zákazníka";
             btn_addCustomer.UseVisualStyleBackColor = true;
+            btn_addCustomer.Click += btn_addCustomer_Click;
             // 
             // txt_customerName
             // 
@@ -312,11 +546,11 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label10.Location = new Point(74, 266);
+            label10.Location = new Point(85, 315);
             label10.Name = "label10";
-            label10.Size = new Size(181, 31);
+            label10.Size = new Size(163, 31);
             label10.TabIndex = 8;
-            label10.Text = "Datum narození:";
+            label10.Text = "Telefonní číslo:";
             // 
             // label11
             // 
@@ -338,13 +572,43 @@
             label12.TabIndex = 6;
             label12.Text = "Přidat zákazníka";
             // 
-            // dateTimePicker_customer
+            // panel_Order
             // 
-            dateTimePicker_customer.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            dateTimePicker_customer.Location = new Point(272, 263);
-            dateTimePicker_customer.Name = "dateTimePicker_customer";
-            dateTimePicker_customer.Size = new Size(554, 38);
-            dateTimePicker_customer.TabIndex = 12;
+            panel_Order.BackColor = SystemColors.ControlLightLight;
+            panel_Order.Controls.Add(label8);
+            panel_Order.Location = new Point(251, 12);
+            panel_Order.Name = "panel_Order";
+            panel_Order.Size = new Size(957, 653);
+            panel_Order.TabIndex = 8;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label8.Location = new Point(13, 15);
+            label8.Name = "label8";
+            label8.Size = new Size(409, 54);
+            label8.TabIndex = 0;
+            label8.Text = "Vytvořit objdenávku";
+            // 
+            // panel_returnBook
+            // 
+            panel_returnBook.BackColor = SystemColors.ControlLightLight;
+            panel_returnBook.Controls.Add(label9);
+            panel_returnBook.Location = new Point(250, 12);
+            panel_returnBook.Name = "panel_returnBook";
+            panel_returnBook.Size = new Size(957, 653);
+            panel_returnBook.TabIndex = 9;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label9.Location = new Point(6, 5);
+            label9.Name = "label9";
+            label9.Size = new Size(244, 54);
+            label9.TabIndex = 0;
+            label9.Text = "Vrátit knihy";
             // 
             // Form1
             // 
@@ -358,12 +622,12 @@
             Controls.Add(btn_menu_addBook);
             Controls.Add(btn_menu_addAuthor);
             Controls.Add(btn_menu_knihy);
+            Controls.Add(panel_Order);
             Controls.Add(panel_addCustomer);
             Controls.Add(panel_addBook);
             Controls.Add(panel_addAuthor);
             Controls.Add(panel_knihy);
             Controls.Add(panel_returnBook);
-            Controls.Add(panel_Order);
             Name = "Form1";
             Text = "Books Management";
             panel_knihy.ResumeLayout(false);
@@ -372,6 +636,7 @@
             panel_addAuthor.PerformLayout();
             panel_addBook.ResumeLayout(false);
             panel_addBook.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numUpDown_addBook_quantity).EndInit();
             panel_addCustomer.ResumeLayout(false);
             panel_addCustomer.PerformLayout();
             panel_Order.ResumeLayout(false);
@@ -407,11 +672,34 @@
         private Panel panel_returnBook;
         private Label label9;
         private Label label7;
-        private DateTimePicker dateTimePicker_customer;
         private Button btn_addCustomer;
         private TextBox txt_customerName;
         private Label label10;
         private Label label11;
         private Label label12;
+        private TextBox txt_email;
+        private Label label6;
+        private TextBox txt_phoneNumber;
+        private ComboBox cb_knihy_authors;
+        private Label label14;
+        private TextBox txt_knihy_nazevKnihy;
+        private Label label13;
+        private ComboBox cb_knihy_zanr;
+        private Label label15;
+        private TextBox txt_addBook_name;
+        private Label label16;
+        private Label label21;
+        private Label label20;
+        private Label label19;
+        private Label label18;
+        private Label label17;
+        private ComboBox cb_addBook_zarn;
+        private TextBox txt_addBook_price;
+        private TextBox txt_addBook_year;
+        private NumericUpDown numUpDown_addBook_quantity;
+        private Label label22;
+        private ComboBox comboBox2;
+        private RichTextBox rtxt_addBook_popis;
+        private Button btn_addBook;
     }
 }

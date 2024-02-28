@@ -14,7 +14,6 @@ namespace BooksManagement
 
         }
 
-
         private void btn_menu_knihy_Click(object sender, EventArgs e)
         {
             HideAllPanels();
@@ -60,6 +59,39 @@ namespace BooksManagement
             panel_returnBook.Visible = false;
         }
 
-     
+        #region knihy
+            
+        #endregion
+
+        #region AddAuthor
+        private void btn_addAuthor_Click(object sender, EventArgs e)
+        {
+            string authorName = txt_AuthorName.Text;
+            string nationality = cbox_Nationality.Text;
+            Author customer = new Author(authorName, nationality);
+            customer.createNewAuthor();
+        }
+        #endregion
+
+        #region AddBook
+
+        #endregion
+
+        #region AddCustomer
+        private void btn_addCustomer_Click(object sender, EventArgs e)
+        {
+            string customerName = txt_customerName.Text;
+            string customerEmail = txt_email.Text;
+            string customerPhoneNumber = txt_phoneNumber.Text;
+            Customer customer = new Customer(customerName, customerEmail, customerPhoneNumber);
+            customer.createNewCustomer();
+        }
+        #endregion
+
+        #region Objednavka
+        #endregion
+
+        #region ReturnBooks
+        #endregion
     }
 }
