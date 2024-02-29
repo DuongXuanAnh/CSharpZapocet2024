@@ -1,5 +1,7 @@
-﻿using System;
+﻿using BooksManagement.Config;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +24,30 @@ namespace BooksManagement
        
         public void createNewCustomer()
         {
-            MessageBox.Show(name);
+            DataProvider dataProvider = new DataProvider();
+
+            // Parametrizovaný SQL dotaz pro vložení nového zákazníka do databáze
+             string query = "INSERT INTO zakaznik (jmeno, email, phoneNumber) VALUES (@name, @email, @phoneNumber);";
+
+            // Vytvoření Dictionary pro parametry
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "@name", this.name },
+                { "@email", this.email },
+                { "@phoneNumber", this.phoneNumber }
+            };
+
+            // Volání metody ExecuteQuery s parametry
+            dataProvider.ExecuteModifiedQuery(query, parameters);
+
+            //foreach (DataRow row in dataTable.Rows)
+            //{
+            //    string jmeno = row["jmeno"].ToString();
+            //    string email = row["email"].ToString();
+            //    string phoneNumber = row["phoneNumber"].ToString();
+
+            //    MessageBox.Show($"Jméno: {jmeno}, Email: {email}, Telefonní číslo: {phoneNumber}");
+            //}
         }
     }
 }
