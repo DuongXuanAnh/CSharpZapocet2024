@@ -11,7 +11,7 @@ namespace BooksManagement
             panel_addCustomer.Visible = false;
             panel_Order.Visible = false;
             panel_returnBook.Visible = false;
-
+            
         }
 
         private void btn_menu_knihy_Click(object sender, EventArgs e)
@@ -24,6 +24,8 @@ namespace BooksManagement
         {
             HideAllPanels();
             panel_addAuthor.Visible = true;
+            Author.fillComboBoxWithNationalities(cbox_Nationality);
+
         }
 
         private void btn_menu_addBook_Click(object sender, EventArgs e)
@@ -64,13 +66,17 @@ namespace BooksManagement
         #endregion
 
         #region AddAuthor
+
+        
+
         private void btn_addAuthor_Click(object sender, EventArgs e)
         {
             string authorName = txt_AuthorName.Text;
             string nationality = cbox_Nationality.Text;
-            Author customer = new Author(authorName, nationality);
-            customer.createNewAuthor();
+            Author author = new Author(authorName, nationality);
+            author.createNewAuthor();
         }
+
         #endregion
 
         #region AddBook
