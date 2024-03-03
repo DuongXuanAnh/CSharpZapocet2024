@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
 
 namespace BooksManagement.Config
 {
@@ -46,6 +47,47 @@ namespace BooksManagement.Config
 
             return data;
         }
+
+
+        public object ExecuteScalarQuery(string query, Dictionary<string, object> parameters = null)
+        {
+            object result = null;
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    MySqlCommand command = new MySqlCommand(query, connection);
+
+                    // Přidání parametrů do příkazu, pokud existují
+                    if (parameters != null)
+                    {
+                        foreach (var pair in parameters)
+                        {
+                            command.Parameters.AddWithValue(pair.Key, pair.Value);
+                        }
+                    }
+
+                    connection.Open();
+
+                    // Vykonání dotazu a vrácení prvního řádku prvního sloupce v sadě výsledků
+                    result = command.ExecuteScalar();
+                }
+            }
+            catch (MySqlException ex)
+            {
+                // Zpracování chyb specifických pro MySQL
+                MessageBox.Show($"MySQL chyba: {ex.Message}", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                // Zpracování ostatních chyb
+                MessageBox.Show($"Obecná chyba: {ex.Message}", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return result;
+        }
+
 
         public void ExecuteModifiedQuery(string query, Dictionary<string, object> parameters = null)
         {

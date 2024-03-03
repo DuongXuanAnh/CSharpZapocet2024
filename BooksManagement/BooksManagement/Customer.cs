@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -21,33 +22,78 @@ namespace BooksManagement
             this.email = email;
             this.phoneNumber = phoneNumber;
         }
-       
+
         public void createNewCustomer()
         {
-            DataProvider dataProvider = new DataProvider();
-
-            // Parametrizovaný SQL dotaz pro vložení nového zákazníka do databáze
-             string query = "INSERT INTO zakaznik (jmeno, email, phoneNumber) VALUES (@name, @email, @phoneNumber);";
-
-            // Vytvoření Dictionary pro parametry
-            Dictionary<string, object> parameters = new Dictionary<string, object>
+            if (IsValidEmail(this.email))
             {
-                { "@name", this.name },
-                { "@email", this.email },
-                { "@phoneNumber", this.phoneNumber }
-            };
+                try
+                {
+                    DataProvider dataProvider = new DataProvider();
 
-            // Volání metody ExecuteQuery s parametry
-            dataProvider.ExecuteModifiedQuery(query, parameters);
+                    // Dotaz pro zjištění, zda zákazník s daným emailem nebo telefonním číslem již existuje
+                    string checkQuery = "SELECT COUNT(*) FROM zakaznik WHERE email = @email OR phoneNumber = @phoneNumber";
+                    Dictionary<string, object> checkParameters = new Dictionary<string, object>
+                    {
+                        { "@email", this.email },
+                        { "@phoneNumber", this.phoneNumber }
+                    };
 
-            //foreach (DataRow row in dataTable.Rows)
-            //{
-            //    string jmeno = row["jmeno"].ToString();
-            //    string email = row["email"].ToString();
-            //    string phoneNumber = row["phoneNumber"].ToString();
+                    object result = dataProvider.ExecuteScalarQuery(checkQuery, checkParameters);
+                    int count = Convert.ToInt32(result);
 
-            //    MessageBox.Show($"Jméno: {jmeno}, Email: {email}, Telefonní číslo: {phoneNumber}");
-            //}
+                    if (count > 0)
+                    {
+                        // Zákazník již existuje
+                        MessageBox.Show("Zákazník s tímto emailem nebo telefonním číslem již existuje.", "Varování", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        // Zákazník neexistuje, vložení nového zákazníka do databáze
+                        string insertQuery = "INSERT INTO zakaznik (jmeno, email, phoneNumber) VALUES (@name, @email, @phoneNumber);";
+                        Dictionary<string, object> insertParameters = new Dictionary<string, object>
+                        {
+                            { "@name", this.name },
+                            { "@email", this.email },
+                            { "@phoneNumber", this.phoneNumber }
+                        };
+
+                        dataProvider.ExecuteModifiedQuery(insertQuery, insertParameters);
+
+                        // Zobrazení zprávy o úspěchu
+                        MessageBox.Show("Zákazník byl úspěšně přidán.", "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Zobrazení chybové zprávy
+                    MessageBox.Show($"Při přidávání zákazníka došlo k chybě: {ex.Message}", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Neplatný email!");
+            }
         }
+
+
+        public static bool IsValidEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
+
+            try
+            {
+                // Normální forma emailové adresy pro jednoduchou validaci (příklad: jmeno@domena)
+                string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+                // Použití Regex.IsMatch pro kontrolu, zda email odpovídá vzoru
+                return Regex.IsMatch(email, pattern);
+            }
+            catch (RegexMatchTimeoutException)
+            {
+                return false;
+            }
+        }
+       
     }
 }

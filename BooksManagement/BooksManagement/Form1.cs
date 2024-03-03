@@ -59,8 +59,8 @@ namespace BooksManagement
             panel_returnBook.Visible = false;
         }
 
-        #region knihy
-            
+        #region Knihy
+
         #endregion
 
         #region AddAuthor
@@ -86,6 +86,15 @@ namespace BooksManagement
             Customer customer = new Customer(customerName, customerEmail, customerPhoneNumber);
             customer.createNewCustomer();
         }
+
+        private void txt_phoneNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Validation telephone number
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Handle the event, effectively ignoring the key press
+            }
+        }
         #endregion
 
         #region Objednavka
@@ -93,5 +102,7 @@ namespace BooksManagement
 
         #region ReturnBooks
         #endregion
+
+
     }
 }

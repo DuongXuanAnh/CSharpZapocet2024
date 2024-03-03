@@ -505,6 +505,7 @@
             txt_phoneNumber.Name = "txt_phoneNumber";
             txt_phoneNumber.Size = new Size(554, 38);
             txt_phoneNumber.TabIndex = 15;
+            txt_phoneNumber.KeyPress += txt_phoneNumber_KeyPress;
             // 
             // txt_email
             // 
@@ -622,12 +623,12 @@
             Controls.Add(btn_menu_addBook);
             Controls.Add(btn_menu_addAuthor);
             Controls.Add(btn_menu_knihy);
-            Controls.Add(panel_Order);
             Controls.Add(panel_addCustomer);
             Controls.Add(panel_addBook);
             Controls.Add(panel_addAuthor);
             Controls.Add(panel_knihy);
             Controls.Add(panel_returnBook);
+            Controls.Add(panel_Order);
             Name = "Form1";
             Text = "Books Management";
             panel_knihy.ResumeLayout(false);
