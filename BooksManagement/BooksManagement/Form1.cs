@@ -81,22 +81,25 @@ namespace BooksManagement
 
         private void btn_AddBook_addAuthor_Click(object sender, EventArgs e)
         {
-            var selectedAuthor = cb_AddNewBook_author.SelectedItem;
-            if (selectedAuthor == null)
+            if (cb_AddNewBook_author.SelectedItem is Author selectedAuthor)
             {
-                MessageBox.Show("Prosím, vyberte autora.");
-                return;
-            }
-            if (!listBox_AddNewBook_Authors.Items.Contains(selectedAuthor))
-            {
-                // Pøidání autora do ListBoxu
-                listBox_AddNewBook_Authors.Items.Add(selectedAuthor);
+                // Kontrola, zda ListBox již obsahuje vybraného autora, zde pøedpokládáme, že porovnáváme objekty na základì ID
+                bool authorExists = listBox_AddNewBook_Authors.Items.Cast<Author>().Any(item => item.id == selectedAuthor.id);
+                if (!authorExists)
+                {
+                    listBox_AddNewBook_Authors.Items.Add(selectedAuthor);
+                }
+                else
+                {
+                    MessageBox.Show("Tento autor již byl pøidán.");
+                }
             }
             else
             {
-                MessageBox.Show("Tento autor již byl pøidán.");
+                MessageBox.Show("Prosím, vyberte autora.");
             }
         }
+
 
         private void btn_AddBook_removeAuthor_Click(object sender, EventArgs e)
         {
@@ -114,9 +117,14 @@ namespace BooksManagement
 
         private void btn_addBook_Click(object sender, EventArgs e)
         {
+
             AddBook addBook = new AddBook();
             addBook.addNewBook();
-               
+            foreach (Author item in listBox_AddNewBook_Authors.Items)
+            {
+                MessageBox.Show(""+item.id);
+            }
+
         }
         #endregion
 

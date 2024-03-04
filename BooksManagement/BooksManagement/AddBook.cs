@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace BooksManagement
 {
@@ -23,6 +24,7 @@ namespace BooksManagement
 
         }
 
+
         public void addNewBook()
         {
 
@@ -38,10 +40,15 @@ namespace BooksManagement
 
                 var dataTable = dataProvider.ExecuteSelectQuery(query);
 
+                comboBoxAuthorName.Items.Clear(); // Vyčistíme ComboBox před naplněním
+
                 foreach (DataRow row in dataTable.Rows)
                 {
                     string authorName = row["jmeno"].ToString();
-                    comboBoxAuthorName.Items.Add(authorName);
+                    int authorId = Convert.ToInt32(row["id"]);
+                    Author authorItem = new Author(authorName, authorId);
+
+                    comboBoxAuthorName.Items.Add(authorItem);
                 }
             }
             catch (Exception ex)
@@ -49,6 +56,8 @@ namespace BooksManagement
                 Console.WriteLine($"Došlo k chybě: {ex.Message}");
             }
         }
+
+
 
     }
 }
