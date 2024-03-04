@@ -51,9 +51,12 @@
             label4 = new Label();
             label3 = new Label();
             panel_addBook = new Panel();
+            btn_AddBook_removeAuthor = new Button();
+            btn_AddBook_addAuthor = new Button();
+            listBox_AddNewBook_Authors = new ListBox();
             btn_addBook = new Button();
             rtxt_addBook_popis = new RichTextBox();
-            comboBox2 = new ComboBox();
+            cb_AddNewBook_author = new ComboBox();
             numUpDown_addBook_quantity = new NumericUpDown();
             label22 = new Label();
             txt_addBook_year = new TextBox();
@@ -314,9 +317,12 @@
             // panel_addBook
             // 
             panel_addBook.BackColor = SystemColors.ControlLightLight;
+            panel_addBook.Controls.Add(btn_AddBook_removeAuthor);
+            panel_addBook.Controls.Add(btn_AddBook_addAuthor);
+            panel_addBook.Controls.Add(listBox_AddNewBook_Authors);
             panel_addBook.Controls.Add(btn_addBook);
             panel_addBook.Controls.Add(rtxt_addBook_popis);
-            panel_addBook.Controls.Add(comboBox2);
+            panel_addBook.Controls.Add(cb_AddNewBook_author);
             panel_addBook.Controls.Add(numUpDown_addBook_quantity);
             panel_addBook.Controls.Add(label22);
             panel_addBook.Controls.Add(txt_addBook_year);
@@ -335,6 +341,34 @@
             panel_addBook.Size = new Size(957, 653);
             panel_addBook.TabIndex = 6;
             // 
+            // btn_AddBook_removeAuthor
+            // 
+            btn_AddBook_removeAuthor.Location = new Point(669, 276);
+            btn_AddBook_removeAuthor.Name = "btn_AddBook_removeAuthor";
+            btn_AddBook_removeAuthor.Size = new Size(119, 36);
+            btn_AddBook_removeAuthor.TabIndex = 26;
+            btn_AddBook_removeAuthor.Text = "Odebrat autora";
+            btn_AddBook_removeAuthor.UseVisualStyleBackColor = true;
+            btn_AddBook_removeAuthor.Click += btn_AddBook_removeAuthor_Click;
+            // 
+            // btn_AddBook_addAuthor
+            // 
+            btn_AddBook_addAuthor.Location = new Point(794, 121);
+            btn_AddBook_addAuthor.Name = "btn_AddBook_addAuthor";
+            btn_AddBook_addAuthor.Size = new Size(119, 36);
+            btn_AddBook_addAuthor.TabIndex = 25;
+            btn_AddBook_addAuthor.Text = "Přidat";
+            btn_AddBook_addAuthor.UseVisualStyleBackColor = true;
+            btn_AddBook_addAuthor.Click += btn_AddBook_addAuthor_Click;
+            // 
+            // listBox_AddNewBook_Authors
+            // 
+            listBox_AddNewBook_Authors.FormattingEnabled = true;
+            listBox_AddNewBook_Authors.Location = new Point(539, 170);
+            listBox_AddNewBook_Authors.Name = "listBox_AddNewBook_Authors";
+            listBox_AddNewBook_Authors.Size = new Size(374, 84);
+            listBox_AddNewBook_Authors.TabIndex = 24;
+            // 
             // btn_addBook
             // 
             btn_addBook.Location = new Point(348, 560);
@@ -343,6 +377,7 @@
             btn_addBook.TabIndex = 23;
             btn_addBook.Text = "Přidat knihu";
             btn_addBook.UseVisualStyleBackColor = true;
+            btn_addBook.Click += btn_addBook_Click;
             // 
             // rtxt_addBook_popis
             // 
@@ -352,14 +387,14 @@
             rtxt_addBook_popis.TabIndex = 22;
             rtxt_addBook_popis.Text = "";
             // 
-            // comboBox2
+            // cb_AddNewBook_author
             // 
-            comboBox2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(539, 121);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(390, 36);
-            comboBox2.TabIndex = 21;
+            cb_AddNewBook_author.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            cb_AddNewBook_author.FormattingEnabled = true;
+            cb_AddNewBook_author.Location = new Point(539, 121);
+            cb_AddNewBook_author.Name = "cb_AddNewBook_author";
+            cb_AddNewBook_author.Size = new Size(249, 36);
+            cb_AddNewBook_author.TabIndex = 21;
             // 
             // numUpDown_addBook_quantity
             // 
@@ -399,6 +434,7 @@
             // 
             cb_addBook_zarn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             cb_addBook_zarn.FormattingEnabled = true;
+            cb_addBook_zarn.Items.AddRange(new object[] { "anekdota", "bajka", "balada", "biografie", "červená knihovna", "drama", "encyklopedie", "epika", "epos", "fantasy", "komedie", "komiks", "lyrika", "novela", "óda", "parodie", "realismus", "román", "tragédie", "western", "aforismus", "apokryf", "báje", "beletrie", "esej", "fejeton", "legenda", "limerik", "magický realismus", "memoár", "mýtus", "pamflet", "polemika", "reportáž", "satira", "sci-fi", "sonet", "thriller", "utopie" });
             cb_addBook_zarn.Location = new Point(131, 129);
             cb_addBook_zarn.Name = "cb_addBook_zarn";
             cb_addBook_zarn.Size = new Size(374, 36);
@@ -623,12 +659,12 @@
             Controls.Add(btn_menu_addBook);
             Controls.Add(btn_menu_addAuthor);
             Controls.Add(btn_menu_knihy);
+            Controls.Add(panel_addBook);
             Controls.Add(panel_addAuthor);
             Controls.Add(panel_knihy);
             Controls.Add(panel_returnBook);
             Controls.Add(panel_Order);
             Controls.Add(panel_addCustomer);
-            Controls.Add(panel_addBook);
             Name = "Form1";
             Text = "Books Management";
             panel_knihy.ResumeLayout(false);
@@ -699,8 +735,11 @@
         private TextBox txt_addBook_year;
         private NumericUpDown numUpDown_addBook_quantity;
         private Label label22;
-        private ComboBox comboBox2;
+        private ComboBox cb_AddNewBook_author;
         private RichTextBox rtxt_addBook_popis;
         private Button btn_addBook;
+        private ListBox listBox_AddNewBook_Authors;
+        private Button btn_AddBook_addAuthor;
+        private Button btn_AddBook_removeAuthor;
     }
 }

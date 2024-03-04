@@ -11,7 +11,7 @@ namespace BooksManagement
             panel_addCustomer.Visible = false;
             panel_Order.Visible = false;
             panel_returnBook.Visible = false;
-            
+
         }
 
         private void btn_menu_knihy_Click(object sender, EventArgs e)
@@ -32,6 +32,7 @@ namespace BooksManagement
         {
             HideAllPanels();
             panel_addBook.Visible = true;
+            AddBook.fillComboBoxWithAuthor(cb_AddNewBook_author);
         }
 
         private void btn_menu_addCustomer_Click(object sender, EventArgs e)
@@ -66,9 +67,6 @@ namespace BooksManagement
         #endregion
 
         #region AddAuthor
-
-        
-
         private void btn_addAuthor_Click(object sender, EventArgs e)
         {
             string authorName = txt_AuthorName.Text;
@@ -81,6 +79,45 @@ namespace BooksManagement
 
         #region AddBook
 
+        private void btn_AddBook_addAuthor_Click(object sender, EventArgs e)
+        {
+            var selectedAuthor = cb_AddNewBook_author.SelectedItem;
+            if (selectedAuthor == null)
+            {
+                MessageBox.Show("Prosím, vyberte autora.");
+                return;
+            }
+            if (!listBox_AddNewBook_Authors.Items.Contains(selectedAuthor))
+            {
+                // Pøidání autora do ListBoxu
+                listBox_AddNewBook_Authors.Items.Add(selectedAuthor);
+            }
+            else
+            {
+                MessageBox.Show("Tento autor již byl pøidán.");
+            }
+        }
+
+        private void btn_AddBook_removeAuthor_Click(object sender, EventArgs e)
+        {
+            // Kontrola, jestli je nìjaký autor vybrán v ListBoxu
+            if (listBox_AddNewBook_Authors.SelectedIndex != -1)
+            {
+                // Odebrání vybraného autora
+                listBox_AddNewBook_Authors.Items.RemoveAt(listBox_AddNewBook_Authors.SelectedIndex);
+            }
+            else
+            {
+                MessageBox.Show("Prosím, vyberte autora, kterého chcete odebrat.");
+            }
+        }
+
+        private void btn_addBook_Click(object sender, EventArgs e)
+        {
+            AddBook addBook = new AddBook();
+            addBook.addNewBook();
+               
+        }
         #endregion
 
         #region AddCustomer
@@ -110,5 +147,7 @@ namespace BooksManagement
         #endregion
 
 
+
+       
     }
 }
