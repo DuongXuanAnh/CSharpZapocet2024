@@ -76,12 +76,10 @@ namespace BooksManagement.Config
             }
             catch (MySqlException ex)
             {
-                // Zpracování chyb specifických pro MySQL
                 MessageBox.Show($"MySQL chyba: {ex.Message}", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
-                // Zpracování ostatních chyb
                 MessageBox.Show($"Obecná chyba: {ex.Message}", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
@@ -114,16 +112,57 @@ namespace BooksManagement.Config
             }
             catch (MySqlException ex)
             {
-                // Zpracování chyb specifických pro MySQL
                 MessageBox.Show($"MySQL chyba: {ex.Message}", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
-                // Zpracování ostatních chyb
                 MessageBox.Show($"Obecná chyba: {ex.Message}", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }
+
+
+        public int ExecuteModifiedQueryWithID(string query, Dictionary<string, object> parameters = null)
+        {
+            int insertedId = -1; // Pokud se nepodaří vložit záznam, vrátíme -1
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    MySqlCommand command = new MySqlCommand(query, connection);
+
+                    // Přidání parametrů do příkazu, pokud existují
+                    if (parameters != null)
+                    {
+                        foreach (var pair in parameters)
+                        {
+                            command.Parameters.AddWithValue(pair.Key, pair.Value);
+                        }
+                    }
+
+                    connection.Open();
+
+                    // Pro INSERT, UPDATE, DELETE použijte ExecuteNonQuery
+                    command.ExecuteNonQuery();
+
+                    // Získání ID nově vloženého záznamu
+                    command.CommandText = "SELECT LAST_INSERT_ID();";
+                    insertedId = Convert.ToInt32(command.ExecuteScalar());
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show($"MySQL chyba: {ex.Message}", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Obecná chyba: {ex.Message}", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return insertedId;
+        }
+
 
     }
 }

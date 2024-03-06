@@ -400,6 +400,7 @@
             // 
             numUpDown_addBook_quantity.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
             numUpDown_addBook_quantity.Location = new Point(131, 274);
+            numUpDown_addBook_quantity.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             numUpDown_addBook_quantity.Name = "numUpDown_addBook_quantity";
             numUpDown_addBook_quantity.Size = new Size(374, 38);
             numUpDown_addBook_quantity.TabIndex = 20;

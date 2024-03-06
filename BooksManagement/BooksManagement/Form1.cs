@@ -100,7 +100,6 @@ namespace BooksManagement
             }
         }
 
-
         private void btn_AddBook_removeAuthor_Click(object sender, EventArgs e)
         {
             // Kontrola, jestli je nìjaký autor vybrán v ListBoxu
@@ -117,15 +116,36 @@ namespace BooksManagement
 
         private void btn_addBook_Click(object sender, EventArgs e)
         {
+            string name = txt_addBook_name.Text;
+            string genre = cb_addBook_zarn.Text;
+            double price;
+            int year;
+            int amount;
 
-            AddBook addBook = new AddBook();
-            addBook.addNewBook();
-            foreach (Author item in listBox_AddNewBook_Authors.Items)
+            // Kontrola, zda jsou všechna pole vyplnìna
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(genre) ||
+                !double.TryParse(txt_addBook_price.Text, out price) ||
+                !int.TryParse(txt_addBook_year.Text, out year) ||
+                !int.TryParse(numUpDown_addBook_quantity.Text, out amount) ||
+                listBox_AddNewBook_Authors.Items.Count == 0)
             {
-                MessageBox.Show(""+item.id);
+                MessageBox.Show("Prosím, vyplòte všechna pole.", "Upozornìní", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
+            // Kontrola, zda jsou všechna pole vyplnìna
+            string description = rtxt_addBook_popis.Text;
+            List<int> authorID = new List<int>();
+
+            foreach (Author item in listBox_AddNewBook_Authors.Items)
+            {
+                authorID.Add(item.id);
+            }
+
+            AddBook addBook = new AddBook(name, genre, price, year, amount, description, authorID);
+            addBook.addNewBook();
         }
+
         #endregion
 
         #region AddCustomer
