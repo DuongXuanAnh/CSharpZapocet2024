@@ -38,9 +38,9 @@ CREATE TABLE `autor` (
 --
 
 INSERT INTO `autor` (`id`, `jmeno`, `narodnost`) VALUES
-(1, 'Karel ÄŒapek', 'Czechia'),
+(1, 'Karel Čapek', 'Czechia'),
 (2, 'William Shakespeare', 'British'),
-(3, 'BoÅ¾ena NÄ›mcovÃ¡', 'Czechia'),
+(3, 'Božena Němcová', 'Czechia'),
 (4, 'Nguyen Nhat Anh', 'Vietnam'),
 (9, 'Ernest Hemingway', 'American'),
 (14, 'Autor test', 'American'),
