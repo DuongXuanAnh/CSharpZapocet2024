@@ -36,6 +36,7 @@
             btn_menu_returnBook = new Button();
             label1 = new Label();
             panel_knihy = new Panel();
+            dataGridView1 = new DataGridView();
             cb_knihy_zanr = new ComboBox();
             label15 = new Label();
             cb_knihy_authors = new ComboBox();
@@ -84,6 +85,7 @@
             panel_returnBook = new Panel();
             label9 = new Label();
             panel_knihy.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel_addAuthor.SuspendLayout();
             panel_addBook.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numUpDown_addBook_quantity).BeginInit();
@@ -165,6 +167,7 @@
             // panel_knihy
             // 
             panel_knihy.BackColor = SystemColors.ButtonHighlight;
+            panel_knihy.Controls.Add(dataGridView1);
             panel_knihy.Controls.Add(cb_knihy_zanr);
             panel_knihy.Controls.Add(label15);
             panel_knihy.Controls.Add(cb_knihy_authors);
@@ -177,14 +180,31 @@
             panel_knihy.Size = new Size(955, 653);
             panel_knihy.TabIndex = 7;
             // 
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.BackgroundColor = SystemColors.ButtonHighlight;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(3, 189);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(948, 461);
+            dataGridView1.TabIndex = 7;
+            dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
+            // 
             // cb_knihy_zanr
             // 
             cb_knihy_zanr.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             cb_knihy_zanr.FormattingEnabled = true;
+            cb_knihy_zanr.Items.AddRange(new object[] { "aforismus", "anekdota", "apokryf", "bajka", "balada", "báje", "beletrie", "biografie", "červená knihovna", "drama", "encyklopedie", "epika", "epos", "esej", "fantasy", "fejeton", "komedie", "komiks", "legenda", "limerik", "lyrika", "magický realismus", "memoár", "mýtus", "novela", "óda", "parodie", "pamflet", "polemika", "realismus", "reportáž", "román", "satira", "sci-fi", "sonet", "thriller", "tragédie", "utopie", "western" });
             cb_knihy_zanr.Location = new Point(631, 134);
             cb_knihy_zanr.Name = "cb_knihy_zanr";
             cb_knihy_zanr.Size = new Size(263, 36);
             cb_knihy_zanr.TabIndex = 6;
+            cb_knihy_zanr.SelectedIndexChanged += cb_knihy_zanr_SelectedIndexChanged;
+            cb_knihy_zanr.TextChanged += cb_knihy_zanr_TextChanged;
             // 
             // label15
             // 
@@ -204,6 +224,8 @@
             cb_knihy_authors.Name = "cb_knihy_authors";
             cb_knihy_authors.Size = new Size(263, 36);
             cb_knihy_authors.TabIndex = 4;
+            cb_knihy_authors.SelectedIndexChanged += cb_knihy_authors_SelectedIndexChanged;
+            cb_knihy_authors.TextChanged += cb_knihy_authors_TextChanged;
             // 
             // label14
             // 
@@ -222,6 +244,7 @@
             txt_knihy_nazevKnihy.Name = "txt_knihy_nazevKnihy";
             txt_knihy_nazevKnihy.Size = new Size(305, 34);
             txt_knihy_nazevKnihy.TabIndex = 2;
+            txt_knihy_nazevKnihy.TextChanged += txt_knihy_nazevKnihy_TextChanged;
             // 
             // label13
             // 
@@ -435,7 +458,7 @@
             // 
             cb_addBook_zarn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             cb_addBook_zarn.FormattingEnabled = true;
-            cb_addBook_zarn.Items.AddRange(new object[] { "anekdota", "bajka", "balada", "biografie", "červená knihovna", "drama", "encyklopedie", "epika", "epos", "fantasy", "komedie", "komiks", "lyrika", "novela", "óda", "parodie", "realismus", "román", "tragédie", "western", "aforismus", "apokryf", "báje", "beletrie", "esej", "fejeton", "legenda", "limerik", "magický realismus", "memoár", "mýtus", "pamflet", "polemika", "reportáž", "satira", "sci-fi", "sonet", "thriller", "utopie" });
+            cb_addBook_zarn.Items.AddRange(new object[] { "aforismus", "anekdota", "apokryf", "bajka", "balada", "báje", "beletrie", "biografie", "červená knihovna", "drama", "encyklopedie", "epika", "epos", "esej", "fantasy", "fejeton", "komedie", "komiks", "legenda", "limerik", "lyrika", "magický realismus", "memoár", "mýtus", "novela", "óda", "parodie", "pamflet", "polemika", "realismus", "reportáž", "román", "satira", "sci-fi", "sonet", "thriller", "tragédie", "utopie", "western" });
             cb_addBook_zarn.Location = new Point(131, 129);
             cb_addBook_zarn.Name = "cb_addBook_zarn";
             cb_addBook_zarn.Size = new Size(374, 36);
@@ -660,16 +683,17 @@
             Controls.Add(btn_menu_addBook);
             Controls.Add(btn_menu_addAuthor);
             Controls.Add(btn_menu_knihy);
-            Controls.Add(panel_addBook);
-            Controls.Add(panel_addAuthor);
             Controls.Add(panel_knihy);
             Controls.Add(panel_returnBook);
             Controls.Add(panel_Order);
             Controls.Add(panel_addCustomer);
+            Controls.Add(panel_addBook);
+            Controls.Add(panel_addAuthor);
             Name = "Form1";
             Text = "Books Management";
             panel_knihy.ResumeLayout(false);
             panel_knihy.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel_addAuthor.ResumeLayout(false);
             panel_addAuthor.PerformLayout();
             panel_addBook.ResumeLayout(false);
@@ -742,5 +766,6 @@
         private ListBox listBox_AddNewBook_Authors;
         private Button btn_AddBook_addAuthor;
         private Button btn_AddBook_removeAuthor;
+        private DataGridView dataGridView1;
     }
 }

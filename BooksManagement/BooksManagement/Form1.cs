@@ -1,3 +1,7 @@
+using BooksManagement.Config;
+using System.Data;
+using System.Text;
+
 namespace BooksManagement
 {
     public partial class Form1 : Form
@@ -11,13 +15,16 @@ namespace BooksManagement
             panel_addCustomer.Visible = false;
             panel_Order.Visible = false;
             panel_returnBook.Visible = false;
-
+            // Simulace kliknutí na tlaèítko btn_menu_knihy
+            btn_menu_knihy_Click(this, EventArgs.Empty);
         }
 
         private void btn_menu_knihy_Click(object sender, EventArgs e)
         {
             HideAllPanels();
             panel_knihy.Visible = true;
+            Books books = new Books(dataGridView1);
+            Author.fillComboBoxWithAuthor(cb_knihy_authors);
         }
 
         private void btn_menu_addAuthor_Click(object sender, EventArgs e)
@@ -32,7 +39,7 @@ namespace BooksManagement
         {
             HideAllPanels();
             panel_addBook.Visible = true;
-            AddBook.fillComboBoxWithAuthor(cb_AddNewBook_author);
+            Author.fillComboBoxWithAuthor(cb_AddNewBook_author);
         }
 
         private void btn_menu_addCustomer_Click(object sender, EventArgs e)
@@ -63,6 +70,97 @@ namespace BooksManagement
         }
 
         #region Knihy
+
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
+
+            // Získání obsahu vybraného øádku
+            StringBuilder rowContent = new StringBuilder();
+            for (int i = 0; i < selectedRow.Cells.Count; i++)
+            {
+                rowContent.AppendLine(dataGridView1.Columns[i].HeaderText + ": " + selectedRow.Cells[i].Value.ToString());
+            }
+
+            // Zobrazení obsahu vybraného øádku
+            MessageBox.Show(rowContent.ToString(), "Obsah vybraného øádku", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void txt_knihy_nazevKnihy_TextChanged(object sender, EventArgs e)
+        {
+            // Vyhledávání knihy podle názvu          
+            DataTable dataTable = (DataTable)dataGridView1.DataSource;
+            DataView dataView = dataTable.DefaultView;
+            string filterValue = txt_knihy_nazevKnihy.Text.Replace("'", "''");
+            dataView.RowFilter = string.Format("název LIKE '%{0}%'", filterValue);
+        }
+
+        private void cb_knihy_zanr_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataTable dataTable = (DataTable)dataGridView1.DataSource;
+            DataView dataView = dataTable.DefaultView;
+
+            if (cb_knihy_zanr.SelectedItem.ToString() == "All")
+            {
+                dataView.RowFilter = ""; // Clear the filter
+            }
+            else
+            {
+                string filterValue = cb_knihy_zanr.SelectedItem.ToString().Replace("'", "''"); // Escape single quotes
+                dataView.RowFilter = string.Format("Žánr = '{0}'", filterValue);
+            }
+        }
+
+
+        private void cb_knihy_zanr_TextChanged(object sender, EventArgs e)
+        {
+            DataTable dataTable = (DataTable)dataGridView1.DataSource;
+            DataView dataView = dataTable.DefaultView;
+
+            string filterValue = cb_knihy_zanr.Text.Replace("'", "''"); // Escape single quotes
+            if (string.IsNullOrWhiteSpace(filterValue))
+            {
+                dataView.RowFilter = ""; // Zobrazí všechny záznamy, pokud není vybrána žádná hodnota
+            }
+            else
+            {
+                dataView.RowFilter = string.Format("Žánr LIKE '%{0}%'", filterValue); // Filtrování na základì textu
+            }
+        }
+
+        private void cb_knihy_authors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataTable dataTable = (DataTable)dataGridView1.DataSource;
+            DataView dataView = dataTable.DefaultView;
+
+            if (cb_knihy_authors.SelectedItem.ToString() == "All")
+            {
+                dataView.RowFilter = ""; // Clear the filter
+            }
+            else
+            {
+                string filterValue = cb_knihy_authors.SelectedItem.ToString().Replace("'", "''"); // Escape single quotes
+                dataView.RowFilter = string.Format("Autor LIKE '%{0}%'", filterValue);
+            }
+        }
+
+        private void cb_knihy_authors_TextChanged(object sender, EventArgs e)
+        {
+            DataTable dataTable = (DataTable)dataGridView1.DataSource;
+            DataView dataView = dataTable.DefaultView;
+
+            string filterValue = cb_knihy_authors.Text.Replace("'", "''"); // Escape single quotes
+            if (string.IsNullOrWhiteSpace(filterValue))
+            {
+                dataView.RowFilter = ""; // Zobrazí všechny záznamy, pokud není vybrána žádná hodnota
+            }
+            else
+            {
+                dataView.RowFilter = string.Format("Autor LIKE '%{0}%'", filterValue); // Filtrování na základì textu
+            }
+        }
+
 
         #endregion
 
@@ -173,6 +271,12 @@ namespace BooksManagement
 
         #region ReturnBooks
         #endregion
+
+
+
+
+
+
 
 
 

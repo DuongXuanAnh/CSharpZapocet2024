@@ -91,32 +91,32 @@ namespace BooksManagement
             }
         }
 
-        public static void fillComboBoxWithAuthor(ComboBox comboBoxAuthorName)
-        {
-            try
-            {
-                DataProvider dataProvider = new DataProvider();
+        //public static void fillComboBoxWithAuthor(ComboBox comboBoxAuthorName)
+        //{
+        //    try
+        //    {
+        //        DataProvider dataProvider = new DataProvider();
 
-                string query = "SELECT id, jmeno FROM autor ORDER BY jmeno";
+        //        string query = "SELECT id, jmeno FROM autor ORDER BY jmeno";
 
-                var dataTable = dataProvider.ExecuteSelectQuery(query);
+        //        var dataTable = dataProvider.ExecuteSelectQuery(query);
 
-                comboBoxAuthorName.Items.Clear(); 
+        //        comboBoxAuthorName.Items.Clear(); 
 
-                foreach (DataRow row in dataTable.Rows)
-                {
-                    string authorName = row["jmeno"].ToString();
-                    int authorId = Convert.ToInt32(row["id"]);
-                    Author authorItem = new Author(authorName, authorId);
+        //        foreach (DataRow row in dataTable.Rows)
+        //        {
+        //            string authorName = row["jmeno"].ToString();
+        //            int authorId = Convert.ToInt32(row["id"]);
+        //            Author authorItem = new Author(authorName, authorId);
 
-                    comboBoxAuthorName.Items.Add(authorItem);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Došlo k chybě: {ex.Message}");
-            }
-        }
+        //            comboBoxAuthorName.Items.Add(authorItem);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine($"Došlo k chybě: {ex.Message}");
+        //    }
+        //}
 
 
 
