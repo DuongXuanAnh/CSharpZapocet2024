@@ -46,3 +46,4 @@ C:\Users\david\source\repos\ZapocetCSharp\BooksManagement\BooksManagement\bin\De
 C:\Users\david\source\repos\ZapocetCSharp\BooksManagement\BooksManagement\bin\Debug\net8.0-windows\runtimes\win-x64\native\krbcc64.dll
 C:\Users\david\source\repos\ZapocetCSharp\BooksManagement\BooksManagement\obj\Debug\net8.0-windows\BooksManagement.csproj.AssemblyReference.cache
 C:\Users\david\source\repos\ZapocetCSharp\BooksManagement\BooksManagement\obj\Debug\net8.0-windows\BooksMan.314172B5.Up2Date
+C:\Users\david\source\repos\ZapocetCSharp\BooksManagement\BooksManagement\obj\Debug\net8.0-windows\BooksManagement.BookDetailForm.resources

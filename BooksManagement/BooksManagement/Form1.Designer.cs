@@ -198,7 +198,6 @@
             // 
             cb_knihy_zanr.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             cb_knihy_zanr.FormattingEnabled = true;
-            cb_knihy_zanr.Items.AddRange(new object[] { "aforismus", "anekdota", "apokryf", "bajka", "balada", "báje", "beletrie", "biografie", "červená knihovna", "drama", "encyklopedie", "epika", "epos", "esej", "fantasy", "fejeton", "komedie", "komiks", "legenda", "limerik", "lyrika", "magický realismus", "memoár", "mýtus", "novela", "óda", "parodie", "pamflet", "polemika", "realismus", "reportáž", "román", "satira", "sci-fi", "sonet", "thriller", "tragédie", "utopie", "western" });
             cb_knihy_zanr.Location = new Point(631, 134);
             cb_knihy_zanr.Name = "cb_knihy_zanr";
             cb_knihy_zanr.Size = new Size(263, 36);
@@ -458,7 +457,6 @@
             // 
             cb_addBook_zarn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             cb_addBook_zarn.FormattingEnabled = true;
-            cb_addBook_zarn.Items.AddRange(new object[] { "aforismus", "anekdota", "apokryf", "bajka", "balada", "báje", "beletrie", "biografie", "červená knihovna", "drama", "encyklopedie", "epika", "epos", "esej", "fantasy", "fejeton", "komedie", "komiks", "legenda", "limerik", "lyrika", "magický realismus", "memoár", "mýtus", "novela", "óda", "parodie", "pamflet", "polemika", "realismus", "reportáž", "román", "satira", "sci-fi", "sonet", "thriller", "tragédie", "utopie", "western" });
             cb_addBook_zarn.Location = new Point(131, 129);
             cb_addBook_zarn.Name = "cb_addBook_zarn";
             cb_addBook_zarn.Size = new Size(374, 36);
@@ -683,12 +681,12 @@
             Controls.Add(btn_menu_addBook);
             Controls.Add(btn_menu_addAuthor);
             Controls.Add(btn_menu_knihy);
+            Controls.Add(panel_addBook);
+            Controls.Add(panel_addAuthor);
             Controls.Add(panel_knihy);
             Controls.Add(panel_returnBook);
             Controls.Add(panel_Order);
             Controls.Add(panel_addCustomer);
-            Controls.Add(panel_addBook);
-            Controls.Add(panel_addAuthor);
             Name = "Form1";
             Text = "Books Management";
             panel_knihy.ResumeLayout(false);

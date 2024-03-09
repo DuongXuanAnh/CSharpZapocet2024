@@ -25,8 +25,57 @@ namespace BooksManagement
                 "GROUP BY kniha.id, nazev, rok_vydani, zanr, cena, amount");
             dataGridView1.DataSource = dataTable;
 
-
         }
+
+        public static void fillComboBoxWithGenres(ComboBox genresComboBox)
+        {
+            List<string> genres = new List<string>()
+            {
+                "aforismus",
+                "anekdota",
+                "apokryf",
+                "bajka",
+                "balada",
+                "báje",
+                "beletrie",
+                "biografie",
+                "červená knihovna",
+                "drama",
+                "encyklopedie",
+                "epika",
+                "epos",
+                "esej",
+                "fantasy",
+                "fejeton",
+                "komedie",
+                "komiks",
+                "legenda",
+                "limerik",
+                "lyrika",
+                "magický realismus",
+                "memoár",
+                "mýtus",
+                "novela",
+                "óda",
+                "parodie",
+                "pamflet",
+                "polemika",
+                "realismus",
+                "reportáž",
+                "román",
+                "satira",
+                "sci-fi",
+                "sonet",
+                "thriller",
+                "tragédie",
+                "utopie",
+                "western"
+            };
+
+            genresComboBox.Items.Clear();
+            genresComboBox.Items.AddRange(genres.ToArray());
+        }
+
 
 
     }

@@ -25,6 +25,7 @@ namespace BooksManagement
             panel_knihy.Visible = true;
             Books books = new Books(dataGridView1);
             Author.fillComboBoxWithAuthor(cb_knihy_authors);
+            Books.fillComboBoxWithGenres(cb_knihy_zanr);
         }
 
         private void btn_menu_addAuthor_Click(object sender, EventArgs e)
@@ -40,6 +41,7 @@ namespace BooksManagement
             HideAllPanels();
             panel_addBook.Visible = true;
             Author.fillComboBoxWithAuthor(cb_AddNewBook_author);
+            Books.fillComboBoxWithGenres(cb_addBook_zarn);
         }
 
         private void btn_menu_addCustomer_Click(object sender, EventArgs e)
@@ -75,16 +77,9 @@ namespace BooksManagement
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
-
-            // Získání obsahu vybraného øádku
-            StringBuilder rowContent = new StringBuilder();
-            for (int i = 0; i < selectedRow.Cells.Count; i++)
-            {
-                rowContent.AppendLine(dataGridView1.Columns[i].HeaderText + ": " + selectedRow.Cells[i].Value.ToString());
-            }
-
-            // Zobrazení obsahu vybraného øádku
-            MessageBox.Show(rowContent.ToString(), "Obsah vybraného øádku", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            int id = (int) selectedRow.Cells["ID"].Value;
+            BookDetailForm bookDetailForm = new BookDetailForm(id);   
+            bookDetailForm.Show();
         }
 
         private void txt_knihy_nazevKnihy_TextChanged(object sender, EventArgs e)
