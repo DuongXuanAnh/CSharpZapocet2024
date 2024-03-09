@@ -139,6 +139,7 @@
             // 
             // cb_BookDetail_author
             // 
+            cb_BookDetail_author.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_BookDetail_author.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             cb_BookDetail_author.FormattingEnabled = true;
             cb_BookDetail_author.Location = new Point(539, 121);
@@ -183,6 +184,7 @@
             // 
             // cb_BookDetail_zanr
             // 
+            cb_BookDetail_zanr.DropDownStyle = ComboBoxStyle.DropDownList;
             cb_BookDetail_zanr.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
             cb_BookDetail_zanr.FormattingEnabled = true;
             cb_BookDetail_zanr.Location = new Point(131, 129);

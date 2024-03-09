@@ -126,6 +126,71 @@ namespace BooksManagement
 
         private void btn_BookDetail_update_Click(object sender, EventArgs e)
         {
+            string nazev = txt_BookDetail_name.Text;
+            string rokVydani = txt_BookDetail_year.Text;
+            string cena = txt_BookDetail_price.Text;
+            string zanr = cb_BookDetail_zanr.Text;
+            int amount = (int)numUpDown_BookDetail_quantity.Value;
+            string popis = rtxt_BookDetail_popis.Text;
+
+            List<int> authorIDs = new List<int>();
+            foreach (Author item in listBox_BookDetail_Authors.Items)
+            {
+                authorIDs.Add(item.id);
+            }
+
+            var query = "UPDATE `kniha` SET `nazev`=@nazev,`rok_vydani`=@rokVydani,`cena`=@cena,`zanr`=@zanr,`amount`=@amount,`popis`=@popis WHERE `id`=@bookID";
+
+            // Vytvoření slovníku pro parametry
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@nazev", nazev },
+                    { "@rokVydani", rokVydani },
+                    { "@cena", cena },
+                    { "@zanr", zanr },
+                    { "@amount", amount },
+                    { "@popis", popis },
+                    { "@bookID", bookID }
+                };
+
+
+            // Smazání existujících autorů pro danou knihu
+
+            var deleteQuery = "DELETE FROM `kniha_autor` WHERE `id_kniha`=@bookID";
+            Dictionary<string, object> deleteParameters = new Dictionary<string, object>
+            {
+                { "@bookID", bookID }
+            };
+
+            // Přidání nových autorů pro danou knihu
+            var insertQuery = "INSERT INTO `kniha_autor` (`id_kniha`, `id_autor`) VALUES (@bookID, @authorID)";
+
+            try
+            {
+                // Vytvoření instance DataProvider a spuštění aktualizačního dotazu
+                DataProvider dataProvider = new DataProvider();
+                dataProvider.ExecuteModifiedQuery(query, parameters);
+
+             
+                            dataProvider.ExecuteModifiedQuery(deleteQuery, deleteParameters);
+
+                           
+            foreach (var authorID in authorIDs)
+            {
+                Dictionary<string, object> insertParameters = new Dictionary<string, object>
+                {
+                    { "@bookID", bookID },
+                    { "@authorID", authorID }
+                };
+                    dataProvider.ExecuteModifiedQuery(insertQuery, insertParameters);
+                }
+
+                MessageBox.Show("Informace o knize byly úspěšně aktualizovány.", "Aktualizace úspěšná", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Nastala chyba při aktualizaci informací o knize: {ex.Message}", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
 
