@@ -48,6 +48,38 @@ namespace BooksManagement.Config
             return data;
         }
 
+        public DataTable ExecuteSelectQueryWithParameter(string query, Dictionary<string, object> parameters = null)
+        {
+            DataTable data = new DataTable();
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    MySqlCommand command = new MySqlCommand(query, connection);
+
+                    // Přidání parametrů do příkazu, pokud existují
+                    if (parameters != null)
+                    {
+                        foreach (var pair in parameters)
+                        {
+                            command.Parameters.AddWithValue(pair.Key, pair.Value);
+                        }
+                    }
+
+                    connection.Open();
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+                    adapter.Fill(data);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Došlo k chybě při vykonávání dotazu: " + ex.Message);
+            }
+
+            return data;
+        }
+
 
         public object ExecuteScalarQuery(string query, Dictionary<string, object> parameters = null)
         {
