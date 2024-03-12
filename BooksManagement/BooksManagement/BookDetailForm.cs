@@ -196,6 +196,18 @@ namespace BooksManagement
 
         private void btn_BookDetail_addToCart_Click(object sender, EventArgs e)
         {
+            try
+            {
+                using (StreamWriter sw = new StreamWriter("OrderBook.txt", true))
+                {
+                    sw.WriteLine(bookID);
+                }
+                MessageBox.Show("Kniha byla úspěšně přidaná do košíku!");
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
     }

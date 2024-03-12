@@ -1,6 +1,7 @@
 using BooksManagement.Config;
 using System.Data;
 using System.Text;
+using System.Windows.Forms;
 
 namespace BooksManagement
 {
@@ -17,6 +18,7 @@ namespace BooksManagement
             panel_returnBook.Visible = false;
             // Simulace kliknutí na tlaèítko btn_menu_knihy
             btn_menu_knihy_Click(this, EventArgs.Empty);
+
         }
 
         private void btn_menu_knihy_Click(object sender, EventArgs e)
@@ -54,6 +56,7 @@ namespace BooksManagement
         {
             HideAllPanels();
             panel_Order.Visible = true;
+            SetupDataGridViewOrder();
         }
 
         private void btn_menu_returnBook_Click(object sender, EventArgs e)
@@ -77,8 +80,8 @@ namespace BooksManagement
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
-            int id = (int) selectedRow.Cells["ID"].Value;
-            BookDetailForm bookDetailForm = new BookDetailForm(id);   
+            int id = (int)selectedRow.Cells["ID"].Value;
+            BookDetailForm bookDetailForm = new BookDetailForm(id);
             bookDetailForm.Show();
         }
 
@@ -262,6 +265,74 @@ namespace BooksManagement
         #endregion
 
         #region Objednavka
+        private void dataGridView_Order_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            // Kontrola, zda je událost ve sloupci "Quantity"
+            if (dataGridView_Order.Columns[e.ColumnIndex].Name == "Quantity")
+            {
+                int newInteger;
+
+                // Kontrola, zda je hodnota, kterou uživatel vložil, èíslo
+                if (!int.TryParse(e.FormattedValue.ToString(), out newInteger) || newInteger < 0)
+                {
+                    // Pokud není, zobrazit chybovou zprávu a zrušit zmìnu
+                    e.Cancel = true;
+                    MessageBox.Show("Prosím, vložte pouze kladné èíselné hodnoty do sloupce 'Poèet'.");
+                }
+            }
+        }
+        private void SetupDataGridViewOrder()
+        {
+            dataGridView_Order.Columns.Add("Name", "Název knihy");
+            dataGridView_Order.Columns["Name"].ReadOnly = true;
+
+            dataGridView_Order.Columns.Add("Price", "Cena");
+            dataGridView_Order.Columns["Price"].ReadOnly = true;
+
+            dataGridView_Order.Columns.Add("Quantity", "Poèet");
+            dataGridView_Order.Columns["Quantity"].ReadOnly = false;
+            dataGridView_Order.CellValidating += new DataGridViewCellValidatingEventHandler(dataGridView_Order_CellValidating);
+
+            int index = dataGridView_Order.Rows.Add();
+            dataGridView_Order.Rows[index].Cells["Name"].Value = "Romeo and Juliet";
+            dataGridView_Order.Rows[index].Cells["Price"].Value = "200.0 Kè";
+            dataGridView_Order.Rows[index].Cells["Quantity"].Value = "1";
+            // Adding the second row
+            int index2 = dataGridView_Order.Rows.Add();
+            dataGridView_Order.Rows[index2].Cells["Name"].Value = "Hamlet";
+            dataGridView_Order.Rows[index2].Cells["Price"].Value = "150.0 Kè";
+            dataGridView_Order.Rows[index2].Cells["Quantity"].Value = "1"; // Assuming quantity
+
+            // Adding the third row
+            int index3 = dataGridView_Order.Rows.Add();
+            dataGridView_Order.Rows[index3].Cells["Name"].Value = "Macbeth";
+            dataGridView_Order.Rows[index3].Cells["Price"].Value = "180.0 Kè";
+            dataGridView_Order.Rows[index3].Cells["Quantity"].Value = "1"; // Assuming quantity
+
+
+
+            DataGridViewButtonColumn deleteButtonColumn = new DataGridViewButtonColumn();
+            deleteButtonColumn.Name = "deleteColumn";
+            deleteButtonColumn.Text = "X";
+            deleteButtonColumn.UseColumnTextForButtonValue = true;
+
+            deleteButtonColumn.HeaderText = "";
+
+            dataGridView_Order.Columns.Add(deleteButtonColumn);
+            dataGridView_Order.CellClick += new DataGridViewCellEventHandler(dataGridView_CellClick);
+        }
+
+        private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Kontrola, zda index sloupce a øádku jsou v platném rozsahu
+            if (e.ColumnIndex >= 0 && e.RowIndex >= 0 && e.ColumnIndex == dataGridView_Order.Columns["deleteColumn"].Index)
+            {
+                // Teï je bezpeèné odstranit øádek
+                dataGridView_Order.Rows.RemoveAt(e.RowIndex);
+            }
+        }
+
+
         #endregion
 
         #region ReturnBooks
@@ -271,10 +342,5 @@ namespace BooksManagement
 
 
 
-
-
-
-
-       
     }
 }
