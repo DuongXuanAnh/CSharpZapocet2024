@@ -1,5 +1,6 @@
 using BooksManagement.Config;
 using System.Data;
+using System.Net;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -29,6 +30,7 @@ namespace BooksManagement
             Books books = new Books(dataGridView1);
             Author.fillComboBoxWithAuthor(cb_knihy_authors);
             Books.fillComboBoxWithGenres(cb_knihy_zanr);
+            dataGridView1.Columns["id"].Visible = false;
         }
 
         private void btn_menu_addAuthor_Click(object sender, EventArgs e)
@@ -157,6 +159,38 @@ namespace BooksManagement
             else
             {
                 dataView.RowFilter = string.Format("Autor LIKE '%{0}%'", filterValue); // Filtrování na základì textu
+            }
+        }
+
+        private void btn_Knihy_AddToOrder_Click(object sender, EventArgs e)
+        {
+            // Ovìøení, že je skuteènì vybrán nìjaký øádek
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+
+           
+                var id = Convert.ToString(selectedRow.Cells["id"].Value);
+                var title = Convert.ToString(selectedRow.Cells["název"].Value);
+                var price = Convert.ToString(selectedRow.Cells["Cena"].Value);
+
+                try
+                {
+                    using (StreamWriter sw = new StreamWriter("OrderBook.txt", true))
+                    {
+                        sw.WriteLine(id + "_" + title + "_" + price);
+                    }
+                    MessageBox.Show("Kniha byla úspìšnì pøidaná do košíku!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Prosím, vyberte øádek v tabulce.");
             }
         }
 
@@ -289,6 +323,8 @@ namespace BooksManagement
 
             dataGridView_Order.Columns.Add("ID", "ID");
             dataGridView_Order.Columns["ID"].ReadOnly = true;
+            dataGridView_Order.Columns["ID"].Visible = false;
+
 
             dataGridView_Order.Columns.Add("Name", "Název knihy");
             dataGridView_Order.Columns["Name"].ReadOnly = true;
@@ -304,7 +340,7 @@ namespace BooksManagement
             {
                 Name = "deleteColumn",
                 Text = "X",
-                UseColumnTextForButtonValue = true, 
+                UseColumnTextForButtonValue = true,
                 HeaderText = ""
             };
 
@@ -313,8 +349,22 @@ namespace BooksManagement
             dataGridView_Order.CellClick -= dataGridView_CellClick; // Unsubscribe first to avoid multiple subscriptions
             dataGridView_Order.CellClick += dataGridView_CellClick; // Then subscribe
 
-            fillOrderBook(); 
+            fillOrderBook();
 
+
+        }
+
+        private void showTotalOrderPrice()
+        {
+            double totalSum = 0;
+            for (int i = 0; i < dataGridView_Order.Rows.Count; ++i)
+            {
+                double price = Convert.ToDouble(dataGridView_Order.Rows[i].Cells["Price"].Value ?? 0);
+                double quantity = Convert.ToDouble(dataGridView_Order.Rows[i].Cells["Quantity"].Value ?? 0);
+                totalSum += price * quantity;
+            }
+
+            lb_Objednavka_TotalPrice.Text = totalSum.ToString() + "-,Kè";
         }
 
         private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -327,27 +377,29 @@ namespace BooksManagement
                 Order.DeleteBookFromFIle(rowID);
 
                 dataGridView_Order.Rows.RemoveAt(e.RowIndex);
-                
+
             }
+            showTotalOrderPrice();
         }
 
 
 
         private void fillOrderBook()
         {
-            using (StreamReader sr = new StreamReader("OrderBook.txt")) {
+            using (StreamReader sr = new StreamReader("OrderBook.txt"))
+            {
 
                 string line;
-                while ((line = sr.ReadLine()) != null) 
+                while ((line = sr.ReadLine()) != null)
                 {
                     if (!string.IsNullOrWhiteSpace(line))
                     {
                         string[] token = line.Split('_');
                         addOrUpdateOrderRow(token[0], token[1], token[2], "1");
                     }
-                    
-                }          
-     
+
+                }
+
             }
         }
 
@@ -374,6 +426,7 @@ namespace BooksManagement
                 dataGridView_Order.Rows[rowIndex].Cells["Name"].Value = name;
                 dataGridView_Order.Rows[rowIndex].Cells["Price"].Value = price;
                 dataGridView_Order.Rows[rowIndex].Cells["Quantity"].Value = quantity;
+                showTotalOrderPrice();
             }
         }
 
@@ -393,5 +446,6 @@ namespace BooksManagement
 
 
 
+       
     }
 }

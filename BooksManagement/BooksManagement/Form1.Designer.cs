@@ -36,6 +36,7 @@
             btn_menu_returnBook = new Button();
             label1 = new Label();
             panel_knihy = new Panel();
+            btn_Knihy_AddToOrder = new Button();
             dataGridView1 = new DataGridView();
             cb_knihy_zanr = new ComboBox();
             label15 = new Label();
@@ -179,6 +180,7 @@
             // panel_knihy
             // 
             panel_knihy.BackColor = SystemColors.ButtonHighlight;
+            panel_knihy.Controls.Add(btn_Knihy_AddToOrder);
             panel_knihy.Controls.Add(dataGridView1);
             panel_knihy.Controls.Add(cb_knihy_zanr);
             panel_knihy.Controls.Add(label15);
@@ -192,6 +194,16 @@
             panel_knihy.Size = new Size(955, 653);
             panel_knihy.TabIndex = 7;
             // 
+            // btn_Knihy_AddToOrder
+            // 
+            btn_Knihy_AddToOrder.Location = new Point(270, 587);
+            btn_Knihy_AddToOrder.Name = "btn_Knihy_AddToOrder";
+            btn_Knihy_AddToOrder.Size = new Size(443, 56);
+            btn_Knihy_AddToOrder.TabIndex = 8;
+            btn_Knihy_AddToOrder.Text = "Přidat do objednávky";
+            btn_Knihy_AddToOrder.UseVisualStyleBackColor = true;
+            btn_Knihy_AddToOrder.Click += btn_Knihy_AddToOrder_Click;
+            // 
             // dataGridView1
             // 
             dataGridView1.AllowUserToAddRows = false;
@@ -202,7 +214,7 @@
             dataGridView1.Location = new Point(3, 189);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(948, 461);
+            dataGridView1.Size = new Size(948, 392);
             dataGridView1.TabIndex = 7;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             // 
@@ -683,14 +695,14 @@
             lb_Objednavka_TotalPrice.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
             lb_Objednavka_TotalPrice.Location = new Point(306, 496);
             lb_Objednavka_TotalPrice.Name = "lb_Objednavka_TotalPrice";
-            lb_Objednavka_TotalPrice.Size = new Size(88, 31);
+            lb_Objednavka_TotalPrice.Size = new Size(26, 31);
             lb_Objednavka_TotalPrice.TabIndex = 10;
-            lb_Objednavka_TotalPrice.Text = "label28";
+            lb_Objednavka_TotalPrice.Text = "0";
             // 
             // textBox1
             // 
             textBox1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBox1.Location = new Point(235, 157);
+            textBox1.Location = new Point(231, 156);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(288, 38);
             textBox1.TabIndex = 9;
@@ -750,7 +762,7 @@
             // 
             label25.AutoSize = true;
             label25.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label25.Location = new Point(29, 157);
+            label25.Location = new Point(34, 156);
             label25.Name = "label25";
             label25.Size = new Size(191, 38);
             label25.TabIndex = 3;
@@ -913,5 +925,6 @@
         private TextBox textBox1;
         private DateTimePicker dateTimePicker1;
         private DataGridView dataGridView_Order;
+        private Button btn_Knihy_AddToOrder;
     }
 }

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -177,13 +178,13 @@ namespace BooksManagement
                 DataProvider dataProvider = new DataProvider();
                 dataProvider.ExecuteModifiedQuery(query, parameters);
 
-             
-                            dataProvider.ExecuteModifiedQuery(deleteQuery, deleteParameters);
 
-                           
-            foreach (var authorID in authorIDs)
-            {
-                Dictionary<string, object> insertParameters = new Dictionary<string, object>
+                dataProvider.ExecuteModifiedQuery(deleteQuery, deleteParameters);
+
+
+                foreach (var authorID in authorIDs)
+                {
+                    Dictionary<string, object> insertParameters = new Dictionary<string, object>
                 {
                     { "@bookID", bookID },
                     { "@authorID", authorID }
@@ -210,11 +211,15 @@ namespace BooksManagement
                 }
                 MessageBox.Show("Kniha byla úspěšně přidaná do košíku!");
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
+
+   
+
+      
     }
 }
