@@ -30,10 +30,10 @@ namespace BooksManagement
             this.bookID = bookID;
             Books.fillComboBoxWithGenres(cb_BookDetail_zanr);
             Author.fillComboBoxWithAuthor(cb_BookDetail_author);
-            fillBookInformation(bookID);
+            FillBookInformation(bookID);
         }
 
-        void fillBookInformation(int id)
+        void FillBookInformation(int id)
         {
             try
             {

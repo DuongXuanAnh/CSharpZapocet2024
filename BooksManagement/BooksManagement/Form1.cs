@@ -60,6 +60,7 @@ namespace BooksManagement
             HideAllPanels();
             panel_Order.Visible = true;
             SetupDataGridViewOrder();
+            cb_Objednavka_typ.SelectedIndex = 0;
         }
 
         private void btn_menu_returnBook_Click(object sender, EventArgs e)
@@ -169,7 +170,7 @@ namespace BooksManagement
             {
                 DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
 
-           
+
                 var id = Convert.ToString(selectedRow.Cells["id"].Value);
                 var title = Convert.ToString(selectedRow.Cells["název"].Value);
                 var price = Convert.ToString(selectedRow.Cells["Cena"].Value);
@@ -349,12 +350,12 @@ namespace BooksManagement
             dataGridView_Order.CellClick -= dataGridView_CellClick; // Unsubscribe first to avoid multiple subscriptions
             dataGridView_Order.CellClick += dataGridView_CellClick; // Then subscribe
 
-            fillOrderBook();
+            FillOrderBook();
 
 
         }
 
-        private void showTotalOrderPrice()
+        private void ShowTotalOrderPrice()
         {
             double totalSum = 0;
             for (int i = 0; i < dataGridView_Order.Rows.Count; ++i)
@@ -379,12 +380,10 @@ namespace BooksManagement
                 dataGridView_Order.Rows.RemoveAt(e.RowIndex);
 
             }
-            showTotalOrderPrice();
+            ShowTotalOrderPrice();
         }
 
-
-
-        private void fillOrderBook()
+        private void FillOrderBook()
         {
             using (StreamReader sr = new StreamReader("OrderBook.txt"))
             {
@@ -395,7 +394,7 @@ namespace BooksManagement
                     if (!string.IsNullOrWhiteSpace(line))
                     {
                         string[] token = line.Split('_');
-                        addOrUpdateOrderRow(token[0], token[1], token[2], "1");
+                        AddOrUpdateOrderRow(token[0], token[1], token[2], "1");
                     }
 
                 }
@@ -403,7 +402,7 @@ namespace BooksManagement
             }
         }
 
-        private void addOrUpdateOrderRow(string id, string name, string price, string quantity)
+        private void AddOrUpdateOrderRow(string id, string name, string price, string quantity)
         {
             bool rowExists = false;
             foreach (DataGridViewRow row in dataGridView_Order.Rows)
@@ -426,13 +425,70 @@ namespace BooksManagement
                 dataGridView_Order.Rows[rowIndex].Cells["Name"].Value = name;
                 dataGridView_Order.Rows[rowIndex].Cells["Price"].Value = price;
                 dataGridView_Order.Rows[rowIndex].Cells["Quantity"].Value = quantity;
-                showTotalOrderPrice();
+                ShowTotalOrderPrice();
+            }
+        }
+
+        private void cb_Objednavka_typ_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = cb_Objednavka_typ.SelectedIndex;
+
+            switch (selectedIndex)
+            {
+                case 0:
+                    lb_Order_Id.Visible = true;
+                    lb_Order_returnDate.Visible = true;
+                    dateTimePicker_Order.Visible = true;
+                    txt_Order_Id.Visible = true;
+                    break;
+                case 1: 
+                    lb_Order_Id.Visible = false;
+                    lb_Order_returnDate.Visible = false;
+                    dateTimePicker_Order.Visible = false;
+                    txt_Order_Id.Visible=false;
+                    break;
+           
             }
         }
 
         private void btn_Objednavka_Create_Click(object sender, EventArgs e)
         {
 
+            int selectedIndex = cb_Objednavka_typ.SelectedIndex;
+
+            Dictionary<int, int> bookInOrder = new Dictionary<int, int>();
+
+            foreach (DataGridViewRow row in dataGridView_Order.Rows)
+            {      
+                int id = Convert.ToInt32(row.Cells["ID"].Value); 
+                int quantity = Convert.ToInt32(row.Cells["Quantity"].Value);                 
+                bookInOrder.Add(id, quantity);                               
+            }
+
+
+            Order order = new Order(bookInOrder);
+
+
+            switch (selectedIndex)
+            {
+                case 0: // Koupit
+                    try
+                    {
+                        order.Sell();
+                        MessageBox.Show("Úspìšnì jste prodali knihy!");
+                        string path = "OrderBook.txt";
+                        File.WriteAllText(path, string.Empty);
+                        btn_menu_order_Click(this, EventArgs.Empty);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Nepodaøilo se koupit knihy!");
+                    }
+                    break;
+                case 1: // Pujcit
+                    order.Borrow();
+                    break;
+            }
         }
 
 
@@ -440,6 +496,7 @@ namespace BooksManagement
 
         #region ReturnBooks
         #endregion
+
 
 
 

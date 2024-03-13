@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BooksManagement.Config;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,44 @@ namespace BooksManagement
 {
     internal class Order
     {
+        Dictionary<int, int> bookInOrder;
+
+        public Order(Dictionary<int, int> bookInOrder)
+        {
+            this.bookInOrder = bookInOrder;
+        }
+
+        public void Sell()
+        {
+            foreach (var item in bookInOrder)
+            {
+                int bookId = item.Key;
+                int quantityToSubtract = item.Value;
+
+                // SQL příkaz pro odečtení množství
+                string query = "UPDATE kniha SET amount = amount - @quantityToSubtract WHERE id = @bookId";
+
+                // Slovník pro parametry
+                Dictionary<string, object> parameters = new Dictionary<string, object>();
+                parameters.Add("@quantityToSubtract", quantityToSubtract);
+                parameters.Add("@bookId", bookId);
+
+                try
+                {
+                    // Vykonání příkazu
+                    DataProvider.Instance.ExecuteModifiedQuery(query, parameters);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception();
+                }
+            }
+        }
+
+        public void Borrow()
+        {
+
+        }
 
 
         public static void DeleteBookFromFIle(string ID)
