@@ -1,9 +1,2 @@
 37_Kniha test_100
-42_test 2_1000
-4_Mat Biec_200
-2_BÃ­lÃ¡ nemoc_100
-3_Romeo and Juliet_200
-4_Mat Biec_200
 37_Kniha test_100
-49_b_100
-49_b_100

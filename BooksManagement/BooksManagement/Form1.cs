@@ -319,10 +319,14 @@ namespace BooksManagement
 
         private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+
             if (e.RowIndex >= 0 && e.ColumnIndex == dataGridView_Order.Columns["deleteColumn"].Index)
             {
-            
-                   dataGridView_Order.Rows.RemoveAt(e.RowIndex);
+                var rowID = dataGridView_Order.Rows[e.RowIndex].Cells["ID"].Value.ToString();
+
+                Order.DeleteBookFromFIle(rowID);
+
+                dataGridView_Order.Rows.RemoveAt(e.RowIndex);
                 
             }
         }
@@ -334,10 +338,14 @@ namespace BooksManagement
             using (StreamReader sr = new StreamReader("OrderBook.txt")) {
 
                 string line;
-                while ((line = sr.ReadLine()) != null) { 
-
-                    string[] token = line.Split('_');
-                    addOrUpdateOrderRow(token[0], token[1], token[2], "1");
+                while ((line = sr.ReadLine()) != null) 
+                {
+                    if (!string.IsNullOrWhiteSpace(line))
+                    {
+                        string[] token = line.Split('_');
+                        addOrUpdateOrderRow(token[0], token[1], token[2], "1");
+                    }
+                    
                 }          
      
             }
