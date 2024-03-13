@@ -2,6 +2,7 @@ using BooksManagement.Config;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace BooksManagement
 {
@@ -283,6 +284,12 @@ namespace BooksManagement
         }
         private void SetupDataGridViewOrder()
         {
+            dataGridView_Order.Rows.Clear();
+            dataGridView_Order.Columns.Clear();
+
+            dataGridView_Order.Columns.Add("ID", "ID");
+            dataGridView_Order.Columns["ID"].ReadOnly = true;
+
             dataGridView_Order.Columns.Add("Name", "Název knihy");
             dataGridView_Order.Columns["Name"].ReadOnly = true;
 
@@ -293,43 +300,78 @@ namespace BooksManagement
             dataGridView_Order.Columns["Quantity"].ReadOnly = false;
             dataGridView_Order.CellValidating += new DataGridViewCellValidatingEventHandler(dataGridView_Order_CellValidating);
 
-            int index = dataGridView_Order.Rows.Add();
-            dataGridView_Order.Rows[index].Cells["Name"].Value = "Romeo and Juliet";
-            dataGridView_Order.Rows[index].Cells["Price"].Value = "200.0 Kè";
-            dataGridView_Order.Rows[index].Cells["Quantity"].Value = "1";
-            // Adding the second row
-            int index2 = dataGridView_Order.Rows.Add();
-            dataGridView_Order.Rows[index2].Cells["Name"].Value = "Hamlet";
-            dataGridView_Order.Rows[index2].Cells["Price"].Value = "150.0 Kè";
-            dataGridView_Order.Rows[index2].Cells["Quantity"].Value = "1"; // Assuming quantity
-
-            // Adding the third row
-            int index3 = dataGridView_Order.Rows.Add();
-            dataGridView_Order.Rows[index3].Cells["Name"].Value = "Macbeth";
-            dataGridView_Order.Rows[index3].Cells["Price"].Value = "180.0 Kè";
-            dataGridView_Order.Rows[index3].Cells["Quantity"].Value = "1"; // Assuming quantity
-
-
-
-            DataGridViewButtonColumn deleteButtonColumn = new DataGridViewButtonColumn();
-            deleteButtonColumn.Name = "deleteColumn";
-            deleteButtonColumn.Text = "X";
-            deleteButtonColumn.UseColumnTextForButtonValue = true;
-
-            deleteButtonColumn.HeaderText = "";
+            DataGridViewButtonColumn deleteButtonColumn = new DataGridViewButtonColumn
+            {
+                Name = "deleteColumn",
+                Text = "X",
+                UseColumnTextForButtonValue = true, 
+                HeaderText = ""
+            };
 
             dataGridView_Order.Columns.Add(deleteButtonColumn);
-            dataGridView_Order.CellClick += new DataGridViewCellEventHandler(dataGridView_CellClick);
+
+            dataGridView_Order.CellClick -= dataGridView_CellClick; // Unsubscribe first to avoid multiple subscriptions
+            dataGridView_Order.CellClick += dataGridView_CellClick; // Then subscribe
+
+            fillOrderBook(); 
+
         }
 
         private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Kontrola, zda index sloupce a øádku jsou v platném rozsahu
-            if (e.ColumnIndex >= 0 && e.RowIndex >= 0 && e.ColumnIndex == dataGridView_Order.Columns["deleteColumn"].Index)
+            if (e.RowIndex >= 0 && e.ColumnIndex == dataGridView_Order.Columns["deleteColumn"].Index)
             {
-                // Teï je bezpeèné odstranit øádek
-                dataGridView_Order.Rows.RemoveAt(e.RowIndex);
+            
+                   dataGridView_Order.Rows.RemoveAt(e.RowIndex);
+                
             }
+        }
+
+
+
+        private void fillOrderBook()
+        {
+            using (StreamReader sr = new StreamReader("OrderBook.txt")) {
+
+                string line;
+                while ((line = sr.ReadLine()) != null) { 
+
+                    string[] token = line.Split('_');
+                    addOrUpdateOrderRow(token[0], token[1], token[2], "1");
+                }          
+     
+            }
+        }
+
+        private void addOrUpdateOrderRow(string id, string name, string price, string quantity)
+        {
+            bool rowExists = false;
+            foreach (DataGridViewRow row in dataGridView_Order.Rows)
+            {
+                if (row.Cells["ID"].Value != null && row.Cells["ID"].Value.ToString() == id)
+                {
+                    // If the row with the given ID exists, increase its quantity by 1
+                    int currentQuantity = int.Parse(row.Cells["Quantity"].Value.ToString());
+                    row.Cells["Quantity"].Value = (currentQuantity + 1).ToString();
+                    rowExists = true;
+                    break;
+                }
+            }
+
+            if (!rowExists)
+            {
+                // If the ID does not exist, add a new row
+                int rowIndex = dataGridView_Order.Rows.Add();
+                dataGridView_Order.Rows[rowIndex].Cells["ID"].Value = id;
+                dataGridView_Order.Rows[rowIndex].Cells["Name"].Value = name;
+                dataGridView_Order.Rows[rowIndex].Cells["Price"].Value = price;
+                dataGridView_Order.Rows[rowIndex].Cells["Quantity"].Value = quantity;
+            }
+        }
+
+        private void btn_Objednavka_Create_Click(object sender, EventArgs e)
+        {
+
         }
 
 
@@ -337,6 +379,7 @@ namespace BooksManagement
 
         #region ReturnBooks
         #endregion
+
 
 
 

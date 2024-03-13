@@ -647,7 +647,7 @@
             // 
             // panel_Order
             // 
-            panel_Order.BackColor = SystemColors.ControlLightLight;
+            panel_Order.BackColor = SystemColors.ButtonHighlight;
             panel_Order.Controls.Add(dataGridView_Order);
             panel_Order.Controls.Add(lb_Objednavka_TotalPrice);
             panel_Order.Controls.Add(textBox1);
@@ -669,11 +669,12 @@
             // 
             dataGridView_Order.AllowUserToAddRows = false;
             dataGridView_Order.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView_Order.BackgroundColor = SystemColors.ButtonHighlight;
             dataGridView_Order.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView_Order.Location = new Point(94, 318);
+            dataGridView_Order.Location = new Point(94, 253);
             dataGridView_Order.Name = "dataGridView_Order";
             dataGridView_Order.RowHeadersWidth = 51;
-            dataGridView_Order.Size = new Size(738, 156);
+            dataGridView_Order.Size = new Size(738, 221);
             dataGridView_Order.TabIndex = 11;
             // 
             // lb_Objednavka_TotalPrice
@@ -689,7 +690,7 @@
             // textBox1
             // 
             textBox1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBox1.Location = new Point(283, 225);
+            textBox1.Location = new Point(235, 157);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(288, 38);
             textBox1.TabIndex = 9;
@@ -697,9 +698,9 @@
             // dateTimePicker1
             // 
             dateTimePicker1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            dateTimePicker1.Location = new Point(283, 167);
+            dateTimePicker1.Location = new Point(528, 99);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(476, 38);
+            dateTimePicker1.Size = new Size(418, 38);
             dateTimePicker1.TabIndex = 8;
             // 
             // cb_Objednavka_typ
@@ -709,7 +710,7 @@
             cb_Objednavka_typ.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
             cb_Objednavka_typ.FormattingEnabled = true;
             cb_Objednavka_typ.Items.AddRange(new object[] { "Půjčit", "Koupit" });
-            cb_Objednavka_typ.Location = new Point(283, 100);
+            cb_Objednavka_typ.Location = new Point(107, 100);
             cb_Objednavka_typ.Name = "cb_Objednavka_typ";
             cb_Objednavka_typ.Size = new Size(151, 39);
             cb_Objednavka_typ.TabIndex = 7;
@@ -723,6 +724,7 @@
             btn_Objednavka_Create.TabIndex = 6;
             btn_Objednavka_Create.Text = "Vytvořit objednávku";
             btn_Objednavka_Create.UseVisualStyleBackColor = true;
+            btn_Objednavka_Create.Click += btn_Objednavka_Create_Click;
             // 
             // label27
             // 
@@ -738,7 +740,7 @@
             // 
             label26.AutoSize = true;
             label26.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label26.Location = new Point(38, 274);
+            label26.Location = new Point(34, 206);
             label26.Name = "label26";
             label26.Size = new Size(215, 38);
             label26.TabIndex = 4;
@@ -748,7 +750,7 @@
             // 
             label25.AutoSize = true;
             label25.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label25.Location = new Point(64, 223);
+            label25.Location = new Point(29, 157);
             label25.Name = "label25";
             label25.Size = new Size(191, 38);
             label25.TabIndex = 3;
@@ -758,7 +760,7 @@
             // 
             label24.AutoSize = true;
             label24.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label24.Location = new Point(38, 168);
+            label24.Location = new Point(283, 100);
             label24.Name = "label24";
             label24.Size = new Size(217, 38);
             label24.TabIndex = 2;
@@ -768,7 +770,7 @@
             // 
             label23.AutoSize = true;
             label23.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label23.Location = new Point(176, 100);
+            label23.Location = new Point(29, 98);
             label23.Name = "label23";
             label23.Size = new Size(72, 38);
             label23.TabIndex = 1;

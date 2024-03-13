@@ -15,6 +15,9 @@ namespace BooksManagement
     public partial class BookDetailForm : Form
     {
         int bookID;
+        string title;
+        string price;
+
         public BookDetailForm()
         {
             InitializeComponent();
@@ -55,6 +58,9 @@ namespace BooksManagement
                     string zanr = row["zanr"].ToString();
                     int amount = (int)row["amount"];
                     string popis = row["popis"].ToString();
+
+                    this.title = nazev;
+                    this.price = cena;
 
                     txt_BookDetail_name.Text = nazev;
                     txt_BookDetail_year.Text = rokVydani;
@@ -200,7 +206,7 @@ namespace BooksManagement
             {
                 using (StreamWriter sw = new StreamWriter("OrderBook.txt", true))
                 {
-                    sw.WriteLine(bookID);
+                    sw.WriteLine(bookID + "_" + title + "_" + price);
                 }
                 MessageBox.Show("Kniha byla úspěšně přidaná do košíku!");
             }
