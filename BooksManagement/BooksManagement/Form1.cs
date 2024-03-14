@@ -544,9 +544,42 @@ namespace BooksManagement
 
         #region ReturnBooks
 
+        private void checkBox_ReturnBook_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_ReturnBook.Checked)
+            {
+                lb_ReturnBook_Do.Visible = true;
+                lb_ReturnBook_Od.Visible = true;
+                dateTimePicker_ReturnBook_FromDate.Visible = true;
+                dateTimePicker_ReturnBook_ReturnDate.Visible = true;
+            }
+            else
+            {
+                lb_ReturnBook_Do.Visible = false;
+                lb_ReturnBook_Od.Visible = false;
+                dateTimePicker_ReturnBook_FromDate.Visible = false;
+                dateTimePicker_ReturnBook_ReturnDate.Visible = false;
+            }
+        }
 
         private void btn_ReturnBook_Find_Click(object sender, EventArgs e)
         {
+            int customerID = int.Parse(txt_ReturnBook_CustomerID.Text);
+
+            ReturnBook returnBook = new ReturnBook(customerID);
+
+            if (checkBox_ReturnBook.Checked)
+            {
+                string startDate = dateTimePicker_ReturnBook_FromDate.Value.ToString("yyyy-MM-dd");
+                string endDate = dateTimePicker_ReturnBook_ReturnDate.Value.ToString("yyyy-MM-dd");
+
+                dataGridViewReturnBook.DataSource = returnBook.GetCustomOrderInfo(startDate, endDate);
+            }
+            else
+            {
+                dataGridViewReturnBook.DataSource = returnBook.GetCustomOrderInfo();
+            }
+            
 
         }
 
@@ -573,5 +606,6 @@ namespace BooksManagement
 
 
 
+       
     }
 }

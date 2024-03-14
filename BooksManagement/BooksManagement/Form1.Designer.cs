@@ -95,8 +95,9 @@
             label23 = new Label();
             label8 = new Label();
             panel_returnBook = new Panel();
-            label27 = new Label();
-            label25 = new Label();
+            checkBox_ReturnBook = new CheckBox();
+            lb_ReturnBook_Do = new Label();
+            lb_ReturnBook_Od = new Label();
             dateTimePicker_ReturnBook_ReturnDate = new DateTimePicker();
             dateTimePicker_ReturnBook_FromDate = new DateTimePicker();
             btn_ReturnBook_Return = new Button();
@@ -814,8 +815,9 @@
             // panel_returnBook
             // 
             panel_returnBook.BackColor = SystemColors.ControlLightLight;
-            panel_returnBook.Controls.Add(label27);
-            panel_returnBook.Controls.Add(label25);
+            panel_returnBook.Controls.Add(checkBox_ReturnBook);
+            panel_returnBook.Controls.Add(lb_ReturnBook_Do);
+            panel_returnBook.Controls.Add(lb_ReturnBook_Od);
             panel_returnBook.Controls.Add(dateTimePicker_ReturnBook_ReturnDate);
             panel_returnBook.Controls.Add(dateTimePicker_ReturnBook_FromDate);
             panel_returnBook.Controls.Add(btn_ReturnBook_Return);
@@ -830,39 +832,55 @@
             panel_returnBook.Size = new Size(957, 653);
             panel_returnBook.TabIndex = 9;
             // 
-            // label27
+            // checkBox_ReturnBook
             // 
-            label27.AutoSize = true;
-            label27.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label27.Location = new Point(558, 163);
-            label27.Name = "label27";
-            label27.Size = new Size(44, 28);
-            label27.TabIndex = 10;
-            label27.Text = "Do:";
+            checkBox_ReturnBook.AutoSize = true;
+            checkBox_ReturnBook.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            checkBox_ReturnBook.Location = new Point(53, 130);
+            checkBox_ReturnBook.Name = "checkBox_ReturnBook";
+            checkBox_ReturnBook.Size = new Size(239, 35);
+            checkBox_ReturnBook.TabIndex = 11;
+            checkBox_ReturnBook.Text = "Filtrovay podle času";
+            checkBox_ReturnBook.UseVisualStyleBackColor = true;
+            checkBox_ReturnBook.CheckedChanged += checkBox_ReturnBook_CheckedChanged;
             // 
-            // label25
+            // lb_ReturnBook_Do
             // 
-            label25.AutoSize = true;
-            label25.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label25.Location = new Point(63, 163);
-            label25.Name = "label25";
-            label25.Size = new Size(44, 28);
-            label25.TabIndex = 9;
-            label25.Text = "Od:";
+            lb_ReturnBook_Do.AutoSize = true;
+            lb_ReturnBook_Do.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            lb_ReturnBook_Do.Location = new Point(373, 174);
+            lb_ReturnBook_Do.Name = "lb_ReturnBook_Do";
+            lb_ReturnBook_Do.Size = new Size(44, 28);
+            lb_ReturnBook_Do.TabIndex = 10;
+            lb_ReturnBook_Do.Text = "Do:";
+            lb_ReturnBook_Do.Visible = false;
+            // 
+            // lb_ReturnBook_Od
+            // 
+            lb_ReturnBook_Od.AutoSize = true;
+            lb_ReturnBook_Od.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            lb_ReturnBook_Od.Location = new Point(47, 174);
+            lb_ReturnBook_Od.Name = "lb_ReturnBook_Od";
+            lb_ReturnBook_Od.Size = new Size(44, 28);
+            lb_ReturnBook_Od.TabIndex = 9;
+            lb_ReturnBook_Od.Text = "Od:";
+            lb_ReturnBook_Od.Visible = false;
             // 
             // dateTimePicker_ReturnBook_ReturnDate
             // 
-            dateTimePicker_ReturnBook_ReturnDate.Location = new Point(612, 163);
+            dateTimePicker_ReturnBook_ReturnDate.Location = new Point(427, 174);
             dateTimePicker_ReturnBook_ReturnDate.Name = "dateTimePicker_ReturnBook_ReturnDate";
             dateTimePicker_ReturnBook_ReturnDate.Size = new Size(250, 27);
             dateTimePicker_ReturnBook_ReturnDate.TabIndex = 8;
+            dateTimePicker_ReturnBook_ReturnDate.Visible = false;
             // 
             // dateTimePicker_ReturnBook_FromDate
             // 
-            dateTimePicker_ReturnBook_FromDate.Location = new Point(123, 165);
+            dateTimePicker_ReturnBook_FromDate.Location = new Point(107, 176);
             dateTimePicker_ReturnBook_FromDate.Name = "dateTimePicker_ReturnBook_FromDate";
             dateTimePicker_ReturnBook_FromDate.Size = new Size(250, 27);
             dateTimePicker_ReturnBook_FromDate.TabIndex = 7;
+            dateTimePicker_ReturnBook_FromDate.Visible = false;
             // 
             // btn_ReturnBook_Return
             // 
@@ -886,6 +904,9 @@
             // 
             // dataGridViewReturnBook
             // 
+            dataGridViewReturnBook.AllowUserToAddRows = false;
+            dataGridViewReturnBook.AllowUserToDeleteRows = false;
+            dataGridViewReturnBook.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewReturnBook.BackgroundColor = SystemColors.ControlLightLight;
             dataGridViewReturnBook.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewReturnBook.Location = new Point(30, 226);
@@ -1048,9 +1069,10 @@
         private Button btn_ReturnBook_Return;
         private Button btn_ReturnBook_ReturnAll;
         private DataGridView dataGridViewReturnBook;
-        private Label label27;
-        private Label label25;
+        private Label lb_ReturnBook_Do;
+        private Label lb_ReturnBook_Od;
         private DateTimePicker dateTimePicker_ReturnBook_ReturnDate;
         private DateTimePicker dateTimePicker_ReturnBook_FromDate;
+        private CheckBox checkBox_ReturnBook;
     }
 }
