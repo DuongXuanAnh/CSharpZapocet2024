@@ -95,6 +95,16 @@
             label23 = new Label();
             label8 = new Label();
             panel_returnBook = new Panel();
+            label27 = new Label();
+            label25 = new Label();
+            dateTimePicker_ReturnBook_ReturnDate = new DateTimePicker();
+            dateTimePicker_ReturnBook_FromDate = new DateTimePicker();
+            btn_ReturnBook_Return = new Button();
+            btn_ReturnBook_ReturnAll = new Button();
+            dataGridViewReturnBook = new DataGridView();
+            btn_ReturnBook_Find = new Button();
+            txt_ReturnBook_CustomerID = new TextBox();
+            label24 = new Label();
             label9 = new Label();
             panel_knihy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -105,6 +115,7 @@
             panel_Order.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_Order).BeginInit();
             panel_returnBook.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewReturnBook).BeginInit();
             SuspendLayout();
             // 
             // btn_menu_knihy
@@ -803,11 +814,113 @@
             // panel_returnBook
             // 
             panel_returnBook.BackColor = SystemColors.ControlLightLight;
+            panel_returnBook.Controls.Add(label27);
+            panel_returnBook.Controls.Add(label25);
+            panel_returnBook.Controls.Add(dateTimePicker_ReturnBook_ReturnDate);
+            panel_returnBook.Controls.Add(dateTimePicker_ReturnBook_FromDate);
+            panel_returnBook.Controls.Add(btn_ReturnBook_Return);
+            panel_returnBook.Controls.Add(btn_ReturnBook_ReturnAll);
+            panel_returnBook.Controls.Add(dataGridViewReturnBook);
+            panel_returnBook.Controls.Add(btn_ReturnBook_Find);
+            panel_returnBook.Controls.Add(txt_ReturnBook_CustomerID);
+            panel_returnBook.Controls.Add(label24);
             panel_returnBook.Controls.Add(label9);
             panel_returnBook.Location = new Point(250, 12);
             panel_returnBook.Name = "panel_returnBook";
             panel_returnBook.Size = new Size(957, 653);
             panel_returnBook.TabIndex = 9;
+            // 
+            // label27
+            // 
+            label27.AutoSize = true;
+            label27.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label27.Location = new Point(558, 163);
+            label27.Name = "label27";
+            label27.Size = new Size(44, 28);
+            label27.TabIndex = 10;
+            label27.Text = "Do:";
+            // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label25.Location = new Point(63, 163);
+            label25.Name = "label25";
+            label25.Size = new Size(44, 28);
+            label25.TabIndex = 9;
+            label25.Text = "Od:";
+            // 
+            // dateTimePicker_ReturnBook_ReturnDate
+            // 
+            dateTimePicker_ReturnBook_ReturnDate.Location = new Point(612, 163);
+            dateTimePicker_ReturnBook_ReturnDate.Name = "dateTimePicker_ReturnBook_ReturnDate";
+            dateTimePicker_ReturnBook_ReturnDate.Size = new Size(250, 27);
+            dateTimePicker_ReturnBook_ReturnDate.TabIndex = 8;
+            // 
+            // dateTimePicker_ReturnBook_FromDate
+            // 
+            dateTimePicker_ReturnBook_FromDate.Location = new Point(123, 165);
+            dateTimePicker_ReturnBook_FromDate.Name = "dateTimePicker_ReturnBook_FromDate";
+            dateTimePicker_ReturnBook_FromDate.Size = new Size(250, 27);
+            dateTimePicker_ReturnBook_FromDate.TabIndex = 7;
+            // 
+            // btn_ReturnBook_Return
+            // 
+            btn_ReturnBook_Return.Location = new Point(516, 572);
+            btn_ReturnBook_Return.Name = "btn_ReturnBook_Return";
+            btn_ReturnBook_Return.Size = new Size(420, 71);
+            btn_ReturnBook_Return.TabIndex = 6;
+            btn_ReturnBook_Return.Text = "Vrátit";
+            btn_ReturnBook_Return.UseVisualStyleBackColor = true;
+            btn_ReturnBook_Return.Click += btn_ReturnBook_Return_Click;
+            // 
+            // btn_ReturnBook_ReturnAll
+            // 
+            btn_ReturnBook_ReturnAll.Location = new Point(30, 572);
+            btn_ReturnBook_ReturnAll.Name = "btn_ReturnBook_ReturnAll";
+            btn_ReturnBook_ReturnAll.Size = new Size(476, 71);
+            btn_ReturnBook_ReturnAll.TabIndex = 5;
+            btn_ReturnBook_ReturnAll.Text = "Vrátit všechno";
+            btn_ReturnBook_ReturnAll.UseVisualStyleBackColor = true;
+            btn_ReturnBook_ReturnAll.Click += btn_ReturnBook_ReturnAll_Click;
+            // 
+            // dataGridViewReturnBook
+            // 
+            dataGridViewReturnBook.BackgroundColor = SystemColors.ControlLightLight;
+            dataGridViewReturnBook.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewReturnBook.Location = new Point(30, 226);
+            dataGridViewReturnBook.Name = "dataGridViewReturnBook";
+            dataGridViewReturnBook.RowHeadersWidth = 51;
+            dataGridViewReturnBook.Size = new Size(906, 335);
+            dataGridViewReturnBook.TabIndex = 4;
+            // 
+            // btn_ReturnBook_Find
+            // 
+            btn_ReturnBook_Find.Location = new Point(612, 81);
+            btn_ReturnBook_Find.Name = "btn_ReturnBook_Find";
+            btn_ReturnBook_Find.Size = new Size(103, 39);
+            btn_ReturnBook_Find.TabIndex = 3;
+            btn_ReturnBook_Find.Text = "Hledat";
+            btn_ReturnBook_Find.UseVisualStyleBackColor = true;
+            btn_ReturnBook_Find.Click += btn_ReturnBook_Find_Click;
+            // 
+            // txt_ReturnBook_CustomerID
+            // 
+            txt_ReturnBook_CustomerID.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            txt_ReturnBook_CustomerID.Location = new Point(208, 84);
+            txt_ReturnBook_CustomerID.Name = "txt_ReturnBook_CustomerID";
+            txt_ReturnBook_CustomerID.Size = new Size(389, 34);
+            txt_ReturnBook_CustomerID.TabIndex = 2;
+            // 
+            // label24
+            // 
+            label24.AutoSize = true;
+            label24.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            label24.Location = new Point(47, 87);
+            label24.Name = "label24";
+            label24.Size = new Size(155, 31);
+            label24.TabIndex = 1;
+            label24.Text = "ID zákazníka:";
             // 
             // label9
             // 
@@ -831,12 +944,12 @@
             Controls.Add(btn_menu_addBook);
             Controls.Add(btn_menu_addAuthor);
             Controls.Add(btn_menu_knihy);
+            Controls.Add(panel_returnBook);
             Controls.Add(panel_Order);
             Controls.Add(panel_addCustomer);
             Controls.Add(panel_addBook);
             Controls.Add(panel_addAuthor);
             Controls.Add(panel_knihy);
-            Controls.Add(panel_returnBook);
             Name = "Form1";
             Text = "Books Management";
             panel_knihy.ResumeLayout(false);
@@ -854,6 +967,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView_Order).EndInit();
             panel_returnBook.ResumeLayout(false);
             panel_returnBook.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewReturnBook).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -928,5 +1042,15 @@
         private DateTimePicker dateTimePicker_Objednavka;
         private DataGridView dataGridView_Order;
         private Button btn_Knihy_AddToOrder;
+        private Button btn_ReturnBook_Find;
+        private TextBox txt_ReturnBook_CustomerID;
+        private Label label24;
+        private Button btn_ReturnBook_Return;
+        private Button btn_ReturnBook_ReturnAll;
+        private DataGridView dataGridViewReturnBook;
+        private Label label27;
+        private Label label25;
+        private DateTimePicker dateTimePicker_ReturnBook_ReturnDate;
+        private DateTimePicker dateTimePicker_ReturnBook_FromDate;
     }
 }

@@ -477,7 +477,7 @@ namespace BooksManagement
                 bookInOrder.Add(id, quantity);
             }
 
-            if(bookInOrder.Count == 0)
+            if (bookInOrder.Count == 0)
             {
                 MessageBox.Show("Košík je prázdný!");
                 return;
@@ -497,7 +497,7 @@ namespace BooksManagement
                     }
 
                     int customerID = int.Parse(txt_Objednavka_Id.Text);
-                
+
                     DateTime returnDate = dateTimePicker_Objednavka.Value;
 
                     if (returnDate.Date < DateTime.Now.Date)
@@ -543,6 +543,23 @@ namespace BooksManagement
         #endregion
 
         #region ReturnBooks
+
+
+        private void btn_ReturnBook_Find_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_ReturnBook_ReturnAll_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_ReturnBook_Return_Click(object sender, EventArgs e)
+        {
+
+        }
+
         #endregion
 
 
@@ -552,6 +569,9 @@ namespace BooksManagement
 
 
 
-       
+
+
+
+
     }
 }
