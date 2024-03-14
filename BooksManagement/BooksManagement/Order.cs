@@ -18,6 +18,63 @@ namespace BooksManagement
 
         public void Sell()
         {
+            TakeBookFromDB();
+        }
+
+        public void Borrow(int customerId, DateTime returnDate)
+        {
+            string insertDokladQuery = "INSERT INTO `doklad` (`datumTo`) VALUES (@ReturnDate);"; // Assuming `id` is auto-incremented
+
+                Dictionary<string, object> dokladParameters = new Dictionary<string, object>
+                {
+                    { "@ReturnDate", returnDate }
+                };
+
+                DataProvider dataProvider = DataProvider.Instance;
+                int dokladId = dataProvider.ExecuteModifiedQueryWithID(insertDokladQuery, dokladParameters);
+
+                // Check if the insertion was successful
+                if (dokladId != -1)
+                {
+
+                try
+                {
+                    string insertDokladZakaznikQuery = "INSERT INTO `doklad_zakaznik`(`id_doklad`, `id_zakaznik`) VALUES (@DokladId, @CustomerId);";
+
+                    Dictionary<string, object> dokladZakaznikParameters = new Dictionary<string, object>
+                    {
+                        { "@DokladId", dokladId },
+                        { "@CustomerId", customerId }
+                    };
+                    dataProvider.ExecuteModifiedQuery(insertDokladZakaznikQuery, dokladZakaznikParameters);
+
+                    foreach (var item in bookInOrder)
+                    {
+                        string insertDokladKnihaQuery = "INSERT INTO `doklad_kniha`(`id_doklad`, `id_kniha`, `amount`) VALUES (@DokladId, @IdKniha, @Amount);";
+
+                        Dictionary<string, object> dokladKnihaParameters = new Dictionary<string, object>
+                        {
+                            { "@DokladId", dokladId },
+                            { "@IdKniha", item.Key },
+                            { "@Amount", item.Value }
+                        };
+                        dataProvider.ExecuteModifiedQuery(insertDokladKnihaQuery, dokladKnihaParameters);
+
+                    }
+                    }
+                    catch
+                    {
+                    throw new Exception();
+                }                
+                }
+                else
+                {
+                throw new Exception();
+                }
+        }
+
+        private void TakeBookFromDB()
+        {
             foreach (var item in bookInOrder)
             {
                 int bookId = item.Key;
@@ -41,11 +98,6 @@ namespace BooksManagement
                     throw new Exception();
                 }
             }
-        }
-
-        public void Borrow()
-        {
-
         }
 
 

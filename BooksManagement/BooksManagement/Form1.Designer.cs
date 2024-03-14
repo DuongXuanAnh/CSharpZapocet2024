@@ -84,14 +84,14 @@
             panel_Order = new Panel();
             dataGridView_Order = new DataGridView();
             lb_Objednavka_TotalPrice = new Label();
-            txt_Order_Id = new TextBox();
-            dateTimePicker_Order = new DateTimePicker();
+            txt_Objednavka_Id = new TextBox();
+            dateTimePicker_Objednavka = new DateTimePicker();
             cb_Objednavka_typ = new ComboBox();
             btn_Objednavka_Create = new Button();
-            label27 = new Label();
+            lb_Objednavka_total = new Label();
             label26 = new Label();
-            lb_Order_Id = new Label();
-            lb_Order_returnDate = new Label();
+            lb_Objednavka_Id = new Label();
+            lb_Objdenavka_returnDate = new Label();
             label23 = new Label();
             label8 = new Label();
             panel_returnBook = new Panel();
@@ -662,14 +662,14 @@
             panel_Order.BackColor = SystemColors.ButtonHighlight;
             panel_Order.Controls.Add(dataGridView_Order);
             panel_Order.Controls.Add(lb_Objednavka_TotalPrice);
-            panel_Order.Controls.Add(txt_Order_Id);
-            panel_Order.Controls.Add(dateTimePicker_Order);
+            panel_Order.Controls.Add(txt_Objednavka_Id);
+            panel_Order.Controls.Add(dateTimePicker_Objednavka);
             panel_Order.Controls.Add(cb_Objednavka_typ);
             panel_Order.Controls.Add(btn_Objednavka_Create);
-            panel_Order.Controls.Add(label27);
+            panel_Order.Controls.Add(lb_Objednavka_total);
             panel_Order.Controls.Add(label26);
-            panel_Order.Controls.Add(lb_Order_Id);
-            panel_Order.Controls.Add(lb_Order_returnDate);
+            panel_Order.Controls.Add(lb_Objednavka_Id);
+            panel_Order.Controls.Add(lb_Objdenavka_returnDate);
             panel_Order.Controls.Add(label23);
             panel_Order.Controls.Add(label8);
             panel_Order.Location = new Point(251, 12);
@@ -699,21 +699,22 @@
             lb_Objednavka_TotalPrice.TabIndex = 10;
             lb_Objednavka_TotalPrice.Text = "0";
             // 
-            // txt_Order_Id
+            // txt_Objednavka_Id
             // 
-            txt_Order_Id.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            txt_Order_Id.Location = new Point(231, 156);
-            txt_Order_Id.Name = "txt_Order_Id";
-            txt_Order_Id.Size = new Size(288, 38);
-            txt_Order_Id.TabIndex = 9;
+            txt_Objednavka_Id.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            txt_Objednavka_Id.Location = new Point(231, 156);
+            txt_Objednavka_Id.Name = "txt_Objednavka_Id";
+            txt_Objednavka_Id.Size = new Size(288, 38);
+            txt_Objednavka_Id.TabIndex = 9;
+            txt_Objednavka_Id.KeyPress += txt_Objednavka_Id_KeyPress;
             // 
-            // dateTimePicker_Order
+            // dateTimePicker_Objednavka
             // 
-            dateTimePicker_Order.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            dateTimePicker_Order.Location = new Point(528, 99);
-            dateTimePicker_Order.Name = "dateTimePicker_Order";
-            dateTimePicker_Order.Size = new Size(418, 38);
-            dateTimePicker_Order.TabIndex = 8;
+            dateTimePicker_Objednavka.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            dateTimePicker_Objednavka.Location = new Point(528, 99);
+            dateTimePicker_Objednavka.Name = "dateTimePicker_Objednavka";
+            dateTimePicker_Objednavka.Size = new Size(418, 38);
+            dateTimePicker_Objednavka.TabIndex = 8;
             // 
             // cb_Objednavka_typ
             // 
@@ -739,15 +740,15 @@
             btn_Objednavka_Create.UseVisualStyleBackColor = true;
             btn_Objednavka_Create.Click += btn_Objednavka_Create_Click;
             // 
-            // label27
+            // lb_Objednavka_total
             // 
-            label27.AutoSize = true;
-            label27.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label27.Location = new Point(133, 491);
-            label27.Name = "label27";
-            label27.Size = new Size(122, 38);
-            label27.TabIndex = 5;
-            label27.Text = "Celkem:";
+            lb_Objednavka_total.AutoSize = true;
+            lb_Objednavka_total.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            lb_Objednavka_total.Location = new Point(133, 491);
+            lb_Objednavka_total.Name = "lb_Objednavka_total";
+            lb_Objednavka_total.Size = new Size(122, 38);
+            lb_Objednavka_total.TabIndex = 5;
+            lb_Objednavka_total.Text = "Celkem:";
             // 
             // label26
             // 
@@ -759,25 +760,25 @@
             label26.TabIndex = 4;
             label26.Text = "Vybrané knihy:";
             // 
-            // lb_Order_Id
+            // lb_Objednavka_Id
             // 
-            lb_Order_Id.AutoSize = true;
-            lb_Order_Id.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            lb_Order_Id.Location = new Point(34, 156);
-            lb_Order_Id.Name = "lb_Order_Id";
-            lb_Order_Id.Size = new Size(191, 38);
-            lb_Order_Id.TabIndex = 3;
-            lb_Order_Id.Text = "ID zákazníka:";
+            lb_Objednavka_Id.AutoSize = true;
+            lb_Objednavka_Id.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            lb_Objednavka_Id.Location = new Point(34, 156);
+            lb_Objednavka_Id.Name = "lb_Objednavka_Id";
+            lb_Objednavka_Id.Size = new Size(191, 38);
+            lb_Objednavka_Id.TabIndex = 3;
+            lb_Objednavka_Id.Text = "ID zákazníka:";
             // 
-            // lb_Order_returnDate
+            // lb_Objdenavka_returnDate
             // 
-            lb_Order_returnDate.AutoSize = true;
-            lb_Order_returnDate.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            lb_Order_returnDate.Location = new Point(283, 100);
-            lb_Order_returnDate.Name = "lb_Order_returnDate";
-            lb_Order_returnDate.Size = new Size(217, 38);
-            lb_Order_returnDate.TabIndex = 2;
-            lb_Order_returnDate.Text = "Datum vrácení:";
+            lb_Objdenavka_returnDate.AutoSize = true;
+            lb_Objdenavka_returnDate.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            lb_Objdenavka_returnDate.Location = new Point(283, 100);
+            lb_Objdenavka_returnDate.Name = "lb_Objdenavka_returnDate";
+            lb_Objdenavka_returnDate.Size = new Size(217, 38);
+            lb_Objdenavka_returnDate.TabIndex = 2;
+            lb_Objdenavka_returnDate.Text = "Datum vrácení:";
             // 
             // label23
             // 
@@ -915,16 +916,16 @@
         private Button btn_AddBook_addAuthor;
         private Button btn_AddBook_removeAuthor;
         private DataGridView dataGridView1;
-        private Label lb_Order_returnDate;
+        private Label lb_Objdenavka_returnDate;
         private Label label23;
         private Button btn_Objednavka_Create;
-        private Label label27;
+        private Label lb_Objednavka_total;
         private Label label26;
-        private Label lb_Order_Id;
+        private Label lb_Objednavka_Id;
         private ComboBox cb_Objednavka_typ;
         private Label lb_Objednavka_TotalPrice;
-        private TextBox txt_Order_Id;
-        private DateTimePicker dateTimePicker_Order;
+        private TextBox txt_Objednavka_Id;
+        private DateTimePicker dateTimePicker_Objednavka;
         private DataGridView dataGridView_Order;
         private Button btn_Knihy_AddToOrder;
     }

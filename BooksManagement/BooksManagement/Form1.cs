@@ -436,18 +436,30 @@ namespace BooksManagement
             switch (selectedIndex)
             {
                 case 0:
-                    lb_Order_Id.Visible = true;
-                    lb_Order_returnDate.Visible = true;
-                    dateTimePicker_Order.Visible = true;
-                    txt_Order_Id.Visible = true;
+                    lb_Objednavka_Id.Visible = true;
+                    lb_Objdenavka_returnDate.Visible = true;
+                    dateTimePicker_Objednavka.Visible = true;
+                    txt_Objednavka_Id.Visible = true;
+                    lb_Objednavka_total.Visible = false;
+                    lb_Objednavka_TotalPrice.Visible = false;
                     break;
-                case 1: 
-                    lb_Order_Id.Visible = false;
-                    lb_Order_returnDate.Visible = false;
-                    dateTimePicker_Order.Visible = false;
-                    txt_Order_Id.Visible=false;
+                case 1:
+                    lb_Objednavka_Id.Visible = false;
+                    lb_Objdenavka_returnDate.Visible = false;
+                    dateTimePicker_Objednavka.Visible = false;
+                    txt_Objednavka_Id.Visible = false;
+                    lb_Objednavka_total.Visible = true;
+                    lb_Objednavka_TotalPrice.Visible = true;
                     break;
-           
+
+            }
+        }
+
+        private void txt_Objednavka_Id_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Handle the event, effectively ignoring the key press
             }
         }
 
@@ -459,36 +471,72 @@ namespace BooksManagement
             Dictionary<int, int> bookInOrder = new Dictionary<int, int>();
 
             foreach (DataGridViewRow row in dataGridView_Order.Rows)
-            {      
-                int id = Convert.ToInt32(row.Cells["ID"].Value); 
-                int quantity = Convert.ToInt32(row.Cells["Quantity"].Value);                 
-                bookInOrder.Add(id, quantity);                               
+            {
+                int id = Convert.ToInt32(row.Cells["ID"].Value);
+                int quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
+                bookInOrder.Add(id, quantity);
             }
 
+            if(bookInOrder.Count == 0)
+            {
+                MessageBox.Show("Košík je prázdný!");
+                return;
+            }
 
             Order order = new Order(bookInOrder);
 
 
             switch (selectedIndex)
             {
-                case 0: // Koupit
+                case 0: // Pujcit
+
+                    if (string.IsNullOrWhiteSpace(txt_Objednavka_Id.Text))
+                    {
+                        MessageBox.Show("ID zákazníka nesmí být prázdné.", "Varování", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        break; // Pøerušení case, nepokraèovat v dalším zpracování
+                    }
+
+                    int customerID = int.Parse(txt_Objednavka_Id.Text);
+                
+                    DateTime returnDate = dateTimePicker_Objednavka.Value;
+
+                    if (returnDate.Date < DateTime.Now.Date)
+                    {
+                        MessageBox.Show("Datum vrácení nesmí být v minulosti.", "Varování", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        break;
+                    }
+                    try
+                    {
+                        order.Borrow(customerID, returnDate);
+                        MessageBox.Show("Objednávka byla úspìšnì vytvoøená!");
+                        ResetMenuObjednavka();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Nepodaøilo se vytvoøit objednávku!");
+                    }
+                    break;
+                case 1: // Koupit
                     try
                     {
                         order.Sell();
                         MessageBox.Show("Úspìšnì jste prodali knihy!");
-                        string path = "OrderBook.txt";
-                        File.WriteAllText(path, string.Empty);
-                        btn_menu_order_Click(this, EventArgs.Empty);
+                        ResetMenuObjednavka();
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show("Nepodaøilo se koupit knihy!");
                     }
                     break;
-                case 1: // Pujcit
-                    order.Borrow();
-                    break;
             }
+        }
+
+        private void ResetMenuObjednavka()
+        {
+            string path = "OrderBook.txt";
+            File.WriteAllText(path, string.Empty);
+            txt_Objednavka_Id.Text = string.Empty;
+            btn_menu_order_Click(this, EventArgs.Empty);
         }
 
 
@@ -496,6 +544,7 @@ namespace BooksManagement
 
         #region ReturnBooks
         #endregion
+
 
 
 
