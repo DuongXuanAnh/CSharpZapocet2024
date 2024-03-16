@@ -224,6 +224,7 @@
             dataGridView1.BackgroundColor = SystemColors.ButtonHighlight;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(3, 189);
+            dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(948, 392);
@@ -910,6 +911,7 @@
             dataGridViewReturnBook.BackgroundColor = SystemColors.ControlLightLight;
             dataGridViewReturnBook.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewReturnBook.Location = new Point(30, 226);
+            dataGridViewReturnBook.MultiSelect = false;
             dataGridViewReturnBook.Name = "dataGridViewReturnBook";
             dataGridViewReturnBook.RowHeadersWidth = 51;
             dataGridViewReturnBook.Size = new Size(906, 335);

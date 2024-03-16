@@ -589,18 +589,19 @@ namespace BooksManagement
             {
                 DataGridViewRow selectedRow = dataGridViewReturnBook.SelectedRows[0];
 
-
                 int dokladID = (int) selectedRow.Cells["dokladID"].Value;
                 int bookID = (int) selectedRow.Cells["bookID"].Value;
                 int customerID = (int) selectedRow.Cells["zakaznikID"].Value;
+                DateTime returnDate = (DateTime)selectedRow.Cells["datumTo"].Value;
 
                 ReturnBook returnBook = new ReturnBook(customerID);
 
                 try
                 {
-                    returnBook.ReturnSeletedBook(dokladID, bookID);
+                    returnBook.ReturnSeletedBook(dokladID, bookID, returnDate);
+
                     btn_ReturnBook_Find_Click(this, EventArgs.Empty);
-                    MessageBox.Show("Kniha byla úspìšnì vrácena!");
+
                 }
                 catch
                 {
