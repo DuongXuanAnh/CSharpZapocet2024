@@ -583,15 +583,42 @@ namespace BooksManagement
 
         }
 
+        private void btn_ReturnBook_Return_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewReturnBook.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dataGridViewReturnBook.SelectedRows[0];
+
+
+                int dokladID = (int) selectedRow.Cells["dokladID"].Value;
+                int bookID = (int) selectedRow.Cells["bookID"].Value;
+                int customerID = (int) selectedRow.Cells["zakaznikID"].Value;
+
+                ReturnBook returnBook = new ReturnBook(customerID);
+
+                try
+                {
+                    returnBook.ReturnSeletedBook(dokladID, bookID);
+                    btn_ReturnBook_Find_Click(this, EventArgs.Empty);
+                    MessageBox.Show("Kniha byla úspìšnì vrácena!");
+                }
+                catch
+                {
+                    MessageBox.Show("Nastala chyba!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vyberte si prosím øádek.");
+            }
+        }
+
         private void btn_ReturnBook_ReturnAll_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void btn_ReturnBook_Return_Click(object sender, EventArgs e)
-        {
-
-        }
+      
 
         #endregion
 
