@@ -616,7 +616,19 @@ namespace BooksManagement
 
         private void btn_ReturnBook_ReturnAll_Click(object sender, EventArgs e)
         {
+            int customerID = int.Parse(txt_ReturnBook_CustomerID.Text);
 
+            ReturnBook returnBook = new ReturnBook(customerID);
+
+            try
+            {
+                returnBook.ReturnAllBooks(dataGridViewReturnBook);
+
+            }
+            catch
+            {
+                MessageBox.Show("Nastala chyba, zkuste to prosím znovu!");
+            }
         }
 
       

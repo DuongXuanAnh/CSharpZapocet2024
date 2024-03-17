@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BooksManagement
 {
@@ -50,6 +51,31 @@ namespace BooksManagement
             return data;
         }
 
+
+        public void ReturndBookToDB(int dokladID, int bookID)
+        {
+            string countDokladID_Query = "SELECT dokladID FROM `document` WHERE dokladID = @dokladID";
+            var parameters_countDokladID = new Dictionary<string, object>
+            {
+                { "@dokladID", dokladID }
+            };
+
+            DataTable data = DataProvider.Instance.ExecuteSelectQueryWithParameter(countDokladID_Query, parameters_countDokladID);
+
+            if (data.Rows.Count > 1)
+            {
+                UpdateBookAmount(dokladID, bookID);
+                DeleteSelectedBookFromOrder(dokladID, bookID);
+            }
+            else
+            {
+                UpdateBookAmount(dokladID, bookID);
+                DeleteAllSelectedOrder(dokladID);
+            }
+
+        }
+
+
         public void ReturnSeletedBook(int dokladID, int bookID, DateTime returnDate)
         {
             double penalty = PenalizationForDelay(returnDate);
@@ -85,7 +111,6 @@ namespace BooksManagement
             }
 
             MessageBox.Show("Kniha byla úspěšně vrácena!");
-
         }
 
         private double PenalizationForDelay(DateTime returnDate)
@@ -139,7 +164,6 @@ namespace BooksManagement
                 }
                 else
                 {
-                    // Řádek nebyl nalezen
                     throw new Exception("Žádná data nebyla nalezena pro zadané ID dokladu a ID knihy.");
                 }
 
@@ -192,6 +216,51 @@ namespace BooksManagement
                 throw new Exception();
             }
             
+        }
+
+        public void ReturnAllBooks(DataGridView dataGridView)
+        {
+            double penalty = 0;
+
+
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                DateTime returnDate = (DateTime)row.Cells["datumTo"].Value;
+                penalty += PenalizationForDelay(returnDate);
+                int dokladID = (int)row.Cells["dokladID"].Value;
+
+               
+            }
+
+            if (penalty > 0)
+            {
+                DialogResult result = MessageBox.Show($"Penalizace za zpoždění je {penalty} Kč. Chcete pokračovat?", "Penalizace", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
+            try {
+
+                foreach (DataGridViewRow row in dataGridView.Rows)
+                {
+                    int dokladID = (int)row.Cells["dokladID"].Value;
+                    int bookID = (int)row.Cells["bookID"].Value;
+
+                    ReturndBookToDB(dokladID, bookID);
+                }
+            }
+            catch
+            {
+                throw new Exception("Problem s vraceni vsechni knih");
+            }
+           
+
+            MessageBox.Show("Knihy byly úspěšně vrácené!");
+
+
         }
     }
 }

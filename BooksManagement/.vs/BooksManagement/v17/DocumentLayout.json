@@ -3,24 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\booksmanagement\\returnbook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|c:\\users\\david\\source\\repos\\zapocetcsharp\\booksmanagement\\booksmanagement\\returnbook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|solutionrelative:booksmanagement\\returnbook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|c:\\users\\david\\source\\repos\\zapocetcsharp\\booksmanagement\\booksmanagement\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\booksmanagement\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|solutionrelative:booksmanagement\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|c:\\users\\david\\source\\repos\\zapocetcsharp\\booksmanagement\\booksmanagement\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\booksmanagement\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|solutionrelative:booksmanagement\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\booksmanagement\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|solutionrelative:booksmanagement\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\booksmanagement\\books.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|solutionrelative:booksmanagement\\books.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,26 +42,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Customer.cs",
-              "DocumentMoniker": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\Customer.cs",
-              "RelativeDocumentMoniker": "BooksManagement\\Customer.cs",
-              "ToolTip": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\Customer.cs",
-              "RelativeToolTip": "BooksManagement\\Customer.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-16T13:26:02.482Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "ReturnBook.cs",
               "DocumentMoniker": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\ReturnBook.cs",
               "RelativeDocumentMoniker": "BooksManagement\\ReturnBook.cs",
               "ToolTip": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\ReturnBook.cs",
               "RelativeToolTip": "BooksManagement\\ReturnBook.cs",
-              "ViewState": "AQIAADwAAAAAAAAAAAAowEcAAAAOAAAA",
+              "ViewState": "AQIAAOkAAAAAAAAAAAAUwP8AAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-14T19:46:40.323Z",
               "EditorCaption": ""
@@ -82,22 +61,9 @@
               "RelativeDocumentMoniker": "BooksManagement\\Form1.cs",
               "ToolTip": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\Form1.cs",
               "RelativeToolTip": "BooksManagement\\Form1.cs",
-              "ViewState": "AQIAAEMCAAAAAAAAAAAtwE4CAAAAAAAA",
+              "ViewState": "AQIAAFkCAAAAAAAAAAAiwHUCAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-09T13:29:33.928Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Books.cs",
-              "DocumentMoniker": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\Books.cs",
-              "RelativeDocumentMoniker": "BooksManagement\\Books.cs",
-              "ToolTip": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\Books.cs",
-              "RelativeToolTip": "BooksManagement\\Books.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAxAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-13T19:10:45.778Z",
               "EditorCaption": ""
             }
           ]
