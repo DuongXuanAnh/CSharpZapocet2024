@@ -61,11 +61,11 @@ namespace BooksManagement
                         dataProvider.ExecuteModifiedQuery(insertDokladKnihaQuery, dokladKnihaParameters);
 
                     }
-                    }
-                    catch
+                    TakeBookFromDB();
+                } catch
                     {
                     throw new Exception();
-                }                
+                    }                
                 }
                 else
                 {
@@ -80,20 +80,19 @@ namespace BooksManagement
                 int bookId = item.Key;
                 int quantityToSubtract = item.Value;
 
-                // SQL příkaz pro odečtení množství
                 string query = "UPDATE kniha SET amount = amount - @quantityToSubtract WHERE id = @bookId";
 
-                // Slovník pro parametry
-                Dictionary<string, object> parameters = new Dictionary<string, object>();
-                parameters.Add("@quantityToSubtract", quantityToSubtract);
-                parameters.Add("@bookId", bookId);
+                var parameters = new Dictionary<string, object>
+                    {
+                        { "@quantityToSubtract", quantityToSubtract },
+                        { "@bookId", bookId }
+                    };
 
                 try
                 {
-                    // Vykonání příkazu
                     DataProvider.Instance.ExecuteModifiedQuery(query, parameters);
                 }
-                catch (Exception ex)
+                catch
                 {
                     throw new Exception();
                 }

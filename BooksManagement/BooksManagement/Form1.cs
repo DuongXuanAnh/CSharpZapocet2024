@@ -28,8 +28,8 @@ namespace BooksManagement
             HideAllPanels();
             panel_knihy.Visible = true;
             Books books = new Books(dataGridView1);
-            Author.fillComboBoxWithAuthor(cb_knihy_authors);
-            Books.fillComboBoxWithGenres(cb_knihy_zanr);
+            Author.FillComboBoxWithAuthor(cb_knihy_authors);
+            Books.FillComboBoxWithGenres(cb_knihy_zanr);
             dataGridView1.Columns["id"].Visible = false;
         }
 
@@ -37,7 +37,7 @@ namespace BooksManagement
         {
             HideAllPanels();
             panel_addAuthor.Visible = true;
-            Author.fillComboBoxWithNationalities(cbox_Nationality);
+            Author.FillComboBoxWithNationalities(cbox_Nationality);
 
         }
 
@@ -45,8 +45,8 @@ namespace BooksManagement
         {
             HideAllPanels();
             panel_addBook.Visible = true;
-            Author.fillComboBoxWithAuthor(cb_AddNewBook_author);
-            Books.fillComboBoxWithGenres(cb_addBook_zarn);
+            Author.FillComboBoxWithAuthor(cb_AddNewBook_author);
+            Books.FillComboBoxWithGenres(cb_addBook_zarn);
         }
 
         private void btn_menu_addCustomer_Click(object sender, EventArgs e)
@@ -303,18 +303,28 @@ namespace BooksManagement
         #region Objednavka
         private void dataGridView_Order_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            // Kontrola, zda je událost ve sloupci "Quantity"
             if (dataGridView_Order.Columns[e.ColumnIndex].Name == "Quantity")
             {
                 int newInteger;
 
-                // Kontrola, zda je hodnota, kterou uživatel vložil, èíslo
                 if (!int.TryParse(e.FormattedValue.ToString(), out newInteger) || newInteger < 0)
                 {
-                    // Pokud není, zobrazit chybovou zprávu a zrušit zmìnu
                     e.Cancel = true;
                     MessageBox.Show("Prosím, vložte pouze kladné èíselné hodnoty do sloupce 'Poèet'.");
                 }
+
+                string bookIDValue = dataGridView_Order.Rows[e.RowIndex].Cells["ID"].Value.ToString();
+                int bookID;
+                if (int.TryParse(bookIDValue, out bookID))
+                {
+                    int maxKusu = Books.GetBookQuantity(bookID);
+                    if (!int.TryParse(e.FormattedValue.ToString(), out newInteger) || newInteger > maxKusu)
+                    {
+                        e.Cancel = true;
+                        MessageBox.Show($"Zbývá pouze už jen {maxKusu} kusù");
+                    }
+                }
+             
             }
         }
         private void SetupDataGridViewOrder()
@@ -324,7 +334,7 @@ namespace BooksManagement
 
             dataGridView_Order.Columns.Add("ID", "ID");
             dataGridView_Order.Columns["ID"].ReadOnly = true;
-            dataGridView_Order.Columns["ID"].Visible = false;
+            dataGridView_Order.Columns["ID"].Visible = true;
 
 
             dataGridView_Order.Columns.Add("Name", "Název knihy");
@@ -347,8 +357,8 @@ namespace BooksManagement
 
             dataGridView_Order.Columns.Add(deleteButtonColumn);
 
-            dataGridView_Order.CellClick -= dataGridView_CellClick; // Unsubscribe first to avoid multiple subscriptions
-            dataGridView_Order.CellClick += dataGridView_CellClick; // Then subscribe
+            dataGridView_Order.CellClick -= dataGridView_CellClick; 
+            dataGridView_Order.CellClick += dataGridView_CellClick; 
 
             FillOrderBook();
 
@@ -523,7 +533,7 @@ namespace BooksManagement
                         MessageBox.Show("Úspìšnì jste prodali knihy!");
                         ResetMenuObjednavka();
                     }
-                    catch (Exception ex)
+                    catch 
                     {
                         MessageBox.Show("Nepodaøilo se koupit knihy!");
                     }

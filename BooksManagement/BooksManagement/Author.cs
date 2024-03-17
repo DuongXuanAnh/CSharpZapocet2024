@@ -32,7 +32,7 @@ namespace BooksManagement
             return authorName;
         }
 
-        public static void fillComboBoxWithNationalities(ComboBox nationalityComboBox)
+        public static void FillComboBoxWithNationalities(ComboBox nationalityComboBox)
         {
             List<string> nationalities = new List<string>()
         {
@@ -123,7 +123,7 @@ namespace BooksManagement
         }
 
 
-        public static void fillComboBoxWithAuthor(ComboBox comboBoxAuthorName)
+        public static void FillComboBoxWithAuthor(ComboBox comboBoxAuthorName)
         {
             try
             {

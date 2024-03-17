@@ -27,7 +27,7 @@ namespace BooksManagement
 
         }
 
-        public static void fillComboBoxWithGenres(ComboBox genresComboBox)
+        public static void FillComboBoxWithGenres(ComboBox genresComboBox)
         {
             List<string> genres = new List<string>()
             {
@@ -76,7 +76,33 @@ namespace BooksManagement
             genresComboBox.Items.AddRange(genres.ToArray());
         }
 
+        public static int GetBookQuantity(int bookID)
+        {
+            try
+            {
+                string query = "SELECT amount FROM kniha WHERE id = @bookID";
+                var parameters = new Dictionary<string, object>
+                {
+                    { "@bookID", bookID }
+                };
 
+                    DataTable data = DataProvider.Instance.ExecuteSelectQueryWithParameter(query, parameters);
+                    if (data.Rows.Count > 0)
+                    {
+                        return Convert.ToInt32(data.Rows[0]["amount"]);
+                }
+                else
+                {
+                    throw new Exception("Nastala chyba pri ziskani pocet knih");
+                }
+            }
+            catch
+            {
+                throw new Exception("Nastala chyba pri ziskani pocet knih");
+            }
+            
+         
+        }
 
     }
 }

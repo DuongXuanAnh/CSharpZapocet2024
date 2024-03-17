@@ -28,8 +28,8 @@ namespace BooksManagement
         {
             InitializeComponent();
             this.bookID = bookID;
-            Books.fillComboBoxWithGenres(cb_BookDetail_zanr);
-            Author.fillComboBoxWithAuthor(cb_BookDetail_author);
+            Books.FillComboBoxWithGenres(cb_BookDetail_zanr);
+            Author.FillComboBoxWithAuthor(cb_BookDetail_author);
             FillBookInformation(bookID);
         }
 
@@ -140,6 +140,18 @@ namespace BooksManagement
             int amount = (int)numUpDown_BookDetail_quantity.Value;
             string popis = rtxt_BookDetail_popis.Text;
 
+            if (string.IsNullOrEmpty(nazev) || string.IsNullOrEmpty(rokVydani) || string.IsNullOrEmpty(cena) || string.IsNullOrEmpty(zanr) || string.IsNullOrEmpty(popis))
+            {
+                MessageBox.Show("Všechna pole musí být vyplněna.", "Chybějící informace", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; 
+            }
+
+            if (listBox_BookDetail_Authors.Items.Count == 0)
+            {
+                MessageBox.Show("Musíte vybrat alespoň jednoho autora.", "Chybějící autor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; 
+            }
+
             List<int> authorIDs = new List<int>();
             foreach (Author item in listBox_BookDetail_Authors.Items)
             {
@@ -148,7 +160,6 @@ namespace BooksManagement
 
             var query = "UPDATE `kniha` SET `nazev`=@nazev,`rok_vydani`=@rokVydani,`cena`=@cena,`zanr`=@zanr,`amount`=@amount,`popis`=@popis WHERE `id`=@bookID";
 
-            // Vytvoření slovníku pro parametry
             Dictionary<string, object> parameters = new Dictionary<string, object>
                 {
                     { "@nazev", nazev },
@@ -157,7 +168,7 @@ namespace BooksManagement
                     { "@zanr", zanr },
                     { "@amount", amount },
                     { "@popis", popis },
-                    { "@bookID", bookID }
+                    { "@bookID", this.bookID }
                 };
 
 
@@ -166,7 +177,7 @@ namespace BooksManagement
             var deleteQuery = "DELETE FROM `kniha_autor` WHERE `id_kniha`=@bookID";
             Dictionary<string, object> deleteParameters = new Dictionary<string, object>
             {
-                { "@bookID", bookID }
+                { "@bookID", this.bookID }
             };
 
             // Přidání nových autorů pro danou knihu
@@ -186,7 +197,7 @@ namespace BooksManagement
                 {
                     Dictionary<string, object> insertParameters = new Dictionary<string, object>
                 {
-                    { "@bookID", bookID },
+                    { "@bookID", this.bookID },
                     { "@authorID", authorID }
                 };
                     dataProvider.ExecuteModifiedQuery(insertQuery, insertParameters);

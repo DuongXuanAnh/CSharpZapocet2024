@@ -15,6 +15,8 @@ namespace BooksManagement
     {
         int customerID;
 
+        const double PENALTY_PRICE_PER_DAY = 5;
+
         public ReturnBook(int customerID)
         {
             this.customerID = customerID;
@@ -121,7 +123,7 @@ namespace BooksManagement
             {
                 int daysLate = (today - returnDate).Days;
 
-                return daysLate * 5;
+                return daysLate * PENALTY_PRICE_PER_DAY;
             }
 
             return 0;
