@@ -22,7 +22,7 @@ namespace BooksManagement.Config
 
         public DataProvider() { }
 
-        string connectionString = "Server=localhost;Database=book_store_manage;User ID=root;Password=;";
+        string connectionString = "Server=localhost;Database=book_store_manager;User ID=root;Password=;";
 
 
         public DataTable ExecuteSelectQuery(string query)

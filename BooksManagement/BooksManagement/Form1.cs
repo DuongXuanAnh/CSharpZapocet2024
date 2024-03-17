@@ -37,14 +37,18 @@ namespace BooksManagement
         {
             HideAllPanels();
             panel_addAuthor.Visible = true;
-            Author.FillComboBoxWithNationalities(cbox_Nationality);
-
+            Author.FillComboBoxWithNationalities(cbox_PridatAutora_Nationality);
+            txt_PridatAutora_AuthorName.Text = "";
+            cbox_PridatAutora_Nationality.Text = "";
         }
 
         private void btn_menu_addBook_Click(object sender, EventArgs e)
         {
             HideAllPanels();
             panel_addBook.Visible = true;
+
+            
+
             Author.FillComboBoxWithAuthor(cb_AddNewBook_author);
             Books.FillComboBoxWithGenres(cb_addBook_zarn);
         }
@@ -201,8 +205,8 @@ namespace BooksManagement
         #region AddAuthor
         private void btn_addAuthor_Click(object sender, EventArgs e)
         {
-            string authorName = txt_AuthorName.Text;
-            string nationality = cbox_Nationality.Text;
+            string authorName = txt_PridatAutora_AuthorName.Text;
+            string nationality = cbox_PridatAutora_Nationality.Text;
             Author author = new Author(authorName, nationality);
             author.createNewAuthor();
         }
@@ -265,7 +269,6 @@ namespace BooksManagement
                 return;
             }
 
-            // Kontrola, zda jsou všechna pole vyplnìna
             string description = rtxt_addBook_popis.Text;
             List<int> authorID = new List<int>();
 

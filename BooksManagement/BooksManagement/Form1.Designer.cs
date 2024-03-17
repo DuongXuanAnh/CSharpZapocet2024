@@ -47,8 +47,8 @@
             label2 = new Label();
             panel_addAuthor = new Panel();
             btn_addAuthor = new Button();
-            cbox_Nationality = new ComboBox();
-            txt_AuthorName = new TextBox();
+            cbox_PridatAutora_Nationality = new ComboBox();
+            txt_PridatAutora_AuthorName = new TextBox();
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
@@ -306,8 +306,8 @@
             // 
             panel_addAuthor.BackColor = SystemColors.ButtonHighlight;
             panel_addAuthor.Controls.Add(btn_addAuthor);
-            panel_addAuthor.Controls.Add(cbox_Nationality);
-            panel_addAuthor.Controls.Add(txt_AuthorName);
+            panel_addAuthor.Controls.Add(cbox_PridatAutora_Nationality);
+            panel_addAuthor.Controls.Add(txt_PridatAutora_AuthorName);
             panel_addAuthor.Controls.Add(label5);
             panel_addAuthor.Controls.Add(label4);
             panel_addAuthor.Controls.Add(label3);
@@ -326,22 +326,22 @@
             btn_addAuthor.UseVisualStyleBackColor = true;
             btn_addAuthor.Click += btn_addAuthor_Click;
             // 
-            // cbox_Nationality
+            // cbox_PridatAutora_Nationality
             // 
-            cbox_Nationality.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            cbox_Nationality.FormattingEnabled = true;
-            cbox_Nationality.Location = new Point(259, 249);
-            cbox_Nationality.Name = "cbox_Nationality";
-            cbox_Nationality.Size = new Size(554, 39);
-            cbox_Nationality.TabIndex = 4;
+            cbox_PridatAutora_Nationality.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            cbox_PridatAutora_Nationality.FormattingEnabled = true;
+            cbox_PridatAutora_Nationality.Location = new Point(259, 249);
+            cbox_PridatAutora_Nationality.Name = "cbox_PridatAutora_Nationality";
+            cbox_PridatAutora_Nationality.Size = new Size(554, 39);
+            cbox_PridatAutora_Nationality.TabIndex = 4;
             // 
-            // txt_AuthorName
+            // txt_PridatAutora_AuthorName
             // 
-            txt_AuthorName.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            txt_AuthorName.Location = new Point(259, 189);
-            txt_AuthorName.Name = "txt_AuthorName";
-            txt_AuthorName.Size = new Size(554, 38);
-            txt_AuthorName.TabIndex = 3;
+            txt_PridatAutora_AuthorName.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            txt_PridatAutora_AuthorName.Location = new Point(259, 189);
+            txt_PridatAutora_AuthorName.Name = "txt_PridatAutora_AuthorName";
+            txt_PridatAutora_AuthorName.Size = new Size(554, 38);
+            txt_PridatAutora_AuthorName.TabIndex = 3;
             // 
             // label5
             // 
@@ -967,12 +967,12 @@
             Controls.Add(btn_menu_addBook);
             Controls.Add(btn_menu_addAuthor);
             Controls.Add(btn_menu_knihy);
-            Controls.Add(panel_returnBook);
-            Controls.Add(panel_Order);
-            Controls.Add(panel_addCustomer);
             Controls.Add(panel_addBook);
             Controls.Add(panel_addAuthor);
             Controls.Add(panel_knihy);
+            Controls.Add(panel_returnBook);
+            Controls.Add(panel_Order);
+            Controls.Add(panel_addCustomer);
             Name = "Form1";
             Text = "Books Management";
             panel_knihy.ResumeLayout(false);
@@ -1008,10 +1008,10 @@
         private Panel panel_addAuthor;
         private Label label2;
         private Label label3;
-        private TextBox txt_AuthorName;
+        private TextBox txt_PridatAutora_AuthorName;
         private Label label5;
         private Label label4;
-        private ComboBox cbox_Nationality;
+        private ComboBox cbox_PridatAutora_Nationality;
         private Button btn_addAuthor;
         private Panel panel_addBook;
         private Panel panel_addCustomer;
