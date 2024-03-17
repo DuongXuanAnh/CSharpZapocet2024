@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2024 at 11:17 AM
+-- Generation Time: Mar 17, 2024 at 03:32 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `book_store_manage`
+-- Database: `book_store_manager`
 --
 
 -- --------------------------------------------------------
@@ -38,16 +38,13 @@ CREATE TABLE `autor` (
 --
 
 INSERT INTO `autor` (`id`, `jmeno`, `narodnost`) VALUES
-(1, 'Karel Čapek', 'Czechia'),
-(2, 'William Shakespeare', 'British'),
-(3, 'Božena Němcová', 'Czechia'),
-(4, 'Nguyen Nhat Anh', 'Vietnam'),
-(9, 'Ernest Hemingway', 'American'),
-(14, 'Autor test', 'American'),
-(25, 'autor test 2', 'American Samoa'),
-(26, 'asdasda', 'Algeria'),
-(27, 'aaa', 'Italská'),
-(28, 'aaa', 'Irská');
+(1, 'Karel Čapek', 'Česká'),
+(2, 'William Shakespeare', 'Britská'),
+(3, 'Božena Němcová', 'Česká'),
+(4, 'Nguyen Nhat Anh', 'Vietnamská'),
+(9, 'Ernest Hemingway', 'Americká'),
+(29, 'Victor Hugo', 'Francouzská'),
+(30, 'Jeffrey Archer', 'Americká');
 
 -- --------------------------------------------------------
 
@@ -58,8 +55,8 @@ INSERT INTO `autor` (`id`, `jmeno`, `narodnost`) VALUES
 CREATE TABLE `document` (
 `dokladID` int(11)
 ,`nazev` varchar(255)
-,`datum` timestamp
-,`datumTo` timestamp
+,`datum` date
+,`datumTo` date
 ,`amount` int(11)
 ,`jmeno` varchar(100)
 ,`zakaznikID` int(11)
@@ -74,23 +71,17 @@ CREATE TABLE `document` (
 
 CREATE TABLE `doklad` (
   `id` int(11) NOT NULL,
-  `datum` timestamp NOT NULL DEFAULT current_timestamp(),
-  `datumTo` timestamp NULL DEFAULT NULL,
-  `totalPrice` double NOT NULL
+  `datum` date NOT NULL DEFAULT current_timestamp(),
+  `datumTo` date DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
 
 --
 -- Dumping data for table `doklad`
 --
 
-INSERT INTO `doklad` (`id`, `datum`, `datumTo`, `totalPrice`) VALUES
-(46, '2023-07-27 13:34:40', NULL, 1320),
-(51, '2023-07-28 13:56:30', NULL, 796),
-(55, '2023-07-28 14:36:23', NULL, 0),
-(62, '2023-07-29 18:33:26', '2023-07-30 22:00:00', 3234),
-(71, '2023-08-15 10:07:53', '2023-08-23 22:00:00', 30),
-(72, '2023-08-28 14:58:13', '2023-08-30 22:00:00', 3111),
-(73, '2023-08-28 15:04:12', '2023-08-30 22:00:00', 1995);
+INSERT INTO `doklad` (`id`, `datum`, `datumTo`) VALUES
+(91, '2024-03-17', '2024-03-17'),
+(92, '2024-03-17', '2024-03-17');
 
 -- --------------------------------------------------------
 
@@ -110,23 +101,8 @@ CREATE TABLE `doklad_kniha` (
 --
 
 INSERT INTO `doklad_kniha` (`id`, `id_doklad`, `id_kniha`, `amount`) VALUES
-(58, 46, 42, 1),
-(59, 46, 37, 1),
-(60, 46, 13, 1),
-(71, 51, 4, 4),
-(87, 62, 46, 1),
-(88, 62, 45, 1),
-(91, 64, 46, 1),
-(92, 65, 45, 1),
-(93, 66, 4, 1),
-(94, 67, 37, 1),
-(95, 68, 4, 1),
-(96, 69, 3, 1),
-(97, 70, 3, 1),
-(98, 71, 5, 1),
-(99, 72, 45, 1),
-(100, 73, 4, 5),
-(101, 73, 3, 5);
+(136, 91, 2, 1),
+(137, 92, 2, 8);
 
 -- --------------------------------------------------------
 
@@ -145,13 +121,8 @@ CREATE TABLE `doklad_zakaznik` (
 --
 
 INSERT INTO `doklad_zakaznik` (`id`, `id_doklad`, `id_zakaznik`) VALUES
-(26, 46, 3),
-(31, 51, 5),
-(35, 55, 1),
-(42, 62, 4),
-(51, 71, 1),
-(52, 72, 1),
-(53, 73, 2);
+(71, 91, 1),
+(72, 92, 1);
 
 -- --------------------------------------------------------
 
@@ -174,19 +145,10 @@ CREATE TABLE `kniha` (
 --
 
 INSERT INTO `kniha` (`id`, `nazev`, `rok_vydani`, `cena`, `zanr`, `amount`, `popis`) VALUES
-(2, 'BÃ­lÃ¡ nemoc', 1937, 100, 'Drama', 100, 'BÃ­lÃ¡ nemoc je divadelnÃ­ hra â€“ drama Karla ÄŒapka z roku 1937. DÃ­lo varuje pÅ™ed nastupujÃ­cÃ­m faÅ¡ismem.'),
-(3, 'Romeo and Juliet', 1597, 200, 'Drama', 92, 'Romeo a Julie (Romeo and Juliet) je divadelnÃ­ hra, kterou napsal William Shakespeare. PremiÃ©ru mÄ›la v roce 1595. JednÃ¡ se o milostnou tragÃ©dii, patrnÄ› jeden z nejznÃ¡mÄ›jÅ¡Ã­ch milostnÃ½ch pÅ™Ã­bÄ›hÅ¯ v historii svÄ›tovÃ©ho dramatu.'),
-(4, 'Mat Biec', 1990, 199, 'Drama', 93, 'Mat Biec je romÃ¡n spisovatele Nguyen Nhat Anh v tÃ©to autorskÃ© sÃ©rii pÅ™Ã­bÄ›hÅ¯ o lÃ¡sce teenagerÅ¯ s MalÃ½m Ä�Ã¡blem, DÃ­vka ze vÄ�erejÅ¡ka,... '),
-(5, 'BabiÄ�ka', 1855, 30, 'HistorickÃ½', 104, 'BabiÄ�ka je novela Ä�eskÃ© spisovatelky BoÅ¾eny NÄ›mcovÃ© z roku 1855. Je jejÃ­m nejoblÃ­benÄ›jÅ¡Ã­m dÃ­lem a je povaÅ¾ovÃ¡na za klasiku Ä�eskÃ© literatury. '),
-(13, 'StaÅ™ec a moÅ™e', 1946, 220, 'Drama', 122, 'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. '),
-(37, 'Kniha test', 110, 100, 'Horor', 93, 'popis test'),
-(42, 'test 2', 1999, 1000, 'Horor', 203, 'Hello Hello'),
-(43, 'kniha 1', 2100, 200, 'Romantika', 0, 'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available'),
-(45, 'asdfasdfasdfa', 1111, 3111, 'AkÄ�nÃ­', 996, '5645'),
-(46, 'khina adfsdf', 123, 123, 'Fantasy', 1234, '123qwedq'),
-(47, 'teset', 2007, 1321, 'lyrika', 11, 'aewfrqwefqwe'),
-(48, 'a', 100, 100, 'óda', 100, 'a'),
-(49, 'b', 2000, 100, 'tragédie', 100, 'b');
+(2, 'Bílá nemoc', 1937, 100, 'drama', 60, 'a'),
+(3, 'Romeo and Juliet', 1597, 200, 'drama', 138, 'Romeo a Julie (Romeo and Juliet)'),
+(4, 'Mat Biec', 2010, 200, 'román', 145, 'Popis pro Mat Biec '),
+(50, 'Bídnici', 1844, 500, 'drama', 300, 'Román Bídníci působí nespojitě a jediným dějovým pojítkem je hlavní postava Jean Valjean, což je nejprve vězeň číslo 24601. Jean Valjean byl odsouzen za krádež chleba k pěti letům na galejích, ale kvůli pokusům o útěk je vězněm devatenáct let. Po propuštění se setká s biskupem Myrielem, kterému ukradne stříbrné příbory a svícny, Valjeana brzy s lupem dopadnou, biskup policii řekne, že mu svícny a příbory daroval. Tento šlechetný skutek změní Jeanu Valjeanovi celý život, stává se z něj úspěšný podnikatel, který svého bohatství využívá ve prospěch chudých. Jako protiklad chování Jeana Valjeana je v knize zdůrazňováno chování policejního prefekta Javerta, který se tak stává příkladem „pedantské“ moci (respektive „přísného řádu“. Javert až slepě dodržuje zákon, Jean Valjean je pro něj navždy galejník a jako s takovým s ním i zachází).');
 
 -- --------------------------------------------------------
 
@@ -205,28 +167,10 @@ CREATE TABLE `kniha_autor` (
 --
 
 INSERT INTO `kniha_autor` (`id`, `id_kniha`, `id_autor`) VALUES
-(84, 37, 1),
-(90, 3, 2),
-(91, 4, 4),
-(92, 5, 14),
-(94, 13, 9),
-(100, 37, 3),
-(128, 42, 2),
-(129, 42, 3),
-(130, 43, 14),
-(131, 43, 25),
-(132, 44, 1),
-(133, 44, 3),
-(134, 45, 1),
-(135, 45, 2),
-(136, 46, 1),
-(137, 46, 2),
-(138, 2, 1),
-(139, 48, 26),
-(140, 48, 3),
-(141, 48, 2),
-(142, 49, 2),
-(143, 49, 1);
+(157, 2, 1),
+(158, 3, 2),
+(159, 4, 4),
+(160, 50, 29);
 
 -- --------------------------------------------------------
 
@@ -261,17 +205,8 @@ CREATE TABLE `zakaznik` (
 --
 
 INSERT INTO `zakaznik` (`id`, `jmeno`, `email`, `phoneNumber`) VALUES
-(1, 'Petr NovÃ¡k', '', 0),
-(2, 'Jan KovÃ¡k', '', 0),
-(3, 'Marie NovotnÃ¡', '', 0),
-(4, 'Anna NovÃ¡kovÃ¡', '', 0),
-(5, 'Duong Xuan Anh', '', 0),
-(6, 'Zakaznik 1', '', 0),
-(25, 'za1', '', 0),
-(26, 'a', 'a', 0),
-(27, 'test29,2', 'test29,2', 123456),
-(28, 'asdf', 'asdfasd', 2147483647),
-(29, 'XuanAnh', 'david.anh@email.cz', 2147483647),
+(1, 'David Duong', 'dd@gmail.com', 123456798),
+(2, 'zakaznik 1', 'zakaznik1@gmail.com', 445975321),
 (30, 'XuanAnh', 'david.anh@email.cz', 2147483647);
 
 -- --------------------------------------------------------
@@ -346,43 +281,43 @@ ALTER TABLE `zakaznik`
 -- AUTO_INCREMENT for table `autor`
 --
 ALTER TABLE `autor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `doklad`
 --
 ALTER TABLE `doklad`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT for table `doklad_kniha`
 --
 ALTER TABLE `doklad_kniha`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
 
 --
 -- AUTO_INCREMENT for table `doklad_zakaznik`
 --
 ALTER TABLE `doklad_zakaznik`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT for table `kniha`
 --
 ALTER TABLE `kniha`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `kniha_autor`
 --
 ALTER TABLE `kniha_autor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=161;
 
 --
 -- AUTO_INCREMENT for table `zakaznik`
 --
 ALTER TABLE `zakaznik`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
