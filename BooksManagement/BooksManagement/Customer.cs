@@ -29,27 +29,24 @@ namespace BooksManagement
             {
                 try
                 {
-                    DataProvider dataProvider = new DataProvider();
+                    DataProvider dataProvider = DataProvider.Instance;
 
-                    // Dotaz pro zjištění, zda zákazník s daným emailem nebo telefonním číslem již existuje
                     string checkQuery = "SELECT COUNT(*) FROM zakaznik WHERE email = @email OR phoneNumber = @phoneNumber";
                     Dictionary<string, object> checkParameters = new Dictionary<string, object>
-                    {
-                        { "@email", this.email },
-                        { "@phoneNumber", this.phoneNumber }
-                    };
+                        {
+                            { "@email", this.email },
+                            { "@phoneNumber", this.phoneNumber }
+                        };
 
                     object result = dataProvider.ExecuteScalarQuery(checkQuery, checkParameters);
                     int count = Convert.ToInt32(result);
 
                     if (count > 0)
                     {
-                        // Zákazník již existuje
                         MessageBox.Show("Zákazník s tímto emailem nebo telefonním číslem již existuje.", "Varování", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     else
                     {
-                        // Zákazník neexistuje, vložení nového zákazníka do databáze
                         string insertQuery = "INSERT INTO zakaznik (jmeno, email, phoneNumber) VALUES (@name, @email, @phoneNumber);";
                         Dictionary<string, object> insertParameters = new Dictionary<string, object>
                         {
@@ -58,23 +55,29 @@ namespace BooksManagement
                             { "@phoneNumber", this.phoneNumber }
                         };
 
-                        dataProvider.ExecuteModifiedQuery(insertQuery, insertParameters);
+                        int customerId = dataProvider.ExecuteModifiedQueryWithID(insertQuery, insertParameters);
 
-                        // Zobrazení zprávy o úspěchu
-                        MessageBox.Show("Zákazník byl úspěšně přidán.", "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (customerId > -1)
+                        {
+                            MessageBox.Show($"Zákazník byl úspěšně přidán. ID zákazníka: {customerId}", "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Nepodařilo se přidat zákazníka do databáze.", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
                 catch (Exception ex)
                 {
-                    // Zobrazení chybové zprávy
                     MessageBox.Show($"Při přidávání zákazníka došlo k chybě: {ex.Message}", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Neplatný email!");
+                MessageBox.Show("Neplatný email!", "Varování", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
 
 
         public static bool IsValidEmail(string email)

@@ -3,28 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|c:\\users\\david\\source\\repos\\zapocetcsharp\\booksmanagement\\booksmanagement\\config\\dataprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|c:\\users\\david\\source\\repos\\zapocetcsharp\\booksmanagement\\booksmanagement\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|solutionrelative:booksmanagement\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\booksmanagement\\config\\dataprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|solutionrelative:booksmanagement\\config\\dataprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|c:\\users\\david\\source\\repos\\zapocetcsharp\\booksmanagement\\booksmanagement\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\booksmanagement\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|solutionrelative:booksmanagement\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\booksmanagement\\bookdetailform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|solutionrelative:booksmanagement\\bookdetailform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\booksmanagement\\books.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|solutionrelative:booksmanagement\\books.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\booksmanagement\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|solutionrelative:booksmanagement\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\booksmanagement\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|solutionrelative:booksmanagement\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,8 +26,22 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DataProvider.cs",
+              "DocumentMoniker": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\Config\\DataProvider.cs",
+              "RelativeDocumentMoniker": "BooksManagement\\Config\\DataProvider.cs",
+              "ToolTip": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\Config\\DataProvider.cs",
+              "RelativeToolTip": "BooksManagement\\Config\\DataProvider.cs",
+              "ViewState": "AQIAAHoAAAAAAAAAAADwv8gAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-03T17:32:43.278Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
@@ -43,31 +49,30 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "DataProvider.cs",
-              "DocumentMoniker": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\Config\\DataProvider.cs",
-              "RelativeDocumentMoniker": "BooksManagement\\Config\\DataProvider.cs",
-              "ToolTip": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\Config\\DataProvider.cs",
-              "RelativeToolTip": "BooksManagement\\Config\\DataProvider.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAA5AAAA",
+              "Title": "Customer.cs",
+              "DocumentMoniker": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\Customer.cs",
+              "RelativeDocumentMoniker": "BooksManagement\\Customer.cs",
+              "ToolTip": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\Customer.cs",
+              "RelativeToolTip": "BooksManagement\\Customer.cs",
+              "ViewState": "AQIAADwAAAAAAAAAAAAYwCYAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-03T17:32:43.278Z",
+              "WhenOpened": "2024-04-05T12:45:49.73Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\Form1.cs",
               "RelativeDocumentMoniker": "BooksManagement\\Form1.cs",
               "ToolTip": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\Form1.cs [Design]",
               "RelativeToolTip": "BooksManagement\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-17T14:23:09.886Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-03-17T14:23:09.886Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "BookDetailForm.cs [Design]",
               "DocumentMoniker": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\BookDetailForm.cs",
               "RelativeDocumentMoniker": "BooksManagement\\BookDetailForm.cs",
@@ -75,42 +80,6 @@
               "RelativeToolTip": "BooksManagement\\BookDetailForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-17T14:22:16.854Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Books.cs",
-              "DocumentMoniker": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\Books.cs",
-              "RelativeDocumentMoniker": "BooksManagement\\Books.cs",
-              "ToolTip": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\Books.cs",
-              "RelativeToolTip": "BooksManagement\\Books.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAE4AAAA1AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-17T13:38:20.044Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Order.cs",
-              "DocumentMoniker": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\Order.cs",
-              "RelativeDocumentMoniker": "BooksManagement\\Order.cs",
-              "ToolTip": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\Order.cs",
-              "RelativeToolTip": "BooksManagement\\Order.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAIA9wBcAAAA+AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-17T13:15:15.975Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\Form1.cs",
-              "RelativeDocumentMoniker": "BooksManagement\\Form1.cs",
-              "ToolTip": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\Form1.cs",
-              "RelativeToolTip": "BooksManagement\\Form1.cs",
-              "ViewState": "AQIAAPkAAAAAAAAAAAAUwBgBAAAeAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-09T13:29:33.928Z"
             }
           ]
         }
