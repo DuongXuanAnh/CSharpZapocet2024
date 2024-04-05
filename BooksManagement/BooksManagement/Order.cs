@@ -23,14 +23,34 @@ namespace BooksManagement
 
         public void Borrow(int customerId, DateTime returnDate)
         {
-            string insertDokladQuery = "INSERT INTO `doklad` (`datumTo`) VALUES (@ReturnDate);"; // Assuming `id` is auto-incremented
+            DataProvider dataProvider = DataProvider.Instance;
+
+            // Kontrola existence zákazníka
+            string checkCustomerQuery = "SELECT COUNT(*) FROM zakaznik WHERE id = @CustomerId";
+            Dictionary<string, object> customerParameters = new Dictionary<string, object>
+                {
+                    { "@CustomerId", customerId }
+                };
+
+            object customerExists = dataProvider.ExecuteScalarQuery(checkCustomerQuery, customerParameters);
+            int customerCount = Convert.ToInt32(customerExists);
+
+            if (customerCount == 0)
+            {
+                MessageBox.Show("Uživatel s tímto ID neexistuje.", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw new Exception("Uživatel s tímto ID neexistuje.");
+            }
+
+
+            string insertDokladQuery = "INSERT INTO `doklad` (`datumTo`) VALUES (@ReturnDate);"; 
 
                 Dictionary<string, object> dokladParameters = new Dictionary<string, object>
                 {
                     { "@ReturnDate", returnDate }
                 };
 
-                DataProvider dataProvider = DataProvider.Instance;
+
+
                 int dokladId = dataProvider.ExecuteModifiedQueryWithID(insertDokladQuery, dokladParameters);
 
                 // Check if the insertion was successful
