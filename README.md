@@ -54,6 +54,7 @@ Tento program slouží ke správě knižního fondu a zákazníků v knihovně. 
 
 Než začnete, ujistěte se, že splňujete následující požadavky:
 
+* MySQL Server 
 * Máte nainstalovanou verzi >= [.NET 8.0](https://dotnet.microsoft.com/download/dotnet/8.0) specifickou pro Windows, která podporuje Windows Forms.
 * Váš operační systém je Windows, protože tento projekt využívá Windows Forms, které nejsou podporovány na Linuxu ani macOS.
 
@@ -71,13 +72,16 @@ Pro spuštění jednotkových testů budete potřebovat:
 Pro instalaci postupujte podle těchto kroků:
 
 1. Klonujte repozitář:
-   - `git clone https://github.com/vaseuzivatelskejmeno/BooksManagement.git`
-2. Přejděte do adresáře projektu:
+   - `git clone https://github.com/DuongXuanAnh/CSharpZapocet2024.git`
+2. Konfigurace databáze
+   - Nainstalujte MySQL Server a vytvořte novou databázi pojmenovanou `book_store_manager`.
+   - Spuštěte obsah book_store_manager.sql v Query MySQL Server v databázi `book_store_manager`.
+3. Přejděte do adresáře projektu:
    - `cd BooksManagement`
-3. Otevřete projekt ve Visual Studiu nebo jakémkoliv jiném .NET kompatibilním IDE.
-4. Sestavte projekt:
+4. Otevřete projekt ve Visual Studiu nebo jakémkoliv jiném .NET kompatibilním IDE.
+5. Sestavte projekt:
    - Ve Visual Studiu to můžete udělat kliknutím na Build > Build Solution.
-5. Spusťte projekt:
+6. Spusťte projekt:
    - Ve Visual Studiu to můžete udělat kliknutím na Debug > Start Debugging.
 
 ## Spuštění testů
