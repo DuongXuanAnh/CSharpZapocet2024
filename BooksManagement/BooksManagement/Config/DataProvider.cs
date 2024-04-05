@@ -13,7 +13,6 @@ namespace BooksManagement.Config
     {
         private static DataProvider instance;
 
-
         public static DataProvider Instance
         {
             get { if (instance == null) instance = new DataProvider(); return DataProvider.instance; }
@@ -138,7 +137,7 @@ namespace BooksManagement.Config
 
                     connection.Open();
 
-                    // Pro INSERT, UPDATE, DELETE použijte ExecuteNonQuery
+                    // Pro INSERT, UPDATE, DELETE se pouziva ExecuteNonQuery
                     command.ExecuteNonQuery();
                 }
             }
@@ -175,7 +174,7 @@ namespace BooksManagement.Config
 
                     connection.Open();
 
-                    // Pro INSERT, UPDATE, DELETE použijte ExecuteNonQuery
+                    // Pro INSERT, UPDATE, DELETE pouzivame ExecuteNonQuery
                     command.ExecuteNonQuery();
 
                     // Získání ID nově vloženého záznamu

@@ -118,7 +118,6 @@ namespace BooksManagement
             }
         }
 
-
         private void cb_knihy_zanr_TextChanged(object sender, EventArgs e)
         {
             DataTable dataTable = (DataTable)dataGridView1.DataSource;
@@ -643,8 +642,6 @@ namespace BooksManagement
                 MessageBox.Show("Nastala chyba, zkuste to prosím znovu!");
             }
         }
-
-      
 
         #endregion
 

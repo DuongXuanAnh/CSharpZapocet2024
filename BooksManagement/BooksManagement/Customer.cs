@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace BooksManagement
 {
-    internal class Customer
+    public class Customer
     {
         public string name;
         public string email;
