@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\booksmanagement\\booksmanagement.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|solutionrelative:booksmanagement\\booksmanagement.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89828BDA-8129-4037-80B5-A8C0E02B31FF}|BooksManagement_xUnitTest\\BooksManagement_xUnitTest.csproj|c:\\users\\david\\source\\repos\\zapocetcsharp\\booksmanagement\\booksmanagement_xunittest\\booksmanagement_xunittest.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{89828BDA-8129-4037-80B5-A8C0E02B31FF}|BooksManagement_xUnitTest\\BooksManagement_xUnitTest.csproj|solutionrelative:booksmanagement_xunittest\\booksmanagement_xunittest.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\booksmanagement\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|solutionrelative:booksmanagement\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{89828BDA-8129-4037-80B5-A8C0E02B31FF}|BooksManagement_xUnitTest\\BooksManagement_xUnitTest.csproj|c:\\users\\david\\source\\repos\\zapocetcsharp\\booksmanagement\\booksmanagement_xunittest\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{89828BDA-8129-4037-80B5-A8C0E02B31FF}|BooksManagement_xUnitTest\\BooksManagement_xUnitTest.csproj|C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\booksmanagement_xunittest\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{89828BDA-8129-4037-80B5-A8C0E02B31FF}|BooksManagement_xUnitTest\\BooksManagement_xUnitTest.csproj|solutionrelative:booksmanagement_xunittest\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|c:\\users\\david\\source\\repos\\zapocetcsharp\\booksmanagement\\booksmanagement\\booksmanagement.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|solutionrelative:booksmanagement\\booksmanagement.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{767A01B0-93F8-4111-BD85-F5EABC93D936}|BooksManagement\\BooksManagement.csproj|C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\booksmanagement\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -26,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,20 +38,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BooksManagement",
+              "DocumentIndex": 1,
+              "Title": "BooksManagement_xUnitTest.csproj",
+              "DocumentMoniker": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement_xUnitTest\\BooksManagement_xUnitTest.csproj",
+              "RelativeDocumentMoniker": "BooksManagement_xUnitTest\\BooksManagement_xUnitTest.csproj",
+              "ToolTip": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement_xUnitTest\\BooksManagement_xUnitTest.csproj",
+              "RelativeToolTip": "BooksManagement_xUnitTest\\BooksManagement_xUnitTest.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-04-05T13:43:42.928Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BooksManagement.csproj",
               "DocumentMoniker": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\BooksManagement.csproj",
               "RelativeDocumentMoniker": "BooksManagement\\BooksManagement.csproj",
               "ToolTip": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\BooksManagement.csproj",
               "RelativeToolTip": "BooksManagement\\BooksManagement.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2024-04-05T13:31:12.943Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "UnitTest1.cs",
               "DocumentMoniker": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement_xUnitTest\\UnitTest1.cs",
               "RelativeDocumentMoniker": "BooksManagement_xUnitTest\\UnitTest1.cs",
@@ -55,12 +72,11 @@
               "RelativeToolTip": "BooksManagement_xUnitTest\\UnitTest1.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-05T13:23:18.931Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-05T13:23:18.931Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\Form1.cs",
               "RelativeDocumentMoniker": "BooksManagement\\Form1.cs",
@@ -68,20 +84,18 @@
               "RelativeToolTip": "BooksManagement\\Form1.cs",
               "ViewState": "AQIAAAgBAAAAAAAAAAAYwBEBAABFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-05T12:57:08.347Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-05T12:57:08.347Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\Form1.cs",
               "RelativeDocumentMoniker": "BooksManagement\\Form1.cs",
               "ToolTip": "C:\\Users\\david\\source\\repos\\ZapocetCSharp\\BooksManagement\\BooksManagement\\Form1.cs [Design]",
               "RelativeToolTip": "BooksManagement\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-17T14:23:09.886Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-03-17T14:23:09.886Z"
             }
           ]
         }
