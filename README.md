@@ -57,6 +57,13 @@ Než začnete, ujistěte se, že splňujete následující požadavky:
 * Máte nainstalovanou verzi >= [.NET 8.0](https://dotnet.microsoft.com/download/dotnet/8.0) specifickou pro Windows, která podporuje Windows Forms.
 * Váš operační systém je Windows, protože tento projekt využívá Windows Forms, které nejsou podporovány na Linuxu ani macOS.
 
+Pro spuštění jednotkových testů budete potřebovat:
+
+- **.NET SDK 8.0** nebo vyšší: Testy jsou cíleny na .NET 8.0, což vyžaduje odpovídající verzi .NET SDK.
+- **Visual Studio 2022** nebo novější: Doporučeno pro vývoj a spouštění testů z IDE s podporou .NET 8.0 a Windows Forms aplikací.
+- **xUnit testovací framework**: Testy používají xUnit verze 2.5.3.
+- **xUnit Runner pro Visual Studio**: Umožňuje spouštět xUnit testy přímo z Visual Studio Test Exploreru.
+
 
 
 ### Instalace
@@ -72,3 +79,17 @@ Pro instalaci postupujte podle těchto kroků:
    - Ve Visual Studiu to můžete udělat kliknutím na Build > Build Solution.
 5. Spusťte projekt:
    - Ve Visual Studiu to můžete udělat kliknutím na Debug > Start Debugging.
+
+## Spuštění testů
+
+- **Pomocí Visual Studio**:
+  1. Otevřete Test Explorer přes `Test > Test Explorer`.
+  2. Klikněte na "Run All" nebo vyberte specifické testy, které chcete spustit.
+
+- **Pomocí příkazové řádky**:
+  1. Otevřete příkazovou řádku nebo PowerShell v kořenovém adresáři projektu.
+  2. Spusťte `dotnet test`, což najde a spustí všechny testy ve vašem řešení.
+
+## Další informace
+
+Pro další informace o xUnit a jeho použití se podívejte na [oficiální dokumentaci xUnit](https://xunit.net/).
