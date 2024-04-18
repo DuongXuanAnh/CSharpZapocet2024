@@ -975,6 +975,7 @@
             Controls.Add(panel_returnBook);
             Name = "Form1";
             Text = "Books Management";
+            FormClosing += Form1_FormClosing;
             panel_knihy.ResumeLayout(false);
             panel_knihy.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

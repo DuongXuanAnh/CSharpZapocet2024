@@ -19,7 +19,10 @@ namespace BooksManagement
             panel_Order.Visible = false;
             panel_returnBook.Visible = false;
             // Simulace kliknutí na tlaèítko btn_menu_knihy
+
             btn_menu_knihy_Click(this, EventArgs.Empty);
+
+
 
         }
 
@@ -30,7 +33,11 @@ namespace BooksManagement
             Books books = new Books(dataGridView1);
             Author.FillComboBoxWithAuthor(cb_knihy_authors);
             Books.FillComboBoxWithGenres(cb_knihy_zanr);
-            dataGridView1.Columns["id"].Visible = false;
+
+            if (dataGridView1.Columns.Contains("id"))
+            {
+                dataGridView1.Columns["id"].Visible = false;
+            }
         }
 
         private void btn_menu_addAuthor_Click(object sender, EventArgs e)
@@ -46,8 +53,6 @@ namespace BooksManagement
         {
             HideAllPanels();
             panel_addBook.Visible = true;
-
-            
 
             Author.FillComboBoxWithAuthor(cb_AddNewBook_author);
             Books.FillComboBoxWithGenres(cb_addBook_zarn);
@@ -326,7 +331,7 @@ namespace BooksManagement
                         MessageBox.Show($"Zbývá pouze už jen {maxKusu} kusù");
                     }
                 }
-             
+
             }
         }
         private void SetupDataGridViewOrder()
@@ -359,8 +364,8 @@ namespace BooksManagement
 
             dataGridView_Order.Columns.Add(deleteButtonColumn);
 
-            dataGridView_Order.CellClick -= dataGridView_CellClick; 
-            dataGridView_Order.CellClick += dataGridView_CellClick; 
+            dataGridView_Order.CellClick -= dataGridView_CellClick;
+            dataGridView_Order.CellClick += dataGridView_CellClick;
 
             FillOrderBook();
 
@@ -397,21 +402,31 @@ namespace BooksManagement
 
         private void FillOrderBook()
         {
-            using (StreamReader sr = new StreamReader("OrderBook.txt"))
+            try
             {
-
-                string line;
-                while ((line = sr.ReadLine()) != null)
+                using (StreamReader sr = new StreamReader("OrderBook.txt"))
                 {
-                    if (!string.IsNullOrWhiteSpace(line))
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
                     {
-                        string[] token = line.Split('_');
-                        AddOrUpdateOrderRow(token[0], token[1], token[2], "1");
+                        if (!string.IsNullOrWhiteSpace(line))
+                        {
+                            string[] token = line.Split('_');
+                            AddOrUpdateOrderRow(token[0], token[1], token[2], "1");
+                        }
                     }
-
                 }
-
             }
+            catch (FileNotFoundException)
+            {
+                // Soubor neexistuje, nic se nedìje
+            }
+            catch (Exception ex)
+            {
+                // Zpracování jiných možných výjimek
+                MessageBox.Show($"Došlo k neoèekávané chybì: {ex.Message}", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void AddOrUpdateOrderRow(string id, string name, string price, string quantity)
@@ -535,7 +550,7 @@ namespace BooksManagement
                         MessageBox.Show("Úspìšnì jste prodali knihy!");
                         ResetMenuObjednavka();
                     }
-                    catch 
+                    catch
                     {
                         MessageBox.Show("Nepodaøilo se koupit knihy!");
                     }
@@ -591,7 +606,7 @@ namespace BooksManagement
             {
                 dataGridViewReturnBook.DataSource = returnBook.GetCustomOrderInfo();
             }
-            
+
 
         }
 
@@ -601,9 +616,9 @@ namespace BooksManagement
             {
                 DataGridViewRow selectedRow = dataGridViewReturnBook.SelectedRows[0];
 
-                int dokladID = (int) selectedRow.Cells["dokladID"].Value;
-                int bookID = (int) selectedRow.Cells["bookID"].Value;
-                int customerID = (int) selectedRow.Cells["zakaznikID"].Value;
+                int dokladID = (int)selectedRow.Cells["dokladID"].Value;
+                int bookID = (int)selectedRow.Cells["bookID"].Value;
+                int customerID = (int)selectedRow.Cells["zakaznikID"].Value;
                 DateTime returnDate = (DateTime)selectedRow.Cells["datumTo"].Value;
 
                 ReturnBook returnBook = new ReturnBook(customerID);
@@ -647,15 +662,23 @@ namespace BooksManagement
 
 
 
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string filePath = "OrderBook.txt";
 
-
-
-
-
-
-
-
-
-       
+            try
+            {
+                // Zkontroluje, zda soubor existuje
+                if (File.Exists(filePath))
+                {
+                    // Smaže soubor
+                    File.Delete(filePath);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Nastala chyba pøi mazání souboru: {ex.Message}", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
