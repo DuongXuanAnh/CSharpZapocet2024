@@ -343,6 +343,7 @@ namespace BooksManagement
         #endregion
 
         #region Objednavka
+        private bool messageBoxShown = false;
         private void dataGridView_Order_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             if (dataGridView_Order.Columns[e.ColumnIndex].Name == "Quantity")
@@ -361,12 +362,19 @@ namespace BooksManagement
                 if (int.TryParse(bookIDValue, out bookID))
                 {
                     int maxKusu = Books.GetBookQuantity(bookID);
-                    if (!int.TryParse(e.FormattedValue.ToString(), out newInteger) || newInteger > maxKusu)
+
+                    if(maxKusu > 0)
                     {
-                        e.Cancel = true;
-                        MessageBox.Show($"Zbývá pouze už jen {maxKusu} kusù");
-                        return;
+                        if ((!int.TryParse(e.FormattedValue.ToString(), out newInteger) || newInteger > maxKusu) && !messageBoxShown)
+                        {
+                            e.Cancel = true;
+                            MessageBox.Show($"Zbývá pouze už jen {maxKusu} kusù");
+                            messageBoxShown = true;
+                            return;
+                        }
                     }
+
+                    
                 }
             }
         }

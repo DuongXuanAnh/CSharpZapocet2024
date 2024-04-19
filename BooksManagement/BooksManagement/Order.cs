@@ -95,29 +95,38 @@ namespace BooksManagement
 
         private void TakeBookFromDB()
         {
-            foreach (var item in bookInOrder)
+            try
             {
-                int bookId = item.Key;
-                int quantityToSubtract = item.Value;
+                foreach (var item in bookInOrder)
+                {
+                    int bookId = item.Key;
+                    int quantityToSubtract = item.Value;
 
-                string query = "UPDATE kniha SET amount = amount - @quantityToSubtract WHERE id = @bookId";
+                    string query = "UPDATE kniha SET amount = amount - @quantityToSubtract WHERE id = @bookId";
 
-                var parameters = new Dictionary<string, object>
+                    var parameters = new Dictionary<string, object>
                     {
                         { "@quantityToSubtract", quantityToSubtract },
                         { "@bookId", bookId }
                     };
 
-                try
-                {
-                    DataProvider.Instance.ExecuteModifiedQuery(query, parameters);
-                }
-                catch (Exception ex) 
-                {
-                    MessageBox.Show($"Chyba při odečítání knihy s ID {bookId}: {ex.Message}", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    throw;
+                    //try
+                    //{
+                        DataProvider.Instance.ExecuteModifiedQuery(query, parameters);
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    MessageBox.Show($"Chyba při odečítání knihy s ID {bookId}: {ex.Message}", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //    throw;
+                    //}
                 }
             }
+            catch
+            {
+                throw new Exception();
+            }
+
+           
         }
 
 
