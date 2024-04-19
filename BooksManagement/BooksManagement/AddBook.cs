@@ -48,10 +48,31 @@ namespace BooksManagement
                 object result = dataProvider.ExecuteScalarQuery(checkQuery, checkParameters);
                 int count = Convert.ToInt32(result);
 
+             
+
                 if (count > 0)
                 {
-                    MessageBox.Show("Kniha s tímto názvem a rokem vydání již existuje.", "Varování", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    // Pokud kniha s daným názvem a rokem vydání již existuje, provedeme kontrolu autorů
+                    string authorCheckQuery = @"
+                        SELECT COUNT(*) 
+                        FROM kniha_autor AS ka
+                        JOIN autor a ON ka.id_autor = a.id
+                        WHERE ka.id_kniha IN (
+                            SELECT id 
+                            FROM kniha 
+                            WHERE nazev = @name AND rok_vydani = @publicYear
+                        )
+                        AND ka.id_autor IN (" + string.Join(",", authorID) + ")";
+
+                    object authorResult = dataProvider.ExecuteScalarQuery(authorCheckQuery, checkParameters);
+                    int authorCount = Convert.ToInt32(authorResult);
+
+                   
+                    if (authorCount > 0)
+                    {
+                        MessageBox.Show("Kniha s tímto názvem, rokem vydání a autory již existuje.", "Varování", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
                 }
 
                 // Kniha neexistuje, vložení nové knihy do databáze

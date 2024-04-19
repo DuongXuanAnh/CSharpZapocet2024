@@ -240,7 +240,6 @@
             cb_knihy_zanr.Size = new Size(263, 36);
             cb_knihy_zanr.TabIndex = 6;
             cb_knihy_zanr.SelectedIndexChanged += cb_knihy_zanr_SelectedIndexChanged;
-            cb_knihy_zanr.TextChanged += cb_knihy_zanr_TextChanged;
             // 
             // label15
             // 
@@ -482,6 +481,7 @@
             txt_addBook_year.Name = "txt_addBook_year";
             txt_addBook_year.Size = new Size(374, 34);
             txt_addBook_year.TabIndex = 18;
+            txt_addBook_year.KeyPress += txt_addBook_year_KeyPress;
             // 
             // txt_addBook_price
             // 
@@ -490,6 +490,7 @@
             txt_addBook_price.Name = "txt_addBook_price";
             txt_addBook_price.Size = new Size(374, 34);
             txt_addBook_price.TabIndex = 17;
+            txt_addBook_price.KeyPress += txt_addBook_price_KeyPress;
             // 
             // cb_addBook_zarn
             // 
@@ -539,7 +540,7 @@
             label18.Name = "label18";
             label18.Size = new Size(55, 28);
             label18.TabIndex = 12;
-            label18.Text = "Žárn:";
+            label18.Text = "Žánr:";
             // 
             // label17
             // 
@@ -934,6 +935,7 @@
             txt_ReturnBook_CustomerID.Name = "txt_ReturnBook_CustomerID";
             txt_ReturnBook_CustomerID.Size = new Size(389, 34);
             txt_ReturnBook_CustomerID.TabIndex = 2;
+            txt_ReturnBook_CustomerID.KeyPress += txt_ReturnBook_CustomerID_KeyPress;
             // 
             // label24
             // 
@@ -967,12 +969,12 @@
             Controls.Add(btn_menu_addBook);
             Controls.Add(btn_menu_addAuthor);
             Controls.Add(btn_menu_knihy);
+            Controls.Add(panel_returnBook);
             Controls.Add(panel_Order);
             Controls.Add(panel_addCustomer);
             Controls.Add(panel_addBook);
             Controls.Add(panel_addAuthor);
             Controls.Add(panel_knihy);
-            Controls.Add(panel_returnBook);
             Name = "Form1";
             Text = "Books Management";
             FormClosing += Form1_FormClosing;

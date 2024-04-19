@@ -100,11 +100,47 @@ namespace BooksManagement
 
         private void txt_knihy_nazevKnihy_TextChanged(object sender, EventArgs e)
         {
-            // Vyhledávání knihy podle názvu          
+            // Vyhledávání knihy podle názvu, žánru a autora
             DataTable dataTable = (DataTable)dataGridView1.DataSource;
             DataView dataView = dataTable.DefaultView;
-            string filterValue = txt_knihy_nazevKnihy.Text.Replace("'", "''");
-            dataView.RowFilter = string.Format("název LIKE '%{0}%'", filterValue);
+
+            // Filtr pro název knihy
+            string filterValueNazev = txt_knihy_nazevKnihy.Text.Replace("'", "''");
+
+            // Filtr pro žánr
+            string filterValueZanr = cb_knihy_zanr.SelectedItem != null ? cb_knihy_zanr.SelectedItem.ToString().Replace("'", "''") : "";
+
+            // Filtr pro autora
+            string filterValueAutor = cb_knihy_authors.SelectedItem != null ? cb_knihy_authors.SelectedItem.ToString().Replace("'", "''") : "";
+
+            // Kombinace filtrù
+            string combinedFilter = "";
+
+            if (!string.IsNullOrEmpty(filterValueNazev))
+            {
+                combinedFilter += string.Format("název LIKE '%{0}%'", filterValueNazev);
+            }
+
+            if (!string.IsNullOrEmpty(filterValueZanr))
+            {
+                if (!string.IsNullOrEmpty(combinedFilter))
+                {
+                    combinedFilter += " AND ";
+                }
+                combinedFilter += string.Format("žánr = '{0}'", filterValueZanr);
+            }
+
+            if (!string.IsNullOrEmpty(filterValueAutor))
+            {
+                if (!string.IsNullOrEmpty(combinedFilter))
+                {
+                    combinedFilter += " AND ";
+                }
+                combinedFilter += string.Format("autor = '{0}'", filterValueAutor);
+            }
+
+            // Použití kombinovaného filtru
+            dataView.RowFilter = combinedFilter;
         }
 
         private void cb_knihy_zanr_SelectedIndexChanged(object sender, EventArgs e)
@@ -120,22 +156,6 @@ namespace BooksManagement
             {
                 string filterValue = cb_knihy_zanr.SelectedItem.ToString().Replace("'", "''"); // Escape single quotes
                 dataView.RowFilter = string.Format("Žánr = '{0}'", filterValue);
-            }
-        }
-
-        private void cb_knihy_zanr_TextChanged(object sender, EventArgs e)
-        {
-            DataTable dataTable = (DataTable)dataGridView1.DataSource;
-            DataView dataView = dataTable.DefaultView;
-
-            string filterValue = cb_knihy_zanr.Text.Replace("'", "''"); // Escape single quotes
-            if (string.IsNullOrWhiteSpace(filterValue))
-            {
-                dataView.RowFilter = ""; // Zobrazí všechny záznamy, pokud není vybrána žádná hodnota
-            }
-            else
-            {
-                dataView.RowFilter = string.Format("Žánr LIKE '%{0}%'", filterValue); // Filtrování na základì textu
             }
         }
 
@@ -202,6 +222,16 @@ namespace BooksManagement
                 MessageBox.Show("Prosím, vyberte øádek v tabulce.");
             }
         }
+
+        private void txt_addBook_price_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            AllowOnlyDigit(e);
+        }
+        private void txt_addBook_year_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            AllowOnlyDigit(e);
+        }
+
 
 
         #endregion
@@ -299,11 +329,7 @@ namespace BooksManagement
 
         private void txt_phoneNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Validation telephone number
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-            {
-                e.Handled = true; // Handle the event, effectively ignoring the key press
-            }
+            AllowOnlyDigit(e);
         }
         #endregion
 
@@ -484,10 +510,7 @@ namespace BooksManagement
 
         private void txt_Objednavka_Id_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-            {
-                e.Handled = true; // Handle the event, effectively ignoring the key press
-            }
+            AllowOnlyDigit(e);
         }
 
         private void btn_Objednavka_Create_Click(object sender, EventArgs e)
@@ -658,6 +681,11 @@ namespace BooksManagement
             }
         }
 
+        private void txt_ReturnBook_CustomerID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            AllowOnlyDigit(e);
+        }
+
         #endregion
 
 
@@ -680,5 +708,16 @@ namespace BooksManagement
                 MessageBox.Show($"Nastala chyba pøi mazání souboru: {ex.Message}", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        public void AllowOnlyDigit(KeyPressEventArgs e)
+        {
+            // Validation telephone number
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Handle the event, effectively ignoring the key press
+            }
+        }
+
+       
     }
 }
