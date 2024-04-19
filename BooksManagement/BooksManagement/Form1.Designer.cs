@@ -702,6 +702,7 @@
             dataGridView_Order.RowHeadersWidth = 51;
             dataGridView_Order.Size = new Size(738, 221);
             dataGridView_Order.TabIndex = 11;
+            dataGridView_Order.CellValueChanged += dataGridView_Order_CellValueChanged;
             // 
             // lb_Objednavka_TotalPrice
             // 
@@ -969,12 +970,12 @@
             Controls.Add(btn_menu_addBook);
             Controls.Add(btn_menu_addAuthor);
             Controls.Add(btn_menu_knihy);
+            Controls.Add(panel_knihy);
             Controls.Add(panel_returnBook);
             Controls.Add(panel_Order);
             Controls.Add(panel_addCustomer);
             Controls.Add(panel_addBook);
             Controls.Add(panel_addAuthor);
-            Controls.Add(panel_knihy);
             Name = "Form1";
             Text = "Books Management";
             FormClosing += Form1_FormClosing;

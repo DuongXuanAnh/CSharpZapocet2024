@@ -112,9 +112,10 @@ namespace BooksManagement
                 {
                     DataProvider.Instance.ExecuteModifiedQuery(query, parameters);
                 }
-                catch
+                catch (Exception ex) 
                 {
-                    throw new Exception();
+                    MessageBox.Show($"Chyba při odečítání knihy s ID {bookId}: {ex.Message}", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    throw;
                 }
             }
         }

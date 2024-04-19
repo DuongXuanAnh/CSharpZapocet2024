@@ -22,8 +22,6 @@ namespace BooksManagement
 
             btn_menu_knihy_Click(this, EventArgs.Empty);
 
-
-
         }
 
         private void btn_menu_knihy_Click(object sender, EventArgs e)
@@ -94,7 +92,7 @@ namespace BooksManagement
         {
             DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
             int id = (int)selectedRow.Cells["ID"].Value;
-            BookDetailForm bookDetailForm = new BookDetailForm(id);
+            BookDetailForm bookDetailForm = new BookDetailForm(this, id);
             bookDetailForm.Show();
         }
 
@@ -198,22 +196,32 @@ namespace BooksManagement
             {
                 DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
 
-
+                // Získání informací o vybrané knize
                 var id = Convert.ToString(selectedRow.Cells["id"].Value);
                 var title = Convert.ToString(selectedRow.Cells["název"].Value);
                 var price = Convert.ToString(selectedRow.Cells["Cena"].Value);
+                var amount = Convert.ToInt32(selectedRow.Cells["Poèet kusù"].Value);
 
-                try
+                // Ovìøení, že je dostupné množství vìtší než 0
+                if (amount > 0)
                 {
-                    using (StreamWriter sw = new StreamWriter("OrderBook.txt", true))
+                    try
                     {
-                        sw.WriteLine(id + "_" + title + "_" + price);
+                        // Pøidání knihy do košíku
+                        using (StreamWriter sw = new StreamWriter("OrderBook.txt", true))
+                        {
+                            sw.WriteLine(id + "_" + title + "_" + price);
+                        }
+                        MessageBox.Show("Kniha byla úspìšnì pøidána do košíku!");
                     }
-                    MessageBox.Show("Kniha byla úspìšnì pøidaná do košíku!");
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Tato kniha není momentálnì dostupná.", "Upozornìní", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
             }
@@ -222,6 +230,7 @@ namespace BooksManagement
                 MessageBox.Show("Prosím, vyberte øádek v tabulce.");
             }
         }
+
 
         private void txt_addBook_price_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -340,10 +349,11 @@ namespace BooksManagement
             {
                 int newInteger;
 
-                if (!int.TryParse(e.FormattedValue.ToString(), out newInteger) || newInteger < 0)
+                if (!int.TryParse(e.FormattedValue.ToString(), out newInteger) || newInteger < 1)
                 {
                     e.Cancel = true;
-                    MessageBox.Show("Prosím, vložte pouze kladné èíselné hodnoty do sloupce 'Poèet'.");
+                    MessageBox.Show("Prosím, vložte pouze kladné èíselné hodnoty do sloupce 'Poèet' a hodnotu alespoò 1.");
+                    return;
                 }
 
                 string bookIDValue = dataGridView_Order.Rows[e.RowIndex].Cells["ID"].Value.ToString();
@@ -355,11 +365,12 @@ namespace BooksManagement
                     {
                         e.Cancel = true;
                         MessageBox.Show($"Zbývá pouze už jen {maxKusu} kusù");
+                        return;
                     }
                 }
-
             }
         }
+
         private void SetupDataGridViewOrder()
         {
             dataGridView_Order.Rows.Clear();
@@ -409,6 +420,11 @@ namespace BooksManagement
             }
 
             lb_Objednavka_TotalPrice.Text = totalSum.ToString() + "-,Kè";
+        }
+
+        private void dataGridView_Order_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            ShowTotalOrderPrice();
         }
 
         private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -558,8 +574,9 @@ namespace BooksManagement
                     try
                     {
                         order.Borrow(customerID, returnDate);
-                        MessageBox.Show("Objednávka byla úspìšnì vytvoøená!");
                         ResetMenuObjednavka();
+                        MessageBox.Show("Objednávka byla úspìšnì vytvoøená!");
+                       
                     }
                     catch
                     {
@@ -570,8 +587,8 @@ namespace BooksManagement
                     try
                     {
                         order.Sell();
-                        MessageBox.Show("Úspìšnì jste prodali knihy!");
                         ResetMenuObjednavka();
+                        MessageBox.Show("Úspìšnì jste prodali knihy!");
                     }
                     catch
                     {
@@ -718,6 +735,9 @@ namespace BooksManagement
             }
         }
 
-       
+        public void RefreshForm()
+        {
+            btn_menu_knihy_Click(this, EventArgs.Empty);
+        }
     }
 }

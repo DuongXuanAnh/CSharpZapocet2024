@@ -13,25 +13,34 @@ using System.Windows.Forms;
 
 namespace BooksManagement
 {
+
     public partial class BookDetailForm : Form
     {
+
+        private Form1 mainForm = null;
+
         int bookID;
         string title;
         string price;
 
-        public BookDetailForm()
+        public BookDetailForm(Form1 mainForm, int bookID)
         {
             InitializeComponent();
-        }
-
-        public BookDetailForm(int bookID)
-        {
-            InitializeComponent();
+            this.mainForm = mainForm;
             this.bookID = bookID;
             Books.FillComboBoxWithGenres(cb_BookDetail_zanr);
             Author.FillComboBoxWithAuthor(cb_BookDetail_author);
             FillBookInformation(bookID);
         }
+
+        //public BookDetailForm(int bookID)
+        //{
+        //    InitializeComponent();
+        //    this.bookID = bookID;
+        //    Books.FillComboBoxWithGenres(cb_BookDetail_zanr);
+        //    Author.FillComboBoxWithAuthor(cb_BookDetail_author);
+        //    FillBookInformation(bookID);
+        //}
 
         void FillBookInformation(int id)
         {
@@ -202,6 +211,9 @@ namespace BooksManagement
                 };
                     dataProvider.ExecuteModifiedQuery(insertQuery, insertParameters);
                 }
+
+
+                mainForm.RefreshForm();
 
                 MessageBox.Show("Informace o knize byly úspěšně aktualizovány.", "Aktualizace úspěšná", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
