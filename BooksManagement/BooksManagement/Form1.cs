@@ -343,41 +343,41 @@ namespace BooksManagement
         #endregion
 
         #region Objednavka
-        private bool messageBoxShown = false;
-        private void dataGridView_Order_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+
+        private void dataGridView_Order_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView_Order.Columns[e.ColumnIndex].Name == "Quantity")
             {
-                int newInteger;
+                object value = dataGridView_Order.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                int intValue;
 
-                if (!int.TryParse(e.FormattedValue.ToString(), out newInteger) || newInteger < 1)
+                // Pokud hodnota není validní èíslo, nastaví se na 1 a zobrazí se upozornìní
+                if (value == null || !int.TryParse(value.ToString(), out intValue))
                 {
-                    e.Cancel = true;
-                    MessageBox.Show("Prosím, vložte pouze kladné èíselné hodnoty do sloupce 'Poèet' a hodnotu alespoò 1.");
-                    return;
+                    dataGridView_Order.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = 1;
+                    MessageBox.Show("Zadaná hodnota není platné èíslo. Poèet byl nastaven na 1.", "Neplatná hodnota", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return; // Pøerušení metody, aby se další validace neprovádìla
                 }
 
-                string bookIDValue = dataGridView_Order.Rows[e.RowIndex].Cells["ID"].Value.ToString();
-                int bookID;
-                if (int.TryParse(bookIDValue, out bookID))
+                // Zde pøedpokládáme, že ID knihy je ve sloupci s názvem "ID"
+                int bookID = Convert.ToInt32(dataGridView_Order.Rows[e.RowIndex].Cells["ID"].Value);
+                int maxKusu = Books.GetBookQuantity(bookID); // Pøedpokládá se existující metoda
+
+                if (intValue < 1)
                 {
-                    int maxKusu = Books.GetBookQuantity(bookID);
-
-                    if(maxKusu > 0)
-                    {
-                        if ((!int.TryParse(e.FormattedValue.ToString(), out newInteger) || newInteger > maxKusu) && !messageBoxShown)
-                        {
-                            e.Cancel = true;
-                            MessageBox.Show($"Zbývá pouze už jen {maxKusu} kusù");
-                            messageBoxShown = true;
-                            return;
-                        }
-                    }
-
-                    
+                    intValue = 1;
+                    MessageBox.Show("Poèet kusù nesmí být menší než 1. Poèet byl nastaven na 1.", "Neplatná hodnota", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+                else if (intValue > maxKusu)
+                {
+                    intValue = maxKusu;
+                    MessageBox.Show($"Zadaný poèet kusù pøesahuje dostupné množství. Poèet byl nastaven na maximální dostupný poèet {maxKusu} kusù.", "Pøíliš vysoká hodnota", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+                dataGridView_Order.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = intValue;
             }
         }
+
 
         private void SetupDataGridViewOrder()
         {
@@ -397,7 +397,6 @@ namespace BooksManagement
 
             dataGridView_Order.Columns.Add("Quantity", "Poèet");
             dataGridView_Order.Columns["Quantity"].ReadOnly = false;
-            dataGridView_Order.CellValidating += new DataGridViewCellValidatingEventHandler(dataGridView_Order_CellValidating);
 
             DataGridViewButtonColumn deleteButtonColumn = new DataGridViewButtonColumn
             {
@@ -420,18 +419,27 @@ namespace BooksManagement
         private void ShowTotalOrderPrice()
         {
             double totalSum = 0;
-            for (int i = 0; i < dataGridView_Order.Rows.Count; ++i)
+
+            try
             {
-                double price = Convert.ToDouble(dataGridView_Order.Rows[i].Cells["Price"].Value ?? 0);
-                double quantity = Convert.ToDouble(dataGridView_Order.Rows[i].Cells["Quantity"].Value ?? 0);
-                totalSum += price * quantity;
+                for (int i = 0; i < dataGridView_Order.Rows.Count; ++i)
+                {
+                    double price = Convert.ToDouble(dataGridView_Order.Rows[i].Cells["Price"].Value ?? 0);
+                    double quantity = Convert.ToDouble(dataGridView_Order.Rows[i].Cells["Quantity"].Value ?? 0);
+                    totalSum += price * quantity;
+                }
+            }catch 
+            {
+                Console.WriteLine("Convert error");
             }
+          
 
             lb_Objednavka_TotalPrice.Text = totalSum.ToString() + "-,Kè";
         }
 
         private void dataGridView_Order_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
+
             ShowTotalOrderPrice();
         }
 
@@ -584,7 +592,7 @@ namespace BooksManagement
                         order.Borrow(customerID, returnDate);
                         ResetMenuObjednavka();
                         MessageBox.Show("Objednávka byla úspìšnì vytvoøená!");
-                       
+
                     }
                     catch
                     {
@@ -747,5 +755,8 @@ namespace BooksManagement
         {
             btn_menu_knihy_Click(this, EventArgs.Empty);
         }
+
+       
+       
     }
 }

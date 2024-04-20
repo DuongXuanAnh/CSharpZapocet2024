@@ -702,6 +702,7 @@
             dataGridView_Order.RowHeadersWidth = 51;
             dataGridView_Order.Size = new Size(738, 221);
             dataGridView_Order.TabIndex = 11;
+            dataGridView_Order.CellEndEdit += dataGridView_Order_CellEndEdit;
             dataGridView_Order.CellValueChanged += dataGridView_Order_CellValueChanged;
             // 
             // lb_Objednavka_TotalPrice
