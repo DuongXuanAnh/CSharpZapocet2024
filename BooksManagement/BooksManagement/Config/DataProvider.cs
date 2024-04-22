@@ -79,7 +79,7 @@ namespace BooksManagement.Config
             return data;
         }
 
-
+        // Select pro COUNT, SUM atd.
         public object ExecuteScalarQuery(string query, Dictionary<string, object> parameters = null)
         {
             object result = null;
